@@ -3,7 +3,7 @@ import UserRepository from '../src/UserRepository';
 
 describe('User Repository', () => {
   let data;
-  let repository;
+  let userRepository;
 
   beforeEach(function() {
     data = [
@@ -49,7 +49,7 @@ describe('User Repository', () => {
         ]
       }];
 
-    repository = new UserRepository(data);
+    userRepository = new UserRepository(data);
     
   });
 
@@ -58,16 +58,21 @@ describe('User Repository', () => {
   });
 
   it('should be an instance of User Repository', function() {
-    expect(repository).to.be.an.instanceOf(UserRepository);
+    expect(userRepository).to.be.an.instanceOf(UserRepository);
   });
 
   it('should store data', function() {
-    expect(repository.data).to.deep.equal(data);
+    expect(userRepository.data).to.deep.equal(data);
   });
 
   it('given a user id, it should return a user\'s data', function() {
-    const result = repository.renderUserData(repository.data[0].id);
-    expect(result).to.deep.equal(repository.data[0]);
+    const result = userRepository.renderUserData(userRepository.data[0].id);
+    expect(result).to.deep.equal(userRepository.data[0]);
+  });
+
+  it('should return the average step goal amongst all users', function() {
+    const result = userRepository.calculateAvgUserStepGoal();
+    expect(result).to.equal(6666);
   });
 
 });
