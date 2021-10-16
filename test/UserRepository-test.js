@@ -66,8 +66,8 @@ describe('User Repository', () => {
   });
 
   it('given a user id, it should return a user\'s data', function() {
-    const result = repository.renderUserData(repository.data[0].id);//execution
-    expect(result).to.deep.equal(repository.data[0]);//assertion
+    const result = repository.renderUserData(repository.data[0].id);
+    expect(result).to.deep.equal(repository.data[0]);
   });
 
 });
