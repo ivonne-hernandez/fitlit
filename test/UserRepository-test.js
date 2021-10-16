@@ -50,7 +50,7 @@ describe('User Repository', () => {
       }];
 
     repository = new UserRepository(data);
-
+    
   });
 
   it('should be a function', function () {
@@ -59,6 +59,15 @@ describe('User Repository', () => {
 
   it('should be an instance of User Repository', function() {
     expect(repository).to.be.an.instanceOf(UserRepository);
+  });
+
+  it('should store data', function() {
+    expect(repository.data).to.deep.equal(data);
+  });
+
+  it('given a user id, it should return a user\'s data', function() {
+    const result = repository.renderUserData(repository.data[0].id);//execution
+    expect(result).to.deep.equal(repository.data[0]);//assertion
   });
 
 });
