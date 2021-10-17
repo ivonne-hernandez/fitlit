@@ -1,5 +1,25 @@
-body, html {
+/* body, html {
   background-image: linear-gradient(to top, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
   background-repeat: no-repeat;
   height: 100%;
+} */
+body {
+  display: flex;
+  align-items: row;
+  width: 100%;
+  border: solid green 2px;
+}
+
+main {
+  width: 100%
+}
+
+nav {
+  display: flex;
+  flex-direction: row;
+  border: solid red 2px;
+}
+
+aside {
+  border: solid blue 2px;
 }
