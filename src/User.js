@@ -8,6 +8,10 @@ class User {
     this.dailyStepGoal = userData.dailyStepGoal;
     this.friends = userData.friends;
   }
+
+  renderUserFirstName() {
+    return this.name;
+  }
   
 }
 module.exports = User;
