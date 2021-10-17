@@ -12,6 +12,5 @@ class User {
   renderUserFirstName() {
     return this.name;
   }
-  
 }
-module.exports = User;
+export default User; 
