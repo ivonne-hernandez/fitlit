@@ -50,7 +50,6 @@ describe('User Repository', () => {
       }];
 
     userRepository = new UserRepository(data);
-    
   });
 
   it('should be a function', function () {
