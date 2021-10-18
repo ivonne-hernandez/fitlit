@@ -21,6 +21,7 @@ let addressInfo = document.querySelector('#addressInfo');
 let userEmail = document.querySelector('#userEmail');
 let userStrideLength = document.querySelector('#userStrideLength');
 let userStepGoal = document.querySelector('#userStepGoal');
+let userFriends = document.querySelector('#userFriends');
 
 let userRepository = new UserRepository(userData);
 let user = new User(userRepository.renderUserData(1));
@@ -51,6 +52,10 @@ const displayUserStepGoal = () => {
   userStepGoal.innerText = `${user.dailyStepGoal}`;
 }
 
+const displayUserFriends = () => {
+  userFriends.innerText = `${user.friends}`;
+}
+
 const renderUserInfo = () => {
   renderUserWelcomeMsg();
   displayUserName();
@@ -58,6 +63,7 @@ const renderUserInfo = () => {
   displayUserEmail();
   displayUserStrideLength();
   displayUserStepGoal();
+  displayUserFriends();
 }
 
 
