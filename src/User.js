@@ -10,7 +10,7 @@ class User {
   }
 
   renderUserFirstName() {
-    return this.name;
+    return this.name.split(' ')[0];
   }
 }
-export default User; 
+export default User;

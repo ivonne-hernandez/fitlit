@@ -21,12 +21,24 @@ let welcomeUser = document.querySelector('#welcomeUser');
 let userRepository = new UserRepository(userData);
 let user = new User(userRepository.renderUserData(1));
 
-const renderUser = () => {
-  // helper function
-}
+
+// functions
 
 const updateWelcomeMsg = () => {
-  welcomeUser.innerText = `Welcome, ${user.renderUserFirstName()}`;
+  welcomeUser.innerText = `Welcome, ${user.renderUserFirstName()}!`;
 }
+
+// const 
+
+const renderUser = () => {
+  updateWelcomeMsg();
+}
+
+
+
+
+// eventListeners
+window.addEventListener('load', renderUser);
+
 console.log(userRepository)
 console.log(user)
