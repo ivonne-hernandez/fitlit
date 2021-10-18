@@ -13,10 +13,20 @@ import userData from './data/users';
 import UserRepository from './UserRepository';
 import User from './User';
 
+// querySelectors
+
+let welcomeUser = document.querySelector('#welcomeUser');
+
+
 let userRepository = new UserRepository(userData);
 let user = new User(userRepository.renderUserData(1));
 
-const 
+const renderUser = () => {
+  // helper function
+}
 
+const updateWelcomeMsg = () => {
+  welcomeUser.innerText = `Welcome, ${user.renderUserFirstName()}`;
+}
 console.log(userRepository)
 console.log(user)
