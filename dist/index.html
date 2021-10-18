@@ -6,13 +6,6 @@
   </head>
   <body>
 
-    <header>
-      <nav>
-        <h2> Dashboard </h2>
-        <h3> Welcome User! </h3>
-        <h3> Today's Date </h3>
-      </nav>
-    </header>
 
     <aside>
       <h1> Activity Tracker </h1>
@@ -31,30 +24,38 @@
     </aside>
 
     <main>
-      <section>
-        <h4> Hydration </h4>
-        <section>
-          <h5> Today </h5>
+      <!-- <header> -->
+        <nav>
+          <h2> Dashboard </h2>
+          <h3> Welcome User! </h3>
+          <h3> Today's Date </h3>
+        </nav>
+      <!-- </header> -->
+      <div class="activity-sections">
+        <section class="hydration-section">
+          <h4> Hydration </h4>
+          <section>
+            <h5> Today </h5>
+          </section>
+          <section>
+            <h5> This Week </h5>
+          </section>
         </section>
-        <section>
-          <h5> This Week </h5>
+        <section class="sleep-section">
+          <h4> Sleep </h4>
+          <section>
+            <h5> Today </5>
+         </section>
+         <section>
+            <h5> This Week </h5>
+         </section>
+         <section>
+            <h5> All Time </h5>
+         </section>
         </section>
-      </section>
-
-      <section>
-        <h4> Sleep </h4>
-        <section>
-          <h5> Today </5>
-       </section>
-       <section>
-          <h5> This Week </h5>
-       </section>
-       <section>
-          <h5> All Time </h5>
-       </section>
-      </section>
+      </div>
     </main>
-    
+
     <script src="bundle.js"></script>
   </body>
 </html>
