@@ -16,7 +16,9 @@ import User from './User';
 // querySelectors
 
 let welcomeUser = document.querySelector('#welcomeUser');
-
+let userName = document.querySelector('#userName');
+let addressInfo = document.querySelector('#addressInfo');
+let userEmail = document.querySelector('#userEmail');
 
 let userRepository = new UserRepository(userData);
 let user = new User(userRepository.renderUserData(1));
@@ -24,21 +26,33 @@ let user = new User(userRepository.renderUserData(1));
 
 // functions
 
-const updateWelcomeMsg = () => {
+const renderUserWelcomeMsg = () => {
   welcomeUser.innerText = `Welcome, ${user.renderUserFirstName()}!`;
 }
 
-// const 
+const displayUserName = () => {
+  userName.innerText = `${user.name}`;
+}
 
-const renderUser = () => {
-  updateWelcomeMsg();
+const displayUserAddress = () => {
+  addressInfo.innerText = `${user.address}`;
+}
+const displayUserEmail = () => {
+  userEmail.innerText = `${user.email}`;
+}
+
+const renderUserInfo = () => {
+  renderUserWelcomeMsg();
+  displayUserName();
+  displayUserAddress();
+  displayUserEmail();
 }
 
 
 
 
 // eventListeners
-window.addEventListener('load', renderUser);
+window.addEventListener('load', renderUserInfo);
 
 console.log(userRepository)
 console.log(user)
