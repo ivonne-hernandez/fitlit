@@ -73,6 +73,7 @@ h4 {
   display: flex;
   height: 100%;
   overflow: hidden;
+  color: white;
 }
 
 .activity {
@@ -93,7 +94,7 @@ h4 {
 
 .sleep {
   background-color: #462c61;
-  height: 44%;
+  flex: 1;
 }
 
 .friends {
