@@ -61,6 +61,14 @@ aside {
   background-color: LightGray;
 }
 
+.info-section {
+  display: flex;
+}
+
+h4 {
+  margin-left: 60px;
+}
+
 .main-sections {
   display: flex;
   height: 100%;
@@ -80,12 +88,12 @@ aside {
 
 .hydration{
   background-color: #2e7ba6;
-  height: 50%;
+  height: 44%;
 }
 
 .sleep {
   background-color: #462c61;
-  height: 50%;
+  height: 44%;
 }
 
 .friends {
