@@ -53,8 +53,31 @@ const displayUserStepGoal = () => {
 }
 
 const displayUserFriends = () => {
-  userFriends.innerText = `${user.friends}`;
+  const userFriendNames = user.friends
+  .map((friend) => {
+
+    return userRepository.data[friend].name;
+  })
+  .forEach((friend) => {
+    // console.log(friend)
+    // console.log(friend.split(' ')[0])
+    friend.split(' ')[0];
+  })
+  return userFriendNames;
+  // console.log(userFriendNames)
+
+//   const userFriendNames = user.friends.filter((friend) =>
+//     // console.log(userRepository.data[friend].name)
+//   friend === userRepository.data[friend].id;
+// ).map(friend) => {
+//   console.log(friend);
+//   return friend.name
+// })
+//   // console.log(userFriendNames);
+//   return userFriendNames;
+//   userFriends.innerText = `${userRepository.data[friend].name}`;
 }
+// console.log(displayUserFriends())
 
 const renderUserInfo = () => {
   renderUserWelcomeMsg();
@@ -72,5 +95,5 @@ const renderUserInfo = () => {
 // eventListeners
 window.addEventListener('load', renderUserInfo);
 
-console.log(userRepository)
-console.log(user)
+// console.log(userRepository)
+// console.log(user)
