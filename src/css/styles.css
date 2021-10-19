@@ -29,11 +29,17 @@ nav {
   height: 100px;
 }
 
+.nav-day-date {
+  border: solid 2px black;
+  padding: 10px 15px 10px 15px;
+  border-radius: 30px;
+}
+
 .nav-date {
   display: inline;
 }
 
-.day {
+.nav-day {
   display:inline;
 }
 
