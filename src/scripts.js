@@ -9,7 +9,8 @@ import './images/turing-logo.png'
 
 // An example of how you tell webpack to use a JS file
 
-import userData from './data/users';
+import userData from './data/users';//we'll need to get rid of this
+//we'll need to import our apiCalls.js functions here (?) and get rid of userData import
 import UserRepository from './UserRepository';
 import User from './User';
 
