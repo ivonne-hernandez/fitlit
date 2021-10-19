@@ -20,25 +20,39 @@ main {
 nav {
   display: flex;
   flex-direction: row;
-  border: solid red 2px;
-  height: 10%;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 60px;
+  padding-right: 60px;
+  /* border: solid red 2px; */
+  background-color: #f5f6fa;
+  height: 100px;
+}
+
+.nav-date {
+  display: inline;
+}
+
+.day {
+  display:inline;
 }
 
 aside {
   border: solid blue 2px;
   height: 100vh;
+  width: 300px;
 }
 
 .activity-sections {
   display: flex;
   flex-direction: column;
-  height:90%;
+  height: 90%;
 }
 
 .hydration-section,
 .sleep-section {
   display: flex;
   border: solid purple 2px;
-  height: 50%;
+  height: 400px;
   /* margin: 5px; */
 }
