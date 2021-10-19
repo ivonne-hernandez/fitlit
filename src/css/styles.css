@@ -5,16 +5,13 @@
 } */
 html, body {
   display: flex;
-  align-items: row;
-  width: 100%;
   height: 100vh;
-  border: solid green 2px;
-  margin: 0px;
+  width: 100%;
+  margin: 0;
 }
 
 main {
-  width: 100%
-  /* border: orange solid 2px; */
+  width: 100%;
 }
 
 nav {
@@ -44,8 +41,7 @@ nav {
 }
 
 aside {
-  border: solid blue 2px;
-  height: 100vh;
+  height: 100%;
   width: 300px;
 }
 
@@ -54,14 +50,27 @@ aside {
 }
 
 .activity {
-  height: 665px;
-  width: 550px;
+  width: 63.2%;
   background-color: #fd7326;
 }
 
-.hydration,
+.hydration-sleep {
+    width: 28.07%;
+    display:flex;
+    flex-direction: column;
+}
+
+.hydration{
+  background-color: #2e7ba6;
+  height: 43.5vh;
+}
+
 .sleep {
-  border: solid purple 2px;
-  height: 400px;
-  /* margin: 5px; */
+  background-color: #462c61;
+  height: 43.5vh;
+}
+
+.friends {
+  background-color: #ECEDF2;
+  width: 270px;
 }
