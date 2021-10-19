@@ -49,15 +49,18 @@ aside {
   width: 300px;
 }
 
-.activity-sections {
+.main-sections {
   display: flex;
-  flex-direction: column;
-  height: 90%;
 }
 
-.hydration-section,
-.sleep-section {
-  display: flex;
+.activity {
+  height: 665px;
+  width: 550px;
+  background-color: #fd7326;
+}
+
+.hydration,
+.sleep {
   border: solid purple 2px;
   height: 400px;
   /* margin: 5px; */
