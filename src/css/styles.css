@@ -3,15 +3,14 @@
   background-repeat: no-repeat;
   height: 100%;
 } */
-html, body {
+body {
   display: flex;
-  height: 100vh;
-  width: 100%;
   margin: 0;
 }
 
 main {
   width: 100%;
+  border: solid red 2px;
 }
 
 nav {
@@ -41,33 +40,34 @@ nav {
 }
 
 aside {
-  height: 100%;
   width: 300px;
+  border: solid black 2px;
 }
 
 .main-sections {
   display: flex;
+  min-height: 90vh;
 }
 
 .activity {
-  width: 63.2%;
+  width: 48.2%;
   background-color: #fd7326;
 }
 
 .hydration-sleep {
-    width: 28.07%;
-    display:flex;
-    flex-direction: column;
+  width: 28.07%;
+  display:flex;
+  flex-direction: column;
 }
 
 .hydration{
   background-color: #2e7ba6;
-  height: 43.5vh;
+  height: 50%;
 }
 
 .sleep {
   background-color: #462c61;
-  height: 43.5vh;
+  height: 50%;
 }
 
 .friends {
