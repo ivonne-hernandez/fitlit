@@ -46,16 +46,16 @@ aside {
 
 .main-sections {
   display: flex;
-  min-height: 90vh;
+  min-height: 88vh;
 }
 
 .activity {
-  width: 48.2%;
+  width: 50%;
   background-color: #fd7326;
 }
 
 .hydration-sleep {
-  width: 28.07%;
+  width: 30%;
   display:flex;
   flex-direction: column;
 }
@@ -72,5 +72,5 @@ aside {
 
 .friends {
   background-color: #ECEDF2;
-  width: 270px;
+  width: 20%;
 }
