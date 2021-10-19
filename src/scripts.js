@@ -23,6 +23,7 @@ let userEmail = document.querySelector('#userEmail');
 let userStrideLength = document.querySelector('#userStrideLength');
 let userStepGoal = document.querySelector('#userStepGoal');
 let userFriends = document.querySelector('#userFriends');
+let stepGoalComparison = document.querySelector('#stepGoalComparison');
 
 let userRepository = new UserRepository(userData);
 let user = new User(userRepository.renderUserData(1));
@@ -61,6 +62,10 @@ const displayUserFriends = () => {
   userFriends.innerText = `${friendNames.join(', ')}`;
 }
 
+const displayStepGoalComparison = () => {
+  stepGoalComparison.innerText = `Your step goal: ${user.dailyStepGoal} compared to the average user step goal: ${userRepository.calculateAvgUserStepGoal()}.`;
+}
+
 const renderUserInfo = () => {
   renderUserWelcomeMsg();
   displayUserName();
@@ -69,10 +74,8 @@ const renderUserInfo = () => {
   displayUserStrideLength();
   displayUserStepGoal();
   displayUserFriends();
+  displayStepGoalComparison();
 }
-
-
-
 
 // eventListeners
 window.addEventListener('load', renderUserInfo);
