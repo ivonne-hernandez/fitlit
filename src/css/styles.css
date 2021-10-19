@@ -3,14 +3,18 @@
   background-repeat: no-repeat;
   height: 100%;
 } */
-body {
+html,body {
   display: flex;
+  height: 100%;
+  width: 100%;
   margin: 0;
 }
 
 main {
   width: 100%;
+  height: auto;
   border: solid red 2px;
+  overflow: hidden;
 }
 
 nav {
@@ -42,6 +46,7 @@ nav {
 aside {
   width: 370px;
   border: solid black 2px;
+  overflow: hidden;
 }
 
 .logo {
@@ -58,7 +63,8 @@ aside {
 
 .main-sections {
   display: flex;
-  min-height: 88vh;
+  height: 100%;
+  overflow: hidden;
 }
 
 .activity {
