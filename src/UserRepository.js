@@ -16,6 +16,12 @@ class UserRepository {
     return Math.floor(totalUserSteps/this.data.length);
   }
 
+  getUsersByIds(userIds) {
+    const users = this.data.filter((user) => {
+      return userIds.includes(user.id);
+    });
+    return users;
+  }
 }
 
 export default UserRepository;
