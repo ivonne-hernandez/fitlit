@@ -10,7 +10,13 @@ class User {
   }
 
   renderUserFirstName() {
-    return this.name;
+    return this.name.split(' ')[0];
+  }
+
+  renderUserFriendNames() {
+    const friendNames = this.friends.filter((friend) => {
+      friend === this.friends.id
+    })
   }
 }
-export default User; 
+export default User;

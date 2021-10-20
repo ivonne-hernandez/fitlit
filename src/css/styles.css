@@ -3,42 +3,107 @@
   background-repeat: no-repeat;
   height: 100%;
 } */
-html, body {
+html,body {
   display: flex;
-  align-items: row;
+  height: 100%;
   width: 100%;
-  height: 100vh;
-  border: solid green 2px;
-  margin: 0px;
+  margin: 0;
 }
 
 main {
-  width: 100%
-  /* border: orange solid 2px; */
+  width: 100%;
+  height: auto;
+  border: solid red 2px;
+  overflow: hidden;
 }
 
 nav {
   display: flex;
   flex-direction: row;
-  border: solid red 2px;
-  height: 10%;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 60px;
+  padding-right: 60px;
+  /* border: solid red 2px; */
+  background-color: #f5f6fa;
+  height: 100px;
+}
+
+.nav-day-date {
+  border: solid 2px black;
+  padding: 10px 15px 10px 15px;
+  border-radius: 30px;
+}
+
+.nav-date {
+  display: inline;
+}
+
+.nav-day {
+  display:inline;
 }
 
 aside {
-  border: solid blue 2px;
-  height: 100vh;
+  width: 370px;
+  border: solid black 2px;
+  overflow: hidden;
 }
 
-.activity-sections {
+.logo {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  height:100px;
+}
+
+.profile-pic {
+  height: 300px;
+  background-color: LightGray;
+}
+
+.info-section {
+  display: flex;
+}
+
+h4 {
+  margin-left: 60px;
+}
+
+.main-sections {
+  display: flex;
+  height: 100%;
+  overflow: hidden;
+  color: black;
+}
+
+.activity {
+  width: 48%;
+  background-color: #fd7326;
+}
+
+.step-goal-comparison {
+  background-color: white;
+  height: 200px;
+  width: 200px;
+}
+
+.hydration-sleep {
+  width: 28%;
+  display:flex;
   flex-direction: column;
-  height:90%;
 }
 
-.hydration-section,
-.sleep-section {
-  display: flex;
-  border: solid purple 2px;
-  height: 50%;
-  /* margin: 5px; */
+.hydration{
+  background-color: #2e7ba6;
+  height: 44%;
+}
+
+.sleep {
+  background-color: #462c61;
+  flex: 1;
+}
+
+.friends {
+  background-color: #ECEDF2;
+  width: 24%;
 }
