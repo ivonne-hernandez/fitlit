@@ -6,8 +6,7 @@ describe('Sleep Repository', () => {
   let sleepRepository;
 
   beforeEach(function() {
-    sleepData =
-      [
+    sleepData = [
         {
           "userID": 1,
           "date": "2019/06/15",
@@ -25,7 +24,23 @@ describe('Sleep Repository', () => {
           "date": "2019/06/15",
           "hoursSlept": 10.8,
           "sleepQuality": 4.7
+        },
+        {
+          "userID":1,
+          "date":"2019/06/16",
+          "hoursSlept":4.1,
+          "sleepQuality":3.8
         }
-      ]
-  })
-})
+      ];
+      
+    sleepRepository = new SleepRepository(sleepData);
+  });
+
+  it('should be a function', function () {
+    expect(SleepRepository).to.be.a('function');
+  });
+
+  it('should be an instance of SleepRepository', function() {
+    expect(sleepRepository).to.be.an.instanceOf(SleepRepository);
+  });
+});
