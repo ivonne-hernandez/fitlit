@@ -29,7 +29,7 @@ describe('User', () => {
 
   it('should be an instance of User', function() {
     expect(user).to.be.an.instanceOf(User);
-  });  
+  });
 
   it('should have an id', function() {
     expect(user.id).to.equal(1);
@@ -61,7 +61,7 @@ describe('User', () => {
 
   it('should return a user\'s first name', function() {
     const result = user.renderUserFirstName();
-    expect(result).to.equal("Luisa Hane");
+    expect(result).to.equal("Luisa");
   });
 
 });
