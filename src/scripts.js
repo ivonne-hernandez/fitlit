@@ -10,7 +10,12 @@ import './images/turing-logo.png'
 // An example of how you tell webpack to use a JS file
 
 //import userData from './data/users';
-import { fetchUserData } from './apiCalls';
+import {
+  fetchUserData,
+  fetchSleepData,
+  fetchActivityData,
+  fetchHydrationData
+} from './apiCalls';
 
 //we'll need to import our apiCalls.js functions here (?) and get rid of userData import
 import UserRepository from './UserRepository';
@@ -28,13 +33,22 @@ let userStepGoal = document.querySelector('#userStepGoal');
 let userFriends = document.querySelector('#userFriends');
 let stepGoalComparison = document.querySelector('#stepGoalComparison');
 
-let userData;
-fetchUserData().then(data => userData = data.userData);
-console.log(userData);
+let userRepository;
+let user;
+const fetchAll = () => {
+  fetchUserData()
+    .then(data => {
+      parseAllData(data);
+      renderUserInfo();
+    });
+}
 
-let userRepository = new UserRepository(userData);
-let user = new User(userRepository.renderUserData(1));
+const parseAllData = (data) => {
+  userRepository = new UserRepository(data.userData);
+  user = new User(userRepository.renderUserData(1));
+}
 
+window.addEventListener('load', fetchAll);
 
 // functions
 
