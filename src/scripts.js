@@ -1,15 +1,3 @@
-// This is the JavaScript entry file - your code begins here
-// Do not delete or rename this file ********
-
-// An example of how you tell webpack to use a CSS file
-import './css/styles.css';
-
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
-import './images/turing-logo.png'
-
-// An example of how you tell webpack to use a JS file
-
-import userData from './data/users';
 import UserRepository from './UserRepository';
 import User from './User';
 
@@ -53,31 +41,12 @@ const displayUserStepGoal = () => {
 }
 
 const displayUserFriends = () => {
-  const userFriendNames = user.friends
-  .map((friend) => {
-
-    return userRepository.data[friend].name;
-  })
-  .forEach((friend) => {
-    // console.log(friend)
-    // console.log(friend.split(' ')[0])
-    friend.split(' ')[0];
-  })
-  return userFriendNames;
-  // console.log(userFriendNames)
-
-//   const userFriendNames = user.friends.filter((friend) =>
-//     // console.log(userRepository.data[friend].name)
-//   friend === userRepository.data[friend].id;
-// ).map(friend) => {
-//   console.log(friend);
-//   return friend.name
-// })
-//   // console.log(userFriendNames);
-//   return userFriendNames;
-//   userFriends.innerText = `${userRepository.data[friend].name}`;
+  const friends = userRepository.getUsersByIds(user.friends);
+  const friendNames = friends.map((friend) => {
+    return friend.name;
+  });
+  userFriends.innerText = `${friendNames.join(', ')}`;
 }
-// console.log(displayUserFriends())
 
 const renderUserInfo = () => {
   renderUserWelcomeMsg();

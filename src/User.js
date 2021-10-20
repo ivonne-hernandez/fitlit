@@ -15,7 +15,7 @@ class User {
 
   renderUserFriendNames() {
     const friendNames = this.friends.filter((friend) => {
-      friend === this.friends.id 
+      friendthis.friends.id 
     })
   }
 }
