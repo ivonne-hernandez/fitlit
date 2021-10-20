@@ -1,5 +1,26 @@
+// This is the JavaScript entry file - your code begins here
+// Do not delete or rename this file ********
+
+// An example of how you tell webpack to use a CSS file
+import './css/styles.css';
+
+// An example of how you tell webpack to use an image (also need to link to it in the index.html)
+import './images/turing-logo.png'
+
+// An example of how you tell webpack to use a JS file
+
+//import userData from './data/users';
+import {
+  fetchUserData,
+  fetchSleepData,
+  fetchActivityData,
+  fetchHydrationData
+} from './apiCalls';
+
+//we'll need to import our apiCalls.js functions here (?) and get rid of userData import
 import UserRepository from './UserRepository';
 import User from './User';
+
 
 // querySelectors
 
@@ -10,10 +31,24 @@ let userEmail = document.querySelector('#userEmail');
 let userStrideLength = document.querySelector('#userStrideLength');
 let userStepGoal = document.querySelector('#userStepGoal');
 let userFriends = document.querySelector('#userFriends');
+let stepGoalComparison = document.querySelector('#stepGoalComparison');
 
-let userRepository = new UserRepository(userData);
-let user = new User(userRepository.renderUserData(1));
+let userRepository;
+let user;
+const fetchAll = () => {
+  fetchUserData()
+    .then(data => {
+      parseAllData(data);
+      renderUserInfo();
+    });
+}
 
+const parseAllData = (data) => {
+  userRepository = new UserRepository(data.userData);
+  user = new User(userRepository.renderUserData(1));
+}
+
+window.addEventListener('load', fetchAll);
 
 // functions
 
@@ -48,6 +83,10 @@ const displayUserFriends = () => {
   userFriends.innerText = `${friendNames.join(', ')}`;
 }
 
+const displayStepGoalComparison = () => {
+  stepGoalComparison.innerText = `Your step goal: ${user.dailyStepGoal} compared to the average user step goal: ${userRepository.calculateAvgUserStepGoal()}.`;
+}
+
 const renderUserInfo = () => {
   renderUserWelcomeMsg();
   displayUserName();
@@ -56,10 +95,8 @@ const renderUserInfo = () => {
   displayUserStrideLength();
   displayUserStepGoal();
   displayUserFriends();
+  displayStepGoalComparison();
 }
-
-
-
 
 // eventListeners
 window.addEventListener('load', renderUserInfo);
