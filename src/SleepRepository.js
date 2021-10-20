@@ -10,7 +10,12 @@ class SleepRepository {
 
 
   calculateAvgSleepPerDay(userID){
-    
+    const userSleepData = this.renderUserSleepData(userID);
+    const totalHoursSlept = userSleepData.reduce((accumulator, user) => {
+      return accumulator += user.hoursSlept;
+    }, 0);
+
+    return totalHoursSlept/userSleepData.length;
   }
 }
 
