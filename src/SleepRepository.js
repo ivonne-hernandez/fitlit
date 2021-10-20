@@ -3,8 +3,14 @@ class SleepRepository {
     this.sleepData = data;
   }
 
-  calculateAvgSleepPerDay(){
+  renderUserSleepData(userID){
+    const userSleepData = this.sleepData.filter((user) => user.userID === userID);
+    return userSleepData;
+  }
 
+
+  calculateAvgSleepPerDay(userID){
+    
   }
 }
 

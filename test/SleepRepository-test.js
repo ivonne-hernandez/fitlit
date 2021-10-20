@@ -32,7 +32,7 @@ describe('Sleep Repository', () => {
           "sleepQuality":3.8
         }
       ];
-      
+
     sleepRepository = new SleepRepository(sleepData);
   });
 
@@ -43,4 +43,24 @@ describe('Sleep Repository', () => {
   it('should be an instance of SleepRepository', function() {
     expect(sleepRepository).to.be.an.instanceOf(SleepRepository);
   });
+
+   it('given a user ID it should return the user\'s sleep data', function() {
+     const user1SleepData = [
+       {
+         "userID": 1,
+         "date": "2019/06/15",
+         "hoursSlept": 6.1,
+         "sleepQuality": 2.2
+       },
+       {
+         "userID":1,
+         "date":"2019/06/16",
+         "hoursSlept":4.1,
+         "sleepQuality":3.8
+       }
+     ];
+
+     const result = sleepRepository.renderUserSleepData(1);
+     expect(result).to.deep.equal(user1SleepData);
+   });
 });
