@@ -33,7 +33,7 @@ describe('Sleep Repository', () => {
           "sleepQuality":3.8
         }
       ];
-      
+
     user1SleepData = [
       {
         "userID": 1,
@@ -65,14 +65,19 @@ describe('Sleep Repository', () => {
    expect(result).to.deep.equal(user1SleepData);
  });
 
- it('given a user ID, it should return the average number of hours slept per day', function(){
+ it('given a user ID, it should return the average number of hours slept per day', function() {
    const result = sleepRepository.calcAvgHoursSlept(1);
    expect(result).to.equal(5.1);
  });
 
- it('given a user ID, it should return the average sleep quality per day over all time', function(){
+ it('given a user ID, it should return the average sleep quality per day over all time', function() {
   const result = sleepRepository.calcAvgSleepQuality(1);
   expect(result).to.equal(3);
+})
+
+it('give a user ID and date, it should return how many hours a user slept on a specific day', function() {
+  const result = sleepRepository.calcHoursSleptOnDate("2019/06/16", 1);
+  expect(result).to.equal(4.1)
 })
 
 
