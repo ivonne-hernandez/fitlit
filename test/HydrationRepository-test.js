@@ -40,11 +40,11 @@ it('should be an instance of User Repository', function() {
 });
 
 it('should store data', function() {
-  expect(hydrationRepository.data).to.deep.equal(data);
+  expect(hydrationRepository.hydrateData).to.deep.equal(data);
 });
 
 it('given a user ID, it should return the user\'s data', function() {
-  const result = hydrationRepository.returnUserData(hydrationRepository.data[0].id);
-  expect(result).to.deep.equal(userRepository.data[0]);
+  const result = hydrationRepository.getUserData(1);
+  expect(result).to.deep.equal([data[0], data[2]]);
 });
 });
