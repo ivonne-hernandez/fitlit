@@ -44,7 +44,12 @@ it('should store data', function() {
 });
 
 it('given a user ID, it should return the user\'s data', function() {
-  const result = hydrationRepository.getUserData(1);
+  let result = hydrationRepository.getUserData(1);
   expect(result).to.deep.equal([data[0], data[2]]);
 });
+
+it('should return nothing if the user ID is invalid', function() {
+  let result = hydrationRepository.getUserData("booger");
+  expect(result).to.deep.equal([]);
+})
 });
