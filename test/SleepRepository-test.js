@@ -4,6 +4,7 @@ import SleepRepository from '../src/SleepRepository.js';
 describe('Sleep Repository', () => {
   let sleepData;
   let sleepRepository;
+  let user1SleepData;
 
   beforeEach(function() {
     sleepData = [
@@ -32,6 +33,21 @@ describe('Sleep Repository', () => {
           "sleepQuality":3.8
         }
       ];
+      
+    user1SleepData = [
+      {
+        "userID": 1,
+        "date": "2019/06/15",
+        "hoursSlept": 6.1,
+        "sleepQuality": 2.2
+      },
+      {
+        "userID":1,
+        "date":"2019/06/16",
+        "hoursSlept":4.1,
+        "sleepQuality":3.8
+      }
+    ];
 
     sleepRepository = new SleepRepository(sleepData);
   });
@@ -44,43 +60,20 @@ describe('Sleep Repository', () => {
     expect(sleepRepository).to.be.an.instanceOf(SleepRepository);
   });
 
-  it('given a user ID it should return the user\'s sleep data', function() {
-    const user1SleepData = [
-      {
-        "userID": 1,
-        "date": "2019/06/15",
-        "hoursSlept": 6.1,
-        "sleepQuality": 2.2
-     },
-     {
-       "userID":1,
-       "date":"2019/06/16",
-       "hoursSlept":4.1,
-       "sleepQuality":3.8
-     }
-   ];
-
+  it('given a user ID, it should return the user\'s sleep data', function() {
    const result = sleepRepository.renderUserSleepData(1);
    expect(result).to.deep.equal(user1SleepData);
  });
 
- it('given a user ID should return the average number of hours slept per day', function(){
-   const user1SleepData = [
-     {
-       "userID": 1,
-       "date": "2019/06/15",
-       "hoursSlept": 6.1,
-       "sleepQuality": 2.2
-    },
-    {
-      "userID":1,
-      "date":"2019/06/16",
-      "hoursSlept":4.1,
-      "sleepQuality":3.8
-    }
-  ];
-
-   const result = sleepRepository.calculateAvgSleepPerDay(1);
+ it('given a user ID, it should return the average number of hours slept per day', function(){
+   const result = sleepRepository.calcAvgHoursSlept(1);
    expect(result).to.equal(5.1);
- })
+ });
+
+ it('given a user ID, it should return the average sleep quality per day over all time', function(){
+  const result = sleepRepository.calcAvgSleepQuality(1);
+  expect(result).to.equal(3);
+})
+
+
 });

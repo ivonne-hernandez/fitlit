@@ -1,22 +1,31 @@
 class SleepRepository {
-  constructor(data){
-    this.sleepData = data;
+  constructor(sleepDataSet) {
+    this.sleepDataSet = sleepDataSet;
   }
 
-  renderUserSleepData(userID){
-    const userSleepData = this.sleepData.filter((user) => user.userID === userID);
-    return userSleepData;
+  renderUserSleepData(userID) {
+    const userSleepOccurrences = this.sleepDataSet.filter((user) => user.userID === userID);
+    return userSleepOccurrences;
   }
 
-
-  calculateAvgSleepPerDay(userID){
-    const userSleepData = this.renderUserSleepData(userID);
-    const totalHoursSlept = userSleepData.reduce((accumulator, user) => {
-      return accumulator += user.hoursSlept;
+  calcAvgHoursSlept(userID) {
+    const userSleepOccurrences = this.renderUserSleepData(userID);
+    const totalHoursSlept = userSleepOccurrences.reduce((accumulator, sleepOccurrence) => {
+      return accumulator + sleepOccurrence.hoursSlept;
     }, 0);
 
-    return totalHoursSlept/userSleepData.length;
+    return totalHoursSlept/userSleepOccurrences.length;
   }
+
+  calcAvgSleepQuality(userID) {
+    const userSleepOccurrences = this.renderUserSleepData(userID);
+    const totalSleepQuality = userSleepOccurrences.reduce((accumulator, sleepOccurrence) => {
+      return accumulator + sleepOccurrence.sleepQuality;
+    }, 0);
+
+    return totalSleepQuality/userSleepOccurrences.length;
+  }
+
 }
 
 export default SleepRepository;
