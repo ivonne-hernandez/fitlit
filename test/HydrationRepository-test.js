@@ -29,6 +29,7 @@ describe('Hydration Repository', () => {
       }];
 
 hydrationRepository = new HydrationRepository(data);
+});
 
 it('should be a function', function () {
   expect(HydrationRepository).to.be.a('function');
@@ -40,4 +41,10 @@ it('should be an instance of User Repository', function() {
 
 it('should store data', function() {
   expect(hydrationRepository.data).to.deep.equal(data);
+});
+
+it('given a user ID, it should return the user\'s data', function() {
+  const result = hydrationRepository.returnUserData(hydrationRepository.data[0].id);
+  expect(result).to.deep.equal(userRepository.data[0]);
+});
 });
