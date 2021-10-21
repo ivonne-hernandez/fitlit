@@ -29,9 +29,29 @@ class SleepRepository {
   calcHoursSleptOnDate(date, userID) {
     const userSleepOccurrences = this.renderUserSleepData(userID);
     const sleepOccurrenceOnDate = userSleepOccurrences.find((sleepOccurrence) => {
-        return sleepOccurrence.date === date
+        return sleepOccurrence.date === date;
     });
     return sleepOccurrenceOnDate.hoursSlept;
+  }
+
+  calcSleepQualityOnDate(date, userID) {
+    const userSleepOccurrences = this.renderUserSleepData(userID);
+    const sleepOccurrenceOnDate = userSleepOccurrences.find((sleepOccurrence) => {
+        return sleepOccurrence.date === date;
+    });
+    return sleepOccurrenceOnDate.sleepQuality;
+  }
+
+  calcHoursSleptInDayRange(days, userID) {
+    const userSleepOccurrences = this.renderUserSleepData(userID);
+    const hoursSleptForChosenDays = userSleepOccurrences
+      .filter((sleepOccurrence) => {
+        return days.includes(sleepOccurrence.date);
+      })
+      .map((renderedSleepOccurance) => {
+        return renderedSleepOccurance.hoursSlept;
+      })
+    return hoursSleptForChosenDays;
   }
 
 }
