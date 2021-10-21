@@ -47,6 +47,15 @@ describe('User hydration data', () => {
       "date": "2019/06/22",
       "numOunces": 91
       }];
-
+      
     userHydration = new Hydration(data)
   });
+
+  it("should be a function", function() {
+    expect(Hydration).to.be.a("function");
+  })
+
+  it("should be an instance of Hydration", function() {
+    expect(userHydration).to.be.an.instanceOf(Hydration);
+  })
+});
