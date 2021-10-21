@@ -2,8 +2,8 @@ import { expect } from 'chai';
 import HydrationRepository from '../src/HydrationRepository';
 
 describe('Hydration Repository', () => {
-  const hydrateData;
-  const hydrationRepository;
+  let data;
+  let hydrationRepository;
 
   beforeEach(function() {
     data = [
