@@ -3,9 +3,9 @@ class HydrationRepository {
     this.hydrateData = data;
   }
   getUserData(userId) {
-    const allUserData = this.hydrateData.filter((user) => user.userID === userId);
-    return allUserData;
+    const singleUserData = this.hydrateData.filter((user) => user.userID === userId);
+    return singleUserData;
   }
-}
+};
 
 export default HydrationRepository;

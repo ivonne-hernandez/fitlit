@@ -35,7 +35,7 @@ it('should be a function', function () {
   expect(HydrationRepository).to.be.a('function');
 });
 
-it('should be an instance of User Repository', function() {
+it('should be an instance of Hydration Repository', function() {
   expect(hydrationRepository).to.be.an.instanceOf(HydrationRepository);
 });
 
