@@ -26,7 +26,7 @@ class SleepRepository {
     return totalSleepQuality/userSleepOccurrences.length;
   }
 
-  calcHoursSleptOnDate(date, userID) {
+  renderHoursSleptOnDate(userID, date) {
     const userSleepOccurrences = this.renderUserSleepData(userID);
     const sleepOccurrenceOnDate = userSleepOccurrences.find((sleepOccurrence) => {
         return sleepOccurrence.date === date;
@@ -34,7 +34,7 @@ class SleepRepository {
     return sleepOccurrenceOnDate.hoursSlept;
   }
 
-  calcSleepQualityOnDate(date, userID) {
+  renderSleepQualityOnDate(userID, date) {
     const userSleepOccurrences = this.renderUserSleepData(userID);
     const sleepOccurrenceOnDate = userSleepOccurrences.find((sleepOccurrence) => {
         return sleepOccurrence.date === date;
@@ -42,7 +42,7 @@ class SleepRepository {
     return sleepOccurrenceOnDate.sleepQuality;
   }
 
-  calcHoursSleptInDayRange(days, userID) {
+  renderHoursSleptInDayRange(userID, days) {
     const userSleepOccurrences = this.renderUserSleepData(userID);
     const hoursSleptForChosenDays = userSleepOccurrences
       .filter((sleepOccurrence) => {
