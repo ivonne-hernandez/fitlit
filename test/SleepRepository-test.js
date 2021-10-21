@@ -31,6 +31,36 @@ describe('Sleep Repository', () => {
           "date":"2019/06/16",
           "hoursSlept":4.1,
           "sleepQuality":3.8
+        }, 
+        {
+          "userID": 1,
+          "date": "2019/06/17",
+          "hoursSlept": 8,
+          "sleepQuality": 2.6
+        }, 
+        {
+          "userID": 1,
+          "date": "2019/06/19",
+          "hoursSlept": 10.7,
+          "sleepQuality": 1.2
+        }, 
+        {
+          "userID": 1,
+          "date": "2019/06/20",
+          "hoursSlept": 9.3,
+          "sleepQuality": 1.2
+        },
+        {
+          "userID": 1,
+          "date": "2019/06/21",
+          "hoursSlept": 7.8,
+          "sleepQuality": 4.2
+        }, 
+        {
+          "userID": 1,
+          "date": "2019/06/22",
+          "hoursSlept": 7,
+          "sleepQuality": 3
         }
       ];
 
@@ -46,6 +76,36 @@ describe('Sleep Repository', () => {
         "date":"2019/06/16",
         "hoursSlept":4.1,
         "sleepQuality":3.8
+      }, 
+      {
+        "userID": 1,
+        "date": "2019/06/17",
+        "hoursSlept": 8,
+        "sleepQuality": 2.6
+      }, 
+      {
+        "userID": 1,
+        "date": "2019/06/19",
+        "hoursSlept": 10.7,
+        "sleepQuality": 1.2
+      }, 
+      {
+        "userID": 1,
+        "date": "2019/06/20",
+        "hoursSlept": 9.3,
+        "sleepQuality": 1.2
+      },
+      {
+        "userID": 1,
+        "date": "2019/06/21",
+        "hoursSlept": 7.8,
+        "sleepQuality": 4.2
+      }, 
+      {
+        "userID": 1,
+        "date": "2019/06/22",
+        "hoursSlept": 7,
+        "sleepQuality": 3
       }
     ];
 
@@ -67,12 +127,12 @@ describe('Sleep Repository', () => {
 
   it('given a user ID, it should return the average number of hours slept per day', function() {
     const result = sleepRepository.calcAvgHoursSlept(1);
-    expect(result).to.equal(5.1);
+    expect(result).to.equal(7.6);
   });
 
   it('given a user ID, it should return the average sleep quality per day over all time', function() {
     const result = sleepRepository.calcAvgSleepQuality(1);
-    expect(result).to.equal(3);
+    expect(result).to.equal(2.6);
   });
 
   it('given a user ID and date, it should return how many hours a user slept on that date', function() {

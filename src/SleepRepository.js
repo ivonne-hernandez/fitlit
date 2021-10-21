@@ -14,7 +14,7 @@ class SleepRepository {
       return accumulator + sleepOccurrence.hoursSlept;
     }, 0);
 
-    return totalHoursSlept/userSleepOccurrences.length;
+    return Number((totalHoursSlept/userSleepOccurrences.length).toFixed(1));
   }
 
   calcAvgSleepQuality(userID) {
