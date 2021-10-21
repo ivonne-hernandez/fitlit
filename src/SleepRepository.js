@@ -26,6 +26,14 @@ class SleepRepository {
     return totalSleepQuality/userSleepOccurrences.length;
   }
 
+  calcHoursSleptOnDate(date, userID) {
+    const userSleepOccurrences = this.renderUserSleepData(userID);
+    const sleepOccurrenceOnDate = userSleepOccurrences.find((sleepOccurrence) => {
+        return sleepOccurrence.date === date
+    });
+    return sleepOccurrenceOnDate.hoursSlept;
+  }
+
 }
 
 export default SleepRepository;
