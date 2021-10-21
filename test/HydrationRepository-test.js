@@ -6,7 +6,7 @@ describe('Hydration Repository', () => {
   const hydrationRepository;
 
   beforeEach(function() {
-    hydrateData = [
+    data = [
       {
       "userID": 1,
       "date": "2019/06/15",
@@ -28,4 +28,16 @@ describe('Hydration Repository', () => {
       "numOunces": 91
       }];
 
-hydrationRepository = new HydrationRepository(hydrateData);
+hydrationRepository = new HydrationRepository(data);
+
+it('should be a function', function () {
+  expect(HydrationRepository).to.be.a('function');
+});
+
+it('should be an instance of User Repository', function() {
+  expect(hydrationRepository).to.be.an.instanceOf(HydrationRepository);
+});
+
+it('should store data', function() {
+  expect(hydrationRepository.data).to.deep.equal(data);
+});
