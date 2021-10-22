@@ -2,17 +2,23 @@ class Hydration {
   constructor(userStats) {
     this.userStats = userStats;
   }
+
   getAvgOunces() {
     const avgOunces = this.userStats.reduce((accumulator, day) => {
       return accumulator + day.numOunces;
     }, 0);
     return Math.floor(avgOunces / this.userStats.length);
   }
+
   getOuncesByDay(day) {
     const givenDay = this.userStats.find((stat) => {
       return stat.date === day
     });
     return givenDay.numOunces;
+  }
+
+  getOuncesForWeek() {
+    
   }
 }
 

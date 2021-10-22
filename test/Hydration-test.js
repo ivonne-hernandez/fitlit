@@ -68,4 +68,10 @@ describe('User hydration data', () => {
     const dayTotal = userHydration.getOuncesByDay("2019/06/16");
     expect(dayTotal).to.equal(75)
   })
+
+  it("return fluid ounces each day for a week", function() {
+    const week = useryHydration.getOuncesForWeek(["2019/06/16", "2019/06/17",
+    "2019/06/18", "2019/06/19", "2019/06/20", "2019/06/21", "2019/06/22"])
+    expect(week).to.deep.equal([75, 69, 91, 38, 79, 69, 91])
+  })
 });
