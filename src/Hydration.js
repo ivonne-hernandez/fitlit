@@ -19,7 +19,7 @@ class Hydration {
 
   getOuncesForRange(days) {
     const ouncesForDays = this.userStats.filter((stat) => {
-      return days.includes(this.userStats.date);
+      return days.includes(stat.date);
     })
     .map((day) => {
       return day.numOunces;

@@ -70,7 +70,7 @@ describe('User hydration data', () => {
   })
 
   it("return fluid ounces each day for a week", function() {
-    const week = useryHydration.getOuncesForRange(["2019/06/16", "2019/06/17",
+    const week = userHydration.getOuncesForRange(["2019/06/16", "2019/06/17",
     "2019/06/18", "2019/06/19", "2019/06/20", "2019/06/21", "2019/06/22"])
     expect(week).to.deep.equal([75, 69, 91, 38, 79, 69, 91])
   })
