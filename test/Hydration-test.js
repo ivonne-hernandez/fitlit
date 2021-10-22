@@ -65,7 +65,7 @@ describe('User hydration data', () => {
   })
 
   it("should return the number of ounces consumed on a specified day", function() {
-    const dayTotal = userHydration.getDailyOunces("2019/06/16");
+    const dayTotal = userHydration.getOuncesByDay("2019/06/16");
     expect(dayTotal).to.equal(75)
   })
 });

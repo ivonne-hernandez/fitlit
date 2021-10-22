@@ -8,6 +8,12 @@ class Hydration {
     }, 0);
     return Math.floor(avgOunces / this.userStats.length);
   }
+  getOuncesByDay(day) {
+    const givenDay = this.userStats.find((stat) => {
+      return stat.date === day
+    });
+    return givenDay.numOunces;
+  }
 }
 
 
