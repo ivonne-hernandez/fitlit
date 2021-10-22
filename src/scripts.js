@@ -9,9 +9,18 @@ import './images/turing-logo.png'
 
 // An example of how you tell webpack to use a JS file
 
-import userData from './data/users';
+//import userData from './data/users';
+import {
+  fetchUserData,
+  fetchSleepData,
+  fetchActivityData,
+  fetchHydrationData
+} from './apiCalls';
+
+//we'll need to import our apiCalls.js functions here (?) and get rid of userData import
 import UserRepository from './UserRepository';
 import User from './User';
+
 
 // querySelectors
 
@@ -22,10 +31,24 @@ let userEmail = document.querySelector('#userEmail');
 let userStrideLength = document.querySelector('#userStrideLength');
 let userStepGoal = document.querySelector('#userStepGoal');
 let userFriends = document.querySelector('#userFriends');
+let stepGoalComparison = document.querySelector('#stepGoalComparison');
 
-let userRepository = new UserRepository(userData);
-let user = new User(userRepository.renderUserData(1));
+let userRepository;
+let user;
+const fetchAll = () => {
+  fetchUserData()
+    .then(data => {
+      parseAllData(data);
+      renderUserInfo();
+    });
+}
 
+const parseAllData = (data) => {
+  userRepository = new UserRepository(data.userData);
+  user = new User(userRepository.renderUserData(1));
+}
+
+window.addEventListener('load', fetchAll);
 
 // functions
 
@@ -53,31 +76,16 @@ const displayUserStepGoal = () => {
 }
 
 const displayUserFriends = () => {
-  const userFriendNames = user.friends
-  .map((friend) => {
-
-    return userRepository.data[friend].name;
-  })
-  .forEach((friend) => {
-    // console.log(friend)
-    // console.log(friend.split(' ')[0])
-    friend.split(' ')[0];
-  })
-  return userFriendNames;
-  // console.log(userFriendNames)
-
-//   const userFriendNames = user.friends.filter((friend) =>
-//     // console.log(userRepository.data[friend].name)
-//   friend === userRepository.data[friend].id;
-// ).map(friend) => {
-//   console.log(friend);
-//   return friend.name
-// })
-//   // console.log(userFriendNames);
-//   return userFriendNames;
-//   userFriends.innerText = `${userRepository.data[friend].name}`;
+  const friends = userRepository.getUsersByIds(user.friends);
+  const friendNames = friends.map((friend) => {
+    return friend.name;
+  });
+  userFriends.innerText = `${friendNames.join(', ')}`;
 }
-// console.log(displayUserFriends())
+
+const displayStepGoalComparison = () => {
+  stepGoalComparison.innerText = `Your step goal: ${user.dailyStepGoal} compared to the average user step goal: ${userRepository.calculateAvgUserStepGoal()}.`;
+}
 
 const renderUserInfo = () => {
   renderUserWelcomeMsg();
@@ -87,10 +95,8 @@ const renderUserInfo = () => {
   displayUserStrideLength();
   displayUserStepGoal();
   displayUserFriends();
+  displayStepGoalComparison();
 }
-
-
-
 
 // eventListeners
 window.addEventListener('load', renderUserInfo);

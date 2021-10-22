@@ -74,4 +74,10 @@ describe('User Repository', () => {
     expect(result).to.equal(6666);
   });
 
+  it('given an array of user id\'s, it should return an array of users', function() {
+    const userIds = [1, 2, 3];
+    const result = userRepository.getUsersByIds(userIds);
+    expect(result).to.deep.equal(data);
+  });
+
 });
