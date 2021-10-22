@@ -47,7 +47,7 @@ describe('User hydration data', () => {
       "date": "2019/06/22",
       "numOunces": 91
       }];
-      
+
     userHydration = new Hydration(data)
   });
 
@@ -57,5 +57,10 @@ describe('User hydration data', () => {
 
   it("should be an instance of Hydration", function() {
     expect(userHydration).to.be.an.instanceOf(Hydration);
+  })
+
+  it("should be able to calculate the user's average daily ounces", function() {
+    const userAverage = userHydration.getAvgOunces();
+    expect(userAverage).to.equal(68)
   })
 });
