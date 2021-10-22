@@ -54,6 +54,18 @@ class SleepRepository {
     return hoursSleptForChosenDays;
   }
 
+  renderSleepQualityInDayRange(userID, days) {
+    const userSleepOccurrences = this.renderUserSleepData(userID);
+    const sleepQualityForChosenDays = userSleepOccurrences
+      .filter((sleepOccurrence) => {
+        return days.includes(sleepOccurrence.date);
+      })
+      .map((renderedSleepOccurance) => {
+        return renderedSleepOccurance.sleepQuality;
+      })
+    return sleepQualityForChosenDays;
+  }
+
 }
 
 export default SleepRepository;

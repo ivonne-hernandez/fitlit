@@ -145,9 +145,14 @@ describe('Sleep Repository', () => {
     expect(result).to.equal(3.8);
   });
 
-  it('given a user ID and days, it should calculate hours slept for each day over the course of a given week', function() {
-    const result = sleepRepository.renderHoursSleptInDayRange(1,["2019/06/15", "2019/06/16"]);
-    expect(result).to.deep.equal([6.1, 4.1])
+  it('given a user ID and days, it should return hours slept for each day', function() {
+    const result = sleepRepository.renderHoursSleptInDayRange(1,["2019/06/15", "2019/06/16", "2019/06/17", "2019/06/19", "2019/06/20", "2019/06/21", "2019/06/22"]);
+    expect(result).to.deep.equal([6.1, 4.1, 8, 10.7, 9.3, 7.8, 7])
   })
+
+  it('given a user ID and days, it should return the sleep quality for each day', function() {
+    const result = sleepRepository.renderSleepQualityInDayRange(1,["2019/06/15", "2019/06/16", "2019/06/17", "2019/06/19", "2019/06/20", "2019/06/21", "2019/06/22"]);
+    expect(result).to.deep.equal([2.2, 3.8, 2.6, 1.2, 1.2, 4.2, 3]);
+  });
 
 });
