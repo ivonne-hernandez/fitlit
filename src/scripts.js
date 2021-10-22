@@ -35,6 +35,13 @@ let stepGoalComparison = document.querySelector('#stepGoalComparison');
 
 let userRepository;
 let user;
+
+let renderRandomIndex = (min, max) => {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+let userId = renderRandomIndex(1, 50);
+
 const fetchAll = () => {
   fetchUserData()
     .then(data => {
@@ -45,10 +52,12 @@ const fetchAll = () => {
 
 const parseAllData = (data) => {
   userRepository = new UserRepository(data.userData);
-  user = new User(userRepository.renderUserData(1));
+  user = new User(userRepository.renderUserData(userId));
 }
 
-window.addEventListener('load', fetchAll);
+// Items to add to the dashboard:
+// For a user, their sleep data for the latest day (hours slept and quality of sleep)
+
 
 // functions
 
@@ -99,7 +108,7 @@ const renderUserInfo = () => {
 }
 
 // eventListeners
-window.addEventListener('load', renderUserInfo);
+window.addEventListener('load', fetchAll);
 
 // console.log(userRepository)
 // console.log(user)
