@@ -17,10 +17,25 @@ class Hydration {
     return givenDay.numOunces;
   }
 
-  getOuncesForWeek() {
-    
+  getOuncesForRange(days) {
+    const ouncesForDays = this.userStats.filter((stat) => {
+      return days.includes(this.userStats.date);
+    })
+    .map((day) => {
+      return day.numOunces;
+    })
+    return ouncesForDays;
   }
 }
+// const hoursSleptForChosenDays = userSleepOccurrences
+//      .filter((sleepOccurrence) => {
+//        return days.includes(sleepOccurrence.date);
+//      })
+//      .map((renderedSleepOccurance) => {
+//        return renderedSleepOccurance.hoursSlept;
+//      })
+//    return hoursSleptForChosenDays;
+//  }
 
 
 
