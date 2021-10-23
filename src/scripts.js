@@ -40,7 +40,8 @@ let sleepLatestWeek = document.querySelector('#userHoursSleptLatestWeek');
 let sleepQualityLatestWeek = document.querySelector('#userSleepQualityLatestWeek');
 let userAllTimeAvgHoursSlept = document.querySelector('#userAllTimeAvgHoursSlept');
 let userAllTimeAvgSleepQuality = document.querySelector('#userAllTimeAvgSleepQuality');
-
+let hydrationToday = document.querySelector('#hydrationToday');
+let hydrationLatestWeek = document.querySelector('#hydrationLatestWeek');
 
 let hydrationRepository;
 let userHydrationData;
@@ -148,11 +149,11 @@ const displayAllTimeAvgSleepQuality = () => {
 }
 
 const displayHydrationToday = () => {
-  renderUserHydrationToday();
+  hydrationToday.innerText = `${renderUserHydrationToday()} ounces.`;
 }
 
 const displayHydrationLatestWeek = () => {
-  renderUserHydrationLatestWeek();
+  hydrationLatestWeek.innerText = `${renderUserHydrationLatestWeek()} ounces.`;
 }
 
 const displayUserInfo = () => {
