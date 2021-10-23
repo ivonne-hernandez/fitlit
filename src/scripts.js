@@ -20,7 +20,7 @@ import {
 //we'll need to import our apiCalls.js functions here (?) and get rid of userData import
 import UserRepository from './UserRepository';
 import User from './User';
-
+import SleepRepository from './SleepRepository';
 
 // querySelectors
 
@@ -32,9 +32,13 @@ let userStrideLength = document.querySelector('#userStrideLength');
 let userStepGoal = document.querySelector('#userStepGoal');
 let userFriends = document.querySelector('#userFriends');
 let stepGoalComparison = document.querySelector('#stepGoalComparison');
+// vvvv update with new element IDs for proper sections vvvvv
+let sleepTempSection = document.querySelector('.sleep');
+
 
 let userRepository;
 let user;
+let sleepRepository;
 
 let renderRandomIndex = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -48,6 +52,12 @@ const fetchAll = () => {
       parseAllData(data);
       renderUserInfo();
     });
+  fetchSleepData()
+    .then(sleepData => {
+      console.log(sleepData);
+      parseSleepData(sleepData);
+      // renderUserSleepInfo();
+    });
 }
 
 const parseAllData = (data) => {
@@ -55,6 +65,10 @@ const parseAllData = (data) => {
   user = new User(userRepository.renderUserData(userId));
 }
 
+const parseSleepData = (sleepData) => {
+  sleepRepository = new SleepRepository(sleepData.sleepData);
+  console.log(sleepRepository);
+}
 // Items to add to the dashboard:
 // For a user, their sleep data for the latest day (hours slept and quality of sleep)
 
@@ -107,8 +121,7 @@ const renderUserInfo = () => {
   displayStepGoalComparison();
 }
 
+
+
 // eventListeners
 window.addEventListener('load', fetchAll);
-
-// console.log(userRepository)
-// console.log(user)
