@@ -21,6 +21,8 @@ import {
 import UserRepository from './UserRepository';
 import User from './User';
 import SleepRepository from './SleepRepository';
+import HydrationRepository from './HydrationRepository';
+import Hydration from './Hydration';
 
 // querySelectors
 
@@ -39,6 +41,9 @@ let sleepQualityLatestWeek = document.querySelector('#userSleepQualityLatestWeek
 let userAllTimeAvgHoursSlept = document.querySelector('#userAllTimeAvgHoursSlept');
 let userAllTimeAvgSleepQuality = document.querySelector('#userAllTimeAvgSleepQuality');
 
+
+let hydrationRepository;
+let userHydrationData;
 let userRepository;
 let user;
 let sleepRepository;
@@ -60,6 +65,11 @@ const fetchAll = () => {
       parseSleepData(sleepData);
       displayUserSleepInfo();
     });
+    fetchHydrationData()
+    .then(hydrationData => {
+      parseHydrationData(hydrationData);
+      displayUserHydrationInfo();
+    })
 }
 
 const parseAllData = (data) => {
@@ -70,10 +80,11 @@ const parseAllData = (data) => {
 const parseSleepData = (sleepData) => {
   sleepRepository = new SleepRepository(sleepData.sleepData);
 }
-// Items to add to the dashboard:
-// For a user, their sleep data for the latest day (hours slept and quality of sleep)
-// we want to...
-// renderSleepData function to display
+
+const parseHydrationData = (hydrationData) => {
+  hydrationRepository = new HydrationRepository(hydrationData.hydrationData);
+  userHydrationData = new Hydration(hydrationRepository.renderUserData(userId));
+}
 
 // functions
 
