@@ -69,7 +69,7 @@
               <h4> Hydration </h4>
               <div class="date-toggle">
                 <p>Today<p>
-                  
+
               </div>
             </div>
             <div class="card-deck">
@@ -86,10 +86,18 @@
                 <p>Today<p>
               </div>
             </div>
-            <div class="card-deck">
-              <div class="card">
+            <div id="sleepCardDeck" class="card-deck">
+              <div id="sleepInfoDay" class="card">
                 <p class="card-title"> Sleep Today <p>
-                <p></p>
+                <p id="userHoursSleptLatestDay"></p>
+                <p id="userSleepQualityLatestDay"></p>
+              </div>
+              <div id="sleepInfoWeek" class="card">
+                <p class="card-title"> Sleep This Week <p>
+                <p id="userHoursSleptLatestWeek"></p>
+                <p id="userSleepQualityLatestWeek"></p>
+                <p id="userAllTimeAvgHoursSlept"></p>
+                <p id="userAllTimeAvgSleepQuality"></p>
               </div>
             </div>
           </section>
