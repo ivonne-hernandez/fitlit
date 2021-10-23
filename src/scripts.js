@@ -25,7 +25,6 @@ import HydrationRepository from './HydrationRepository';
 import Hydration from './Hydration';
 
 // querySelectors
-
 let welcomeUser = document.querySelector('#welcomeUser');
 let userName = document.querySelector('#userName');
 let addressInfo = document.querySelector('#addressInfo');
@@ -125,19 +124,19 @@ const displayStepGoalComparison = () => {
 }
 
 const displayUserHoursSleptLatestDay = () => {
-  userHoursSleptLatestDay.innerText = `Hours slept today: ${renderUserHoursSlept()}`;
+  sleepLatestDay.innerText = `Hours slept today: ${renderUserHoursSlept()}`;
 }
 
 const displayUserSleepQualityLatestDay = () => {
-  userSleepQualityLatestDay.innerText = `Sleep quality today: ${renderUserSleepQuality()}`;
+  sleepQualityLatestDay.innerText = `Sleep quality today: ${renderUserSleepQuality()}`;
 }
 
 const displayUserHoursSleptLatestWeek = () => {
-  userHoursSleptLatestWeek.innerText = `Hours slept this week: ${renderHoursSleptLatestWeek()}`;
+  sleepLatestWeek.innerText = `Hours slept this week: ${renderHoursSleptLatestWeek()}`;
 }
 
 const displayUserSleepQualityLatestWeek = () => {
-  userSleepQualityLatestWeek.innerText = `Sleep quality this week: ${renderSleepQualityLatestWeek()}`;
+  sleepQualityLatestWeek.innerText = `Sleep quality this week: ${renderSleepQualityLatestWeek()}`;
 }
 
 const displayAllTimeAvgHoursSlept = () => {
