@@ -50,12 +50,12 @@ const fetchAll = () => {
   fetchUserData()
     .then(data => {
       parseAllData(data);
-      renderUserInfo();
+      displayUserInfo();
     });
   fetchSleepData()
     .then(sleepData => {
       parseSleepData(sleepData);
-      renderUserSleepInfo();
+      displayUserSleepInfo();
     });
 }
 
@@ -74,7 +74,7 @@ const parseSleepData = (sleepData) => {
 
 // functions
 
-const renderUserWelcomeMsg = () => {
+const displayUserWelcomeMsg = () => {
   welcomeUser.innerText = `Welcome, ${user.renderUserFirstName()}!`;
 }
 
@@ -109,8 +109,8 @@ const displayStepGoalComparison = () => {
   stepGoalComparison.innerText = `Your step goal: ${user.dailyStepGoal} compared to the average user step goal: ${userRepository.calculateAvgUserStepGoal()}.`;
 }
 
-const renderUserInfo = () => {
-  renderUserWelcomeMsg();
+const displayUserInfo = () => {
+  displayUserWelcomeMsg();
   displayUserName();
   displayUserAddress();
   displayUserEmail();
@@ -120,20 +120,20 @@ const renderUserInfo = () => {
   displayStepGoalComparison();
 }
 
-const renderUserSleepInfo = () => {
+const displayUserSleepInfo = () => {
   renderUserHoursSlept();
   renderUserSleepQuality();
 }
 
 const renderUserHoursSlept = () => {
   const userSleepEvents = sleepRepository.renderUserSleepData(userId);
-  const lastUserSleepEvent = userSleepEvents[userSleepEvents.length -1].date;
+  const lastUserSleepEvent = userSleepEvents[userSleepEvents.length - 1].date;
   return sleepRepository.renderHoursSleptOnDate(userId, lastUserSleepEvent);
 }
 
 const renderUserSleepQuality = () => {
   const userSleepEvents = sleepRepository.renderUserSleepData(userId);
-  const lastUserSleepEvent = userSleepEvents[userSleepEvents.length -1].date;
+  const lastUserSleepEvent = userSleepEvents[userSleepEvents.length - 1].date;
   return sleepRepository.renderSleepQualityOnDate(userId, lastUserSleepEvent);
 }
 
