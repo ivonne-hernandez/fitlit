@@ -147,6 +147,9 @@ const displayAllTimeAvgSleepQuality = () => {
   userAllTimeAvgSleepQuality.innerText = `Average sleep quality (all-time): ${renderAllTimeAverageSleepQuality()}`;
 }
 
+const displayHydrationToday = () => {
+  renderUserHydrationToday();
+}
 
 const displayUserInfo = () => {
   displayUserWelcomeMsg();
@@ -166,6 +169,15 @@ const displayUserSleepInfo = () => {
   displayUserSleepQualityLatestWeek();
   displayAllTimeAvgHoursSlept();
   displayAllTimeAvgSleepQuality();
+}
+
+const displayUserHydrationInfo = () => {
+  displayHydrationToday();
+}
+
+const renderUserHydrationToday = () => {
+  const lastUserHydrationDate = userHydrationData.hydrationData[userHydrationData.hydrationData.length - 1].date;
+  return userHydrationData.renderOuncesConsumedOnDate(lastUserHydrationDate);
 }
 
 const renderUserHoursSlept = () => {
