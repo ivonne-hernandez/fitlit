@@ -12,6 +12,8 @@ html,body {
 
 main {
   width: 100%;
+  display:flex;
+  flex-direction: column;
   height: auto;
   border: solid red 2px;
   overflow: hidden;
@@ -65,15 +67,20 @@ aside {
   display: flex;
 }
 
+p{
+  margin: 0;
+}
+
 h4 {
-  margin-left: 60px;
+  /* margin-top: 35px;
+  margin-left: 60px; */
 }
 
 .main-sections {
   display: flex;
-  height: 100%;
-  overflow: hidden;
+  flex: 1;
   color: black;
+  overflow:hidden;
 }
 
 .activity {
@@ -81,25 +88,63 @@ h4 {
   background-color: #fd7326;
 }
 
-.step-goal-comparison {
+.card {
   background-color: white;
   height: 200px;
   width: 200px;
+  border-radius: 20px;
+}
+
+.large {
+  width: 430px;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 2;
+  grid-auto-rows: 2;
+  grid-gap: 30px;
 }
 
 .hydration-sleep {
   width: 28%;
   display:flex;
-  flex-direction: column;
+  flex-wrap: wrap;
 }
 
 .hydration{
   background-color: #2e7ba6;
-  height: 44%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+}
+
+.hydration-sleep-cards {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.card-header {
+  width: 200px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.date-toggle {
+  border: solid 2px black;
+  padding: 10px 20px 10px 20px;
+  border-radius: 20px;
 }
 
 .sleep {
   background-color: #462c61;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
   flex: 1;
 }
 
