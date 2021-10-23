@@ -123,7 +123,8 @@ const displayUserInfo = () => {
 const displayUserSleepInfo = () => {
   renderUserHoursSlept();
   renderUserSleepQuality();
-  renderSleepDataLatestWeek();
+  renderHoursSleptLatestWeek();
+  renderSleepQualityLatestWeek();
 }
 
 const renderUserHoursSlept = () => {
@@ -138,11 +139,18 @@ const renderUserSleepQuality = () => {
   return sleepRepository.renderSleepQualityOnDate(userId, lastUserSleepEvent);
 }
 
-const renderSleepDataLatestWeek = () => {
+const renderHoursSleptLatestWeek = () => {
   const userSleepEvents = sleepRepository.renderUserSleepData(userId);
   const endDate = userSleepEvents[userSleepEvents.length - 1].date;
   const startDate = userSleepEvents[userSleepEvents.length - 7].date;
   return sleepRepository.renderHoursSleptByStartAndEndDate(userId, startDate, endDate);
+}
+
+const renderSleepQualityLatestWeek = () => {
+  const userSleepEvents = sleepRepository.renderUserSleepData(userId);
+  const endDate = userSleepEvents[userSleepEvents.length - 1].date;
+  const startDate = userSleepEvents[userSleepEvents.length - 7].date;
+  return sleepRepository.renderSleepQualityByStartAndEndDate(userId, startDate, endDate);
 }
 
 // eventListeners
