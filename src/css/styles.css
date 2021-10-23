@@ -68,12 +68,11 @@ aside {
 }
 
 p{
-  margin: 0;
 }
 
 h4 {
-  /* margin-top: 35px;
-  margin-left: 60px; */
+  margin-top: 35px;
+  margin-left: 60px;
 }
 
 .main-sections {
@@ -84,16 +83,13 @@ h4 {
 }
 
 .activity {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   width: 48%;
   background-color: #fd7326;
 }
 
 .activity-cards-second-row {
   display: flex;
-  justify-content: space-between;
+
 }
 
 .card {
@@ -101,14 +97,16 @@ h4 {
   height: 200px;
   width: 200px;
   border-radius: 20px;
+  margin: 0px 15px 0px 15px;
 }
 
 .large {
-  width: 78%;
-  min-width: 430px;
-
+  width: 430px;
 }
 
+.card-title{
+  text-align: center;
+}
 .grid-container {
   display: flex;
   flex-wrap: wrap;
@@ -134,7 +132,7 @@ h4 {
 
 }
 
-.hydration-sleep-cards {
+.card-deck {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -142,9 +140,7 @@ h4 {
 }
 
 .card-header {
-  width: 200px;
-  display: flex;
-  justify-content: space-between;
+  display:
 }
 
 .date-toggle {
