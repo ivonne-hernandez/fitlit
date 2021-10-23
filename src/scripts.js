@@ -54,9 +54,8 @@ const fetchAll = () => {
     });
   fetchSleepData()
     .then(sleepData => {
-      console.log(sleepData);
       parseSleepData(sleepData);
-      // renderUserSleepInfo();
+      renderUserSleepInfo();
     });
 }
 
@@ -67,11 +66,11 @@ const parseAllData = (data) => {
 
 const parseSleepData = (sleepData) => {
   sleepRepository = new SleepRepository(sleepData.sleepData);
-  console.log(sleepRepository);
 }
 // Items to add to the dashboard:
 // For a user, their sleep data for the latest day (hours slept and quality of sleep)
-
+// we want to...
+// renderSleepData function to display
 
 // functions
 
@@ -121,7 +120,13 @@ const renderUserInfo = () => {
   displayStepGoalComparison();
 }
 
-
+const renderUserSleepInfo = () => {
+  const userSleepEvents = sleepRepository.renderUserSleepData(userId);
+  const lastUserSleepEvent = userSleepEvents[userSleepEvents.length -1].date;
+  return sleepRepository.renderHoursSleptOnDate(userId, lastUserSleepEvent);
+  // for a user.. we want hours slept for latest day
+  // for a user.. we want quality of sleep for latest day
+}
 
 // eventListeners
 window.addEventListener('load', fetchAll);
