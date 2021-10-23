@@ -121,12 +121,23 @@ const renderUserInfo = () => {
 }
 
 const renderUserSleepInfo = () => {
+  renderUserHoursSlept();
+  renderUserSleepQuality();
+}
+
+const renderUserHoursSlept = () => {
   const userSleepEvents = sleepRepository.renderUserSleepData(userId);
   const lastUserSleepEvent = userSleepEvents[userSleepEvents.length -1].date;
   return sleepRepository.renderHoursSleptOnDate(userId, lastUserSleepEvent);
-  // for a user.. we want hours slept for latest day
-  // for a user.. we want quality of sleep for latest day
 }
+
+const renderUserSleepQuality = () => {
+  const userSleepEvents = sleepRepository.renderUserSleepData(userId);
+  const lastUserSleepEvent = userSleepEvents[userSleepEvents.length -1].date;
+  return sleepRepository.renderSleepQualityOnDate(userId, lastUserSleepEvent);
+}
+
+
 
 // eventListeners
 window.addEventListener('load', fetchAll);
