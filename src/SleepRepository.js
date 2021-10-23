@@ -42,28 +42,19 @@ class SleepRepository {
     return sleepEventOnDate.sleepQuality;
   }
 
-  renderHoursSleptInDayRange(userID, days) {
+  renderHoursSleptByStartAndEndDate(userID, start, end) {
     const userSleepEvents = this.renderUserSleepData(userID);
+    const startDate = new Date(start);
+    const endDate = new Date(end);
     const hoursSleptForChosenDays = userSleepEvents
       .filter((sleepEvent) => {
-        return days.includes(sleepEvent.date);
+        const sleepDate = new Date(sleepEvent.date);
+        return startDate <= sleepDate && sleepDate <= endDate;
       })
       .map((renderedSleepEvent) => {
         return renderedSleepEvent.hoursSlept;
       });
     return hoursSleptForChosenDays;
-  }
-
-  renderSleepQualityInDayRange(userID, days) {
-    const userSleepEvents = this.renderUserSleepData(userID);
-    const sleepQualityForChosenDays = userSleepEvents
-      .filter((sleepEvent) => {
-        return days.includes(sleepEvent.date);
-      })
-      .map((renderedSleepEvent) => {
-        return renderedSleepEvent.sleepQuality;
-      });
-    return sleepQualityForChosenDays;
   }
 
   renderSleepQualityByStartAndEndDate(userID, start, end) {
