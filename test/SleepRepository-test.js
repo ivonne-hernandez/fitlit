@@ -31,19 +31,19 @@ describe('Sleep Repository', () => {
           "date":"2019/06/16",
           "hoursSlept":4.1,
           "sleepQuality":3.8
-        }, 
+        },
         {
           "userID": 1,
           "date": "2019/06/17",
           "hoursSlept": 8,
           "sleepQuality": 2.6
-        }, 
+        },
         {
           "userID": 1,
           "date": "2019/06/19",
           "hoursSlept": 10.7,
           "sleepQuality": 1.2
-        }, 
+        },
         {
           "userID": 1,
           "date": "2019/06/20",
@@ -55,7 +55,7 @@ describe('Sleep Repository', () => {
           "date": "2019/06/21",
           "hoursSlept": 7.8,
           "sleepQuality": 4.2
-        }, 
+        },
         {
           "userID": 1,
           "date": "2019/06/22",
@@ -76,19 +76,19 @@ describe('Sleep Repository', () => {
         "date":"2019/06/16",
         "hoursSlept":4.1,
         "sleepQuality":3.8
-      }, 
+      },
       {
         "userID": 1,
         "date": "2019/06/17",
         "hoursSlept": 8,
         "sleepQuality": 2.6
-      }, 
+      },
       {
         "userID": 1,
         "date": "2019/06/19",
         "hoursSlept": 10.7,
         "sleepQuality": 1.2
-      }, 
+      },
       {
         "userID": 1,
         "date": "2019/06/20",
@@ -100,7 +100,7 @@ describe('Sleep Repository', () => {
         "date": "2019/06/21",
         "hoursSlept": 7.8,
         "sleepQuality": 4.2
-      }, 
+      },
       {
         "userID": 1,
         "date": "2019/06/22",
@@ -154,5 +154,12 @@ describe('Sleep Repository', () => {
     const result = sleepRepository.renderSleepQualityInDayRange(1,["2019/06/15", "2019/06/16", "2019/06/17", "2019/06/19", "2019/06/20", "2019/06/21", "2019/06/22"]);
     expect(result).to.deep.equal([2.2, 3.8, 2.6, 1.2, 1.2, 4.2, 3]);
   });
+
+  it('should calculate average sleep quality for all users', function() {
+    const result =
+    sleepRepository.calcAllUsersAvgSleepQuality();
+
+    expect(result).to.equal(3.1);
+  })
 
 });

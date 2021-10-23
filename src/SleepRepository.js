@@ -50,7 +50,7 @@ class SleepRepository {
       })
       .map((renderedSleepOccurance) => {
         return renderedSleepOccurance.hoursSlept;
-      })
+      });
     return hoursSleptForChosenDays;
   }
 
@@ -62,10 +62,16 @@ class SleepRepository {
       })
       .map((renderedSleepOccurance) => {
         return renderedSleepOccurance.sleepQuality;
-      })
+      });
     return sleepQualityForChosenDays;
   }
 
+  calcAllUsersAvgSleepQuality () {
+    const totalSleepQualityAllUsers = this.sleepDataSet.reduce((acc, sleepOccurrence) => {
+      return acc += sleepOccurrence.sleepQuality;
+    },0);
+    return Number((totalSleepQualityAllUsers/this.sleepDataSet.length).toFixed(1));
+  }
 }
 
 export default SleepRepository;
