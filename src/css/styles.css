@@ -120,8 +120,9 @@ h4 {
 
 .hydration-sleep {
   width: 28%;
-  display:flex;
-  flex-wrap: wrap;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
 .hydration{
@@ -130,14 +131,13 @@ h4 {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-
 }
 
 .card-deck {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  /* flex-direction: column; */
 }
 
 .card-header {
@@ -164,6 +164,10 @@ h4 {
   flex-direction: column;
   justify-content: flex-start;
   flex: 1;
+}
+
+.sleep-cards-first-row {
+  display:flex;
 }
 
 .friends {
