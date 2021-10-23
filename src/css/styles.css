@@ -84,8 +84,16 @@ h4 {
 }
 
 .activity {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 48%;
   background-color: #fd7326;
+}
+
+.activity-cards-second-row {
+  display: flex;
+  justify-content: space-between;
 }
 
 .card {
@@ -96,11 +104,16 @@ h4 {
 }
 
 .large {
-  width: 430px;
+  width: 78%;
+  min-width: 430px;
+
 }
 
 .grid-container {
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
   grid-template-columns: 2;
   grid-auto-rows: 2;
   grid-gap: 30px;
