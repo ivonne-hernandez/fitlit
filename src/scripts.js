@@ -151,6 +151,10 @@ const displayHydrationToday = () => {
   renderUserHydrationToday();
 }
 
+const displayHydrationLatestWeek = () => {
+  renderUserHydrationLatestWeek();
+}
+
 const displayUserInfo = () => {
   displayUserWelcomeMsg();
   displayUserName();
@@ -173,6 +177,12 @@ const displayUserSleepInfo = () => {
 
 const displayUserHydrationInfo = () => {
   displayHydrationToday();
+  displayHydrationLatestWeek();
+}
+
+const renderUserHydrationLatestWeek = () => {
+  const endDate = userHydrationData.hydrationData[userHydrationData.hydrationData.length - 1].date;
+  const startDate = userHydrationData.hydrationData[userHydrationData.hydrationData.length - 7].date;
 }
 
 const renderUserHydrationToday = () => {
