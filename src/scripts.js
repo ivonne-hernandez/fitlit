@@ -32,9 +32,12 @@ let userStrideLength = document.querySelector('#userStrideLength');
 let userStepGoal = document.querySelector('#userStepGoal');
 let userFriends = document.querySelector('#userFriends');
 let stepGoalComparison = document.querySelector('#stepGoalComparison');
-// vvvv update with new element IDs for proper sections vvvvv
-let sleepTempSection = document.querySelector('.sleep');
-
+let sleepLatestDay = document.querySelector('#userHoursSleptLatestDay');
+let sleepQualityLatestDay = document.querySelector('#userSleepQualityLatestDay');
+let sleepLatestWeek = document.querySelector('#userHoursSleptLatestWeek');
+let sleepQualityLatestWeek = document.querySelector('#userSleepQualityLatestWeek');
+let userAllTimeAvgHoursSlept = document.querySelector('#userAllTimeAvgHoursSlept');
+let userAllTimeAvgSleepQuality = document.querySelector('#userAllTimeAvgSleepQuality');
 
 let userRepository;
 let user;
@@ -109,6 +112,31 @@ const displayStepGoalComparison = () => {
   stepGoalComparison.innerText = `Your step goal: ${user.dailyStepGoal} compared to the average user step goal: ${userRepository.calculateAvgUserStepGoal()}.`;
 }
 
+const displayUserHoursSleptLatestDay = () => {
+  userHoursSleptLatestDay.innerText = `Hours slept today: ${renderUserHoursSlept()}`;
+}
+
+const displayUserSleepQualityLatestDay = () => {
+  userSleepQualityLatestDay.innerText = `Sleep quality today: ${renderUserSleepQuality()}`;
+}
+
+const displayUserHoursSleptLatestWeek = () => {
+  userHoursSleptLatestWeek.innerText = `Hours slept this week: ${renderHoursSleptLatestWeek()}`;
+}
+
+const displayUserSleepQualityLatestWeek = () => {
+  userSleepQualityLatestWeek.innerText = `Sleep quality this week: ${renderSleepQualityLatestWeek()}`;
+}
+
+const displayAllTimeAvgHoursSlept = () => {
+  userAllTimeAvgHoursSlept.innerText = `Average hours slept (all-time): ${renderAllTimeAverageHoursSlept()}`;
+}
+
+const displayAllTimeAvgSleepQuality = () => {
+  userAllTimeAvgSleepQuality.innerText = `Average sleep quality (all-time): ${renderAllTimeAverageSleepQuality()}`;
+}
+
+
 const displayUserInfo = () => {
   displayUserWelcomeMsg();
   displayUserName();
@@ -121,12 +149,12 @@ const displayUserInfo = () => {
 }
 
 const displayUserSleepInfo = () => {
-  renderUserHoursSlept();
-  renderUserSleepQuality();
-  renderHoursSleptLatestWeek();
-  renderSleepQualityLatestWeek();
-  renderAllTimeAverageHoursSlept();
-  renderAllTimeAverageSleepQuality();
+  displayUserHoursSleptLatestDay();
+  displayUserSleepQualityLatestDay();
+  displayUserHoursSleptLatestWeek();
+  displayUserSleepQualityLatestWeek();
+  displayAllTimeAvgHoursSlept();
+  displayAllTimeAvgSleepQuality();
 }
 
 const renderUserHoursSlept = () => {
