@@ -20,7 +20,7 @@ import {
 //we'll need to import our apiCalls.js functions here (?) and get rid of userData import
 import UserRepository from './UserRepository';
 import User from './User';
-
+import SleepRepository from './SleepRepository';
 
 // querySelectors
 
@@ -32,27 +32,52 @@ let userStrideLength = document.querySelector('#userStrideLength');
 let userStepGoal = document.querySelector('#userStepGoal');
 let userFriends = document.querySelector('#userFriends');
 let stepGoalComparison = document.querySelector('#stepGoalComparison');
+let sleepLatestDay = document.querySelector('#userHoursSleptLatestDay');
+let sleepQualityLatestDay = document.querySelector('#userSleepQualityLatestDay');
+let sleepLatestWeek = document.querySelector('#userHoursSleptLatestWeek');
+let sleepQualityLatestWeek = document.querySelector('#userSleepQualityLatestWeek');
+let userAllTimeAvgHoursSlept = document.querySelector('#userAllTimeAvgHoursSlept');
+let userAllTimeAvgSleepQuality = document.querySelector('#userAllTimeAvgSleepQuality');
 
 let userRepository;
 let user;
+let sleepRepository;
+
+let renderRandomIndex = (min, max) => {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+let userId = renderRandomIndex(1, 50);
+
 const fetchAll = () => {
   fetchUserData()
     .then(data => {
       parseAllData(data);
-      renderUserInfo();
+      displayUserInfo();
+    });
+  fetchSleepData()
+    .then(sleepData => {
+      parseSleepData(sleepData);
+      displayUserSleepInfo();
     });
 }
 
 const parseAllData = (data) => {
   userRepository = new UserRepository(data.userData);
-  user = new User(userRepository.renderUserData(1));
+  user = new User(userRepository.renderUserData(userId));
 }
 
-window.addEventListener('load', fetchAll);
+const parseSleepData = (sleepData) => {
+  sleepRepository = new SleepRepository(sleepData.sleepData);
+}
+// Items to add to the dashboard:
+// For a user, their sleep data for the latest day (hours slept and quality of sleep)
+// we want to...
+// renderSleepData function to display
 
 // functions
 
-const renderUserWelcomeMsg = () => {
+const displayUserWelcomeMsg = () => {
   welcomeUser.innerText = `Welcome, ${user.renderUserFirstName()}!`;
 }
 
@@ -87,8 +112,33 @@ const displayStepGoalComparison = () => {
   stepGoalComparison.innerText = `Your step goal: ${user.dailyStepGoal} compared to the average user step goal: ${userRepository.calculateAvgUserStepGoal()}.`;
 }
 
-const renderUserInfo = () => {
-  renderUserWelcomeMsg();
+const displayUserHoursSleptLatestDay = () => {
+  userHoursSleptLatestDay.innerText = `Hours slept today: ${renderUserHoursSlept()}`;
+}
+
+const displayUserSleepQualityLatestDay = () => {
+  userSleepQualityLatestDay.innerText = `Sleep quality today: ${renderUserSleepQuality()}`;
+}
+
+const displayUserHoursSleptLatestWeek = () => {
+  userHoursSleptLatestWeek.innerText = `Hours slept this week: ${renderHoursSleptLatestWeek()}`;
+}
+
+const displayUserSleepQualityLatestWeek = () => {
+  userSleepQualityLatestWeek.innerText = `Sleep quality this week: ${renderSleepQualityLatestWeek()}`;
+}
+
+const displayAllTimeAvgHoursSlept = () => {
+  userAllTimeAvgHoursSlept.innerText = `Average hours slept (all-time): ${renderAllTimeAverageHoursSlept()}`;
+}
+
+const displayAllTimeAvgSleepQuality = () => {
+  userAllTimeAvgSleepQuality.innerText = `Average sleep quality (all-time): ${renderAllTimeAverageSleepQuality()}`;
+}
+
+
+const displayUserInfo = () => {
+  displayUserWelcomeMsg();
   displayUserName();
   displayUserAddress();
   displayUserEmail();
@@ -98,8 +148,50 @@ const renderUserInfo = () => {
   displayStepGoalComparison();
 }
 
-// eventListeners
-window.addEventListener('load', renderUserInfo);
+const displayUserSleepInfo = () => {
+  displayUserHoursSleptLatestDay();
+  displayUserSleepQualityLatestDay();
+  displayUserHoursSleptLatestWeek();
+  displayUserSleepQualityLatestWeek();
+  displayAllTimeAvgHoursSlept();
+  displayAllTimeAvgSleepQuality();
+}
 
-// console.log(userRepository)
-// console.log(user)
+const renderUserHoursSlept = () => {
+  const userSleepEvents = sleepRepository.renderUserSleepData(userId);
+  const lastUserSleepEvent = userSleepEvents[userSleepEvents.length - 1].date;
+  return sleepRepository.renderHoursSleptOnDate(userId, lastUserSleepEvent);
+}
+
+const renderUserSleepQuality = () => {
+  const userSleepEvents = sleepRepository.renderUserSleepData(userId);
+  const lastUserSleepEvent = userSleepEvents[userSleepEvents.length - 1].date;
+  return sleepRepository.renderSleepQualityOnDate(userId, lastUserSleepEvent);
+}
+
+const renderHoursSleptLatestWeek = () => {
+  const userSleepEvents = sleepRepository.renderUserSleepData(userId);
+  const endDate = userSleepEvents[userSleepEvents.length - 1].date;
+  const startDate = userSleepEvents[userSleepEvents.length - 7].date;
+  return sleepRepository.renderHoursSleptByStartAndEndDate(userId, startDate, endDate);
+}
+
+const renderSleepQualityLatestWeek = () => {
+  const userSleepEvents = sleepRepository.renderUserSleepData(userId);
+  const endDate = userSleepEvents[userSleepEvents.length - 1].date;
+  const startDate = userSleepEvents[userSleepEvents.length - 7].date;
+  return sleepRepository.renderSleepQualityByStartAndEndDate(userId, startDate, endDate);
+}
+
+const renderAllTimeAverageHoursSlept = () => {
+  return sleepRepository.calcAvgHoursSlept(userId);
+}
+
+const renderAllTimeAverageSleepQuality = () => {
+  return sleepRepository.calcAvgSleepQuality(userId);
+}
+
+
+
+// eventListeners
+window.addEventListener('load', fetchAll);
