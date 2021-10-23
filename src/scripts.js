@@ -21,6 +21,8 @@ import {
 import UserRepository from './UserRepository';
 import User from './User';
 import SleepRepository from './SleepRepository';
+import HydrationRepository from './HydrationRepository';
+import Hydration from './Hydration';
 
 // querySelectors
 
@@ -38,7 +40,11 @@ let sleepLatestWeek = document.querySelector('#userHoursSleptLatestWeek');
 let sleepQualityLatestWeek = document.querySelector('#userSleepQualityLatestWeek');
 let userAllTimeAvgHoursSlept = document.querySelector('#userAllTimeAvgHoursSlept');
 let userAllTimeAvgSleepQuality = document.querySelector('#userAllTimeAvgSleepQuality');
+let hydrationToday = document.querySelector('#hydrationToday');
+let hydrationLatestWeek = document.querySelector('#hydrationLatestWeek');
 
+let hydrationRepository;
+let userHydrationData;
 let userRepository;
 let user;
 let sleepRepository;
@@ -60,6 +66,11 @@ const fetchAll = () => {
       parseSleepData(sleepData);
       displayUserSleepInfo();
     });
+    fetchHydrationData()
+    .then(hydrationData => {
+      parseHydrationData(hydrationData);
+      displayUserHydrationInfo();
+    })
 }
 
 const parseAllData = (data) => {
@@ -70,10 +81,11 @@ const parseAllData = (data) => {
 const parseSleepData = (sleepData) => {
   sleepRepository = new SleepRepository(sleepData.sleepData);
 }
-// Items to add to the dashboard:
-// For a user, their sleep data for the latest day (hours slept and quality of sleep)
-// we want to...
-// renderSleepData function to display
+
+const parseHydrationData = (hydrationData) => {
+  hydrationRepository = new HydrationRepository(hydrationData.hydrationData);
+  userHydrationData = new Hydration(hydrationRepository.renderUserData(userId));
+}
 
 // functions
 
@@ -136,6 +148,13 @@ const displayAllTimeAvgSleepQuality = () => {
   userAllTimeAvgSleepQuality.innerText = `Average sleep quality (all-time): ${renderAllTimeAverageSleepQuality()}`;
 }
 
+const displayHydrationToday = () => {
+  hydrationToday.innerText = `${renderUserHydrationToday()} ounces.`;
+}
+
+const displayHydrationLatestWeek = () => {
+  hydrationLatestWeek.innerText = `${renderUserHydrationLatestWeek()} ounces.`;
+}
 
 const displayUserInfo = () => {
   displayUserWelcomeMsg();
@@ -155,6 +174,22 @@ const displayUserSleepInfo = () => {
   displayUserSleepQualityLatestWeek();
   displayAllTimeAvgHoursSlept();
   displayAllTimeAvgSleepQuality();
+}
+
+const displayUserHydrationInfo = () => {
+  displayHydrationToday();
+  displayHydrationLatestWeek();
+}
+
+const renderUserHydrationLatestWeek = () => {
+  const endDate = userHydrationData.hydrationData[userHydrationData.hydrationData.length - 1].date;
+  const startDate = userHydrationData.hydrationData[userHydrationData.hydrationData.length - 7].date;
+  return userHydrationData.renderOuncesConsumedInDayRange(startDate, endDate);
+}
+
+const renderUserHydrationToday = () => {
+  const lastUserHydrationDate = userHydrationData.hydrationData[userHydrationData.hydrationData.length - 1].date;
+  return userHydrationData.renderOuncesConsumedOnDate(lastUserHydrationDate);
 }
 
 const renderUserHoursSlept = () => {
