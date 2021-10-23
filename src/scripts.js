@@ -183,6 +183,7 @@ const displayUserHydrationInfo = () => {
 const renderUserHydrationLatestWeek = () => {
   const endDate = userHydrationData.hydrationData[userHydrationData.hydrationData.length - 1].date;
   const startDate = userHydrationData.hydrationData[userHydrationData.hydrationData.length - 7].date;
+  return userHydrationData.renderOuncesConsumedInDayRange(startDate, endDate);
 }
 
 const renderUserHydrationToday = () => {
