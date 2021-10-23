@@ -125,6 +125,8 @@ const displayUserSleepInfo = () => {
   renderUserSleepQuality();
   renderHoursSleptLatestWeek();
   renderSleepQualityLatestWeek();
+  renderAllTimeAverageHoursSlept();
+  renderAllTimeAverageSleepQuality();
 }
 
 const renderUserHoursSlept = () => {
@@ -152,6 +154,16 @@ const renderSleepQualityLatestWeek = () => {
   const startDate = userSleepEvents[userSleepEvents.length - 7].date;
   return sleepRepository.renderSleepQualityByStartAndEndDate(userId, startDate, endDate);
 }
+
+const renderAllTimeAverageHoursSlept = () => {
+  return sleepRepository.calcAvgHoursSlept(userId);
+}
+
+const renderAllTimeAverageSleepQuality = () => {
+  return sleepRepository.calcAvgSleepQuality(userId);
+}
+
+
 
 // eventListeners
 window.addEventListener('load', fetchAll);

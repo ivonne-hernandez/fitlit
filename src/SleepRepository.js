@@ -23,7 +23,7 @@ class SleepRepository {
       return accumulator + sleepEvent.sleepQuality;
     }, 0);
 
-    return totalSleepQuality/userSleepEvents.length;
+    return Number((totalSleepQuality/userSleepEvents.length).toFixed(1));
   }
 
   renderHoursSleptOnDate(userID, date) {
