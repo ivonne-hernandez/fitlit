@@ -73,6 +73,7 @@ p{
 h4 {
   margin-top: 35px;
   margin-left: 60px;
+  color: white;
 }
 
 .main-sections {
@@ -144,10 +145,17 @@ h4 {
 }
 
 .date-toggle {
-  border: solid 2px black;
-  padding: 0px 20px 0px 20px;
+  border: solid 2px white;
+  padding: 10px 20px 10px 20px;
   border-radius: 30px;
+  color: white;
+  margin-top: 23px;
+  margin-left: 15px;
   align-self: start;
+}
+
+.date-toggle p{
+  margin: 0;
 }
 
 .sleep {
