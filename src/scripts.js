@@ -41,7 +41,15 @@ let userAllTimeAvgHoursSlept = document.querySelector('#userAllTimeAvgHoursSlept
 let userAllTimeAvgSleepQuality = document.querySelector('#userAllTimeAvgSleepQuality');
 let hydrationToday = document.querySelector('#hydrationToday');
 let hydrationLatestWeek = document.querySelector('#hydrationLatestWeek');
+//sleep toggle/dropdown
 let sleepDateToggle = document.querySelector('#sleepDateToggle');
+let sleepDropdown = document.querySelector('#sleepDropdown');
+let sleepDropdownToday = document.querySelector('#sleepDropdownToday');
+let sleepDropdownThisWeek = document.querySelector('#sleepDropdownThisWeek');
+let sleepDropdownAllTime = document.querySelector('#sleepDropdownAllTime');
+let sleepCardThisWeek = document.querySelector('#sleepCardThisWeek');
+let sleepCardAllTime = document.querySelector('#sleepCardAllTime');
+let sleepCardToday = document.querySelector('#sleepCardToday');
 //hydration toggle/dropdown
 let hydrationDropdown = document.querySelector('#hydrationDropdown');
 let hydrationDateToggle = document.querySelector('#hydrationDateToggle');
@@ -238,12 +246,13 @@ const renderAllTimeAverageSleepQuality = () => {
 window.addEventListener('load', fetchAll);
 window.addEventListener('click', hideDropdown);
 hydrationDateToggle.addEventListener('click', showDropdown);
-sleepDateToggle.addEventListener('click', showDropdown);
 hydrationDropdown.addEventListener('click', renderHydrationCard);
+sleepDateToggle.addEventListener('click', showDropdown);
+sleepDropdown.addEventListener('click', renderSleepCard);
 
 //event handlers
 function hideDropdown(event){
-  if(!(event.target === hydrationDateToggle)){
+  if(!(event.target === hydrationDateToggle) && !(event.target === sleepDateToggle)){
     let dropdowns = document.querySelectorAll('.dropdown-content');
     dropdowns.forEach((dropdown) => {
       if(!dropdown.classList.contains('hidden')){
@@ -256,9 +265,30 @@ function showDropdown(event){
   if(event.target === hydrationDateToggle){
     console.log("you got hydration!");
     hydrationDropdown.classList.toggle('hidden');
-
-  } else if(event.target === sleepDateToggle){
+  }
+  if(event.target === sleepDateToggle){
     console.log("you got sleep!");
+    sleepDropdown.classList.toggle('hidden');
+  }
+}
+
+function renderSleepCard(event){
+  if(event.target === sleepDropdownToday){
+    console.log('you got today!')
+    sleepCardThisWeek.classList.add('hidden');
+    sleepCardAllTime.classList.add('hidden');
+    sleepCardToday.classList.remove('hidden');
+  }
+  if(event.target === sleepDropdownThisWeek){
+    console.log('you got this week!')
+    sleepCardToday.classList.add('hidden');
+    sleepCardAllTime.classList.add('hidden');
+    sleepCardThisWeek.classList.remove('hidden');
+  }
+  if(event.target === sleepDropdownAllTime){
+    sleepCardToday.classList.add('hidden');
+    sleepCardThisWeek.classList.add('hidden');
+    sleepCardAllTime.classList.remove('hidden');
   }
 }
 
