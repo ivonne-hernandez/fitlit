@@ -23,6 +23,7 @@ import User from './User';
 import SleepRepository from './SleepRepository';
 import HydrationRepository from './HydrationRepository';
 import Hydration from './Hydration';
+import Chart from 'chart.js/auto';
 
 // querySelectors
 let welcomeUser = document.querySelector('#welcomeUser');
@@ -41,6 +42,7 @@ let userAllTimeAvgHoursSlept = document.querySelector('#userAllTimeAvgHoursSlept
 let userAllTimeAvgSleepQuality = document.querySelector('#userAllTimeAvgSleepQuality');
 let hydrationToday = document.querySelector('#hydrationToday');
 let hydrationLatestWeek = document.querySelector('#hydrationLatestWeek');
+let chartSleepHoursForLatestWeek = document.querySelector('#chartSleepHoursForLatestWeek').getContext('2d');
 
 let hydrationRepository;
 let userHydrationData;
@@ -132,7 +134,7 @@ const displayUserSleepQualityLatestDay = () => {
 }
 
 const displayUserHoursSleptLatestWeek = () => {
-  sleepLatestWeek.innerText = `Hours slept this week: ${renderHoursSleptLatestWeek()}`;
+  chartLatestWeekOfSleep(); //#2
 }
 
 const displayUserSleepQualityLatestWeek = () => {
@@ -169,7 +171,7 @@ const displayUserInfo = () => {
 const displayUserSleepInfo = () => {
   displayUserHoursSleptLatestDay();
   displayUserSleepQualityLatestDay();
-  displayUserHoursSleptLatestWeek();
+  displayUserHoursSleptLatestWeek();// #1 I created a chart for this one and invoked it in this function
   displayUserSleepQualityLatestWeek();
   displayAllTimeAvgHoursSlept();
   displayAllTimeAvgSleepQuality();
@@ -225,7 +227,41 @@ const renderAllTimeAverageSleepQuality = () => {
   return sleepRepository.calcAvgSleepQuality(userId);
 }
 
+const latestWeekOfSleepEvents = () => { //#3 we need the latest week's events for our chart
+  const userSleepEvents = sleepRepository.renderUserSleepData(userId);
+  const endDate = new Date(userSleepEvents[userSleepEvents.length - 1].date);
+  const startDate = new Date(userSleepEvents[userSleepEvents.length - 7].date);
+  const latestWeekOfSleepEvents = userSleepEvents
+      .filter((sleepEvent) => {
+        const sleepDate = new Date(sleepEvent.date);
+        return startDate <= sleepDate && sleepDate <= endDate;
+      });
+  return latestWeekOfSleepEvents;
+}
 
+const chartLatestWeekOfSleep = () => { //#3.5 b/c it invokes the latestWeekOfSleepEvents on 243
+  const latestWeekSleepEvents = latestWeekOfSleepEvents();
+  new Chart(chartSleepHoursForLatestWeek, //our querySelector needs to be the arg for this Chart
+    {
+      type: 'bar',
+      data: {
+        labels: latestWeekSleepEvents.map(event => event.date),//map the date for each sleep event
+        datasets: [{
+          label: 'Hours Slept',
+          data: latestWeekSleepEvents.map(event => event.hoursSlept),//map the hours slept for each sleep event
+          backgroundColor: 'purple'
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    }
+  );
+}
 
 // eventListeners
 window.addEventListener('load', fetchAll);
