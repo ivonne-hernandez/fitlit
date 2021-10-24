@@ -43,6 +43,7 @@ let userAllTimeAvgSleepQuality = document.querySelector('#userAllTimeAvgSleepQua
 let hydrationToday = document.querySelector('#hydrationToday');
 let hydrationLatestWeek = document.querySelector('#hydrationLatestWeek');
 let chartSleepHoursForLatestWeek = document.querySelector('#chartSleepHoursForLatestWeek').getContext('2d');
+let chartHydrationForLatestWeek = document.querySelector('#chartHydrationForLatestWeek')
 //sleep toggle/dropdown
 let sleepDateToggle = document.querySelector('#sleepDateToggle');
 let sleepDropdown = document.querySelector('#sleepDropdown');
@@ -252,6 +253,30 @@ const latestWeekOfSleepEvents = () => { //#3 we need the latest week's events fo
         return startDate <= sleepDate && sleepDate <= endDate;
       });
   return latestWeekOfSleepEvents;
+}
+
+const chartLatestWeekOfSleep = () => { //#3.5 b/c it invokes the latestWeekOfSleepEvents on 243
+  const latestWeekSleepEvents = latestWeekOfSleepEvents();
+  new Chart(chartSleepHoursForLatestWeek, //our querySelector needs to be the arg for this Chart
+    {
+      type: 'bar',
+      data: {
+        labels: latestWeekSleepEvents.map(event => event.date),//map the date for each sleep event
+        datasets: [{
+          label: 'Hours Slept',
+          data: latestWeekSleepEvents.map(event => event.hoursSlept),//map the hours slept for each sleep event
+          backgroundColor: 'purple'
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    }
+  );
 }
 
 const chartLatestWeekOfSleep = () => { //#3.5 b/c it invokes the latestWeekOfSleepEvents on 243
