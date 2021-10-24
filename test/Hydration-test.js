@@ -4,6 +4,8 @@ import Hydration from '../src/Hydration';
 describe('User hydration data', () => {
   let data;
   let userHydration;
+  let start;
+  let end;
 
   beforeEach(function() {
     data = [
@@ -48,7 +50,10 @@ describe('User hydration data', () => {
       "numOunces": 91
       }];
 
-    userHydration = new Hydration(data)
+    userHydration = new Hydration(data);
+    start = "2019/06/16";
+    end = "2019/06/22";
+
   });
 
   it("should be a function", function() {
@@ -70,7 +75,7 @@ describe('User hydration data', () => {
   })
 
   it("return fluid ounces each day for a week", function() {
-    const week = userHydration.renderOuncesConsumedInDayRange(["2019/06/16", "2019/06/17","2019/06/18", "2019/06/19", "2019/06/20", "2019/06/21", "2019/06/22"])
+    const week = userHydration.renderOuncesConsumedInDayRange(start, end);
     expect(week).to.deep.equal([75, 69, 91, 38, 79, 69, 91])
   });
 });

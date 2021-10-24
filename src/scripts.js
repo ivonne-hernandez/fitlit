@@ -43,6 +43,21 @@ let userAllTimeAvgSleepQuality = document.querySelector('#userAllTimeAvgSleepQua
 let hydrationToday = document.querySelector('#hydrationToday');
 let hydrationLatestWeek = document.querySelector('#hydrationLatestWeek');
 let chartSleepHoursForLatestWeek = document.querySelector('#chartSleepHoursForLatestWeek').getContext('2d');
+//sleep toggle/dropdown
+let sleepDateToggle = document.querySelector('#sleepDateToggle');
+let sleepDropdown = document.querySelector('#sleepDropdown');
+let sleepDropdownToday = document.querySelector('#sleepDropdownToday');
+let sleepDropdownThisWeek = document.querySelector('#sleepDropdownThisWeek');
+let sleepDropdownAllTime = document.querySelector('#sleepDropdownAllTime');
+let sleepCardThisWeek = document.querySelector('#sleepCardThisWeek');
+let sleepCardAllTime = document.querySelector('#sleepCardAllTime');
+let sleepCardToday = document.querySelector('#sleepCardToday');
+//hydration toggle/dropdown
+let hydrationDropdown = document.querySelector('#hydrationDropdown');
+let hydrationDateToggle = document.querySelector('#hydrationDateToggle');
+let hydrationDropdownToday = document.querySelector('#hydrationDropdownToday');
+let hydrationDropdownThisWeek = document.querySelector('#hydrationDropdownThisWeek');
+let hydrationCardThisWeek = document.querySelector('#hydrationCardThisWeek');
 
 let hydrationRepository;
 let userHydrationData;
@@ -265,3 +280,57 @@ const chartLatestWeekOfSleep = () => { //#3.5 b/c it invokes the latestWeekOfSle
 
 // eventListeners
 window.addEventListener('load', fetchAll);
+window.addEventListener('click', hideDropdown);
+hydrationDateToggle.addEventListener('click', showDropdown);
+hydrationDropdown.addEventListener('click', renderHydrationCard);
+sleepDateToggle.addEventListener('click', showDropdown);
+sleepDropdown.addEventListener('click', renderSleepCard);
+
+//event handlers
+function hideDropdown(event){
+  if(!(event.target === hydrationDateToggle) && !(event.target === sleepDateToggle)){
+    let dropdowns = document.querySelectorAll('.dropdown-content');
+    dropdowns.forEach((dropdown) => {
+      if(!dropdown.classList.contains('hidden')){
+        dropdown.classList.add('hidden');
+      }
+    });
+  }
+}
+function showDropdown(event){
+  if(event.target === hydrationDateToggle){
+    hydrationDropdown.classList.toggle('hidden');
+  }
+  if(event.target === sleepDateToggle){
+    sleepDropdown.classList.toggle('hidden');
+  }
+}
+
+function renderSleepCard(event){
+  if(event.target === sleepDropdownToday){
+    sleepCardThisWeek.classList.add('hidden');
+    sleepCardAllTime.classList.add('hidden');
+    sleepCardToday.classList.remove('hidden');
+  }
+  if(event.target === sleepDropdownThisWeek){
+    sleepCardToday.classList.add('hidden');
+    sleepCardAllTime.classList.add('hidden');
+    sleepCardThisWeek.classList.remove('hidden');
+  }
+  if(event.target === sleepDropdownAllTime){
+    sleepCardToday.classList.add('hidden');
+    sleepCardThisWeek.classList.add('hidden');
+    sleepCardAllTime.classList.remove('hidden');
+  }
+}
+
+function renderHydrationCard(event){
+  if(event.target === hydrationDropdownToday){
+    hydrationCardThisWeek.classList.add('hidden');
+    hydrationCardToday.classList.remove('hidden');
+  }
+  if(event.target === hydrationDropdownThisWeek){
+    hydrationCardToday.classList.add('hidden');
+    hydrationCardThisWeek.classList.remove('hidden');
+  }
+}
