@@ -263,24 +263,20 @@ function hideDropdown(event){
 }
 function showDropdown(event){
   if(event.target === hydrationDateToggle){
-    console.log("you got hydration!");
     hydrationDropdown.classList.toggle('hidden');
   }
   if(event.target === sleepDateToggle){
-    console.log("you got sleep!");
     sleepDropdown.classList.toggle('hidden');
   }
 }
 
 function renderSleepCard(event){
   if(event.target === sleepDropdownToday){
-    console.log('you got today!')
     sleepCardThisWeek.classList.add('hidden');
     sleepCardAllTime.classList.add('hidden');
     sleepCardToday.classList.remove('hidden');
   }
   if(event.target === sleepDropdownThisWeek){
-    console.log('you got this week!')
     sleepCardToday.classList.add('hidden');
     sleepCardAllTime.classList.add('hidden');
     sleepCardThisWeek.classList.remove('hidden');
@@ -294,12 +290,10 @@ function renderSleepCard(event){
 
 function renderHydrationCard(event){
   if(event.target === hydrationDropdownToday){
-    console.log('you got today!')
     hydrationCardThisWeek.classList.add('hidden');
     hydrationCardToday.classList.remove('hidden');
   }
   if(event.target === hydrationDropdownThisWeek){
-    console.log('you got this week!')
     hydrationCardToday.classList.add('hidden');
     hydrationCardThisWeek.classList.remove('hidden');
   }
