@@ -170,7 +170,7 @@ const displayHydrationToday = () => {
 }
 
 const displayHydrationLatestWeek = () => {
-  chartHydrationForLatestWeek();
+  chartHydrationLatestWeek();
 }
 
 const displayUserInfo = () => {
@@ -289,7 +289,7 @@ const chartLatestWeekOfSleep = () => { //#3.5 b/c it invokes the latestWeekOfSle
   );
 }
 
-const chartHydrationForLatestWeek = () => { //#3.5 b/c it invokes the latestWeekOfSleepEvents on 243
+const chartHydrationLatestWeek = () => { //#3.5 b/c it invokes the latestWeekOfSleepEvents on 243
   const latestWeekHydrationEvents = latestWeekOfSleepEvents();
   new Chart(chartSleepHoursForLatestWeek, //our querySelector needs to be the arg for this Chart
     {
