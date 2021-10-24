@@ -170,7 +170,7 @@ const displayHydrationToday = () => {
 }
 
 const displayHydrationLatestWeek = () => {
-  hydrationLatestWeek.innerText = `${renderUserHydrationLatestWeek()} ounces.`;
+  chartHydrationForLatestWeek();
 }
 
 const displayUserInfo = () => {
@@ -255,6 +255,16 @@ const latestWeekOfSleepEvents = () => { //#3 we need the latest week's events fo
   return latestWeekOfSleepEvents;
 }
 
+const latestWeekOfHydrationEvents = () => { //#3 we need the latest week's events for our chart
+  const endDate = userHydrationData.hydrationData[userHydrationData.hydrationData.length - 1].date;
+  const startDate = userHydrationData.hydrationData[userHydrationData.hydrationData.length - 7].date;
+      const latestWeekOfHydrationEvents = userHydrationData.hydrationData.filter((hydrationEvent) => {
+        const hydrationDate = new Date(hydrationEvent.date);
+        return startDate <= hydrationDate && hydrationDate <= endDate;
+      });
+  return latestWeekOfHydrationEvents;
+}
+
 const chartLatestWeekOfSleep = () => { //#3.5 b/c it invokes the latestWeekOfSleepEvents on 243
   const latestWeekSleepEvents = latestWeekOfSleepEvents();
   new Chart(chartSleepHoursForLatestWeek, //our querySelector needs to be the arg for this Chart
@@ -279,8 +289,8 @@ const chartLatestWeekOfSleep = () => { //#3.5 b/c it invokes the latestWeekOfSle
   );
 }
 
-const chartLatestWeekOfSleep = () => { //#3.5 b/c it invokes the latestWeekOfSleepEvents on 243
-  const latestWeekSleepEvents = latestWeekOfSleepEvents();
+const chartHydrationForLatestWeek = () => { //#3.5 b/c it invokes the latestWeekOfSleepEvents on 243
+  const latestWeekHydrationEvents = latestWeekOfSleepEvents();
   new Chart(chartSleepHoursForLatestWeek, //our querySelector needs to be the arg for this Chart
     {
       type: 'bar',
