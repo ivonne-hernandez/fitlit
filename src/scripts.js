@@ -41,8 +41,13 @@ let userAllTimeAvgHoursSlept = document.querySelector('#userAllTimeAvgHoursSlept
 let userAllTimeAvgSleepQuality = document.querySelector('#userAllTimeAvgSleepQuality');
 let hydrationToday = document.querySelector('#hydrationToday');
 let hydrationLatestWeek = document.querySelector('#hydrationLatestWeek');
-let hydrationDateToggle = document.querySelector('#hydrationDateToggle');
 let sleepDateToggle = document.querySelector('#sleepDateToggle');
+//hydration toggle/dropdown
+let hydrationDropdown = document.querySelector('#hydrationDropdown');
+let hydrationDateToggle = document.querySelector('#hydrationDateToggle');
+let hydrationDropdownToday = document.querySelector('#hydrationDropdownToday');
+let hydrationDropdownThisWeek = document.querySelector('#hydrationDropdownThisWeek');
+let hydrationCardThisWeek = document.querySelector('#hydrationCardThisWeek');
 
 let hydrationRepository;
 let userHydrationData;
@@ -233,13 +238,28 @@ const renderAllTimeAverageSleepQuality = () => {
 window.addEventListener('load', fetchAll);
 hydrationDateToggle.addEventListener('click', showDropdown);
 sleepDateToggle.addEventListener('click', showDropdown);
+hydrationDropdown.addEventListener('click', renderHydrationCard);
 
+//event handlers
 function showDropdown(event){
   if(event.target === hydrationDateToggle){
     console.log("you got hydration!");
-    hydrationDateToggle.classList.toggle('show');
+    hydrationDropdown.classList.toggle('hidden');
 
   } else if(event.target === sleepDateToggle){
     console.log("you got sleep!");
+  }
+}
+
+function renderHydrationCard(event){
+  if(event.target === hydrationDropdownToday){
+    console.log('you got today!')
+    hydrationCardThisWeek.classList.add('hidden');
+    hydrationCardToday.classList.remove('hidden');
+  }
+  if(event.target === hydrationDropdownThisWeek){
+    console.log('you got this week!')
+    hydrationCardToday.classList.add('hidden');
+    hydrationCardThisWeek.classList.remove('hidden');
   }
 }

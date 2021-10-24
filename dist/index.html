@@ -72,18 +72,18 @@
               <h4> Hydration </h4>
               <div class="toggle-and-dropdown-menu">
                 <button id="hydrationDateToggle" class="date-toggle"> Today </button>
-                <div id="myDropdown" class="dropdown-content">
-                  <p>Today</p>
-                  <p>This Week</p>
+                <div id="hydrationDropdown" class="dropdown-content hidden">
+                  <button id="hydrationDropdownToday">Today</button>
+                  <button id="hydrationDropdownThisWeek">This Week</button>
                 </div>
               </div>
                 <!-- <img src="src/images/down-arrow.png" alt="Down arrow"> -->
             </div>
             <div class="card-deck">
-              <div class="card">
+              <div id="hydrationCardToday" class="card">
                 <p class="card-title"> Hydration Today <p>
               </div>
-              <div class="card large">
+              <div id="hydrationCardThisWeek"class="card large hidden">
                 <p class="card-title"> Hydration this week <p>
                 <p></p>
               </div>
@@ -101,12 +101,12 @@
                   <p id="userHoursSleptLatestDay"></p>
                   <p id="userSleepQualityLatestDay"></p>
                 </div>
-                <div id="sleepInfoAllTime" class="card">
-                  <p class="card-title"> Sleep This Week <p>
+                <div id="sleepInfoAllTime" class="card hidden">
+                  <p class="card-title"> Sleep All Time <p>
                   <p></p>
                 </div>
               </div>
-              <div id="sleepInfoWeek" class="card large">
+              <div id="sleepInfoWeek" class="card large hidden">
                 <p class="card-title"> Sleep This Week <p>
                 <p id="userHoursSleptLatestWeek"></p>
                 <p id="userSleepQualityLatestWeek"></p>
