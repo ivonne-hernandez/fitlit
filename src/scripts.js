@@ -43,7 +43,7 @@ let userAllTimeAvgSleepQuality = document.querySelector('#userAllTimeAvgSleepQua
 let hydrationToday = document.querySelector('#hydrationToday');
 let hydrationLatestWeek = document.querySelector('#hydrationLatestWeek');
 let chartSleepHoursForLatestWeek = document.querySelector('#chartSleepHoursForLatestWeek').getContext('2d');
-let chartHydrationForLatestWeek = document.querySelector('#chartHydrationForLatestWeek')
+let chartHydrationForLatestWeek = document.querySelector('#chartHydrationForLatestWeek').getContext('2d');
 //sleep toggle/dropdown
 let sleepDateToggle = document.querySelector('#sleepDateToggle');
 let sleepDropdown = document.querySelector('#sleepDropdown');
@@ -256,12 +256,13 @@ const latestWeekOfSleepEvents = () => { //#3 we need the latest week's events fo
 }
 
 const latestWeekOfHydrationEvents = () => { //#3 we need the latest week's events for our chart
-  const endDate = userHydrationData.hydrationData[userHydrationData.hydrationData.length - 1].date;
-  const startDate = userHydrationData.hydrationData[userHydrationData.hydrationData.length - 7].date;
-      const latestWeekOfHydrationEvents = userHydrationData.hydrationData.filter((hydrationEvent) => {
-        const hydrationDate = new Date(hydrationEvent.date);
-        return startDate <= hydrationDate && hydrationDate <= endDate;
-      });
+  const endDate = new Date(userHydrationData.hydrationData[userHydrationData.hydrationData.length - 1].date);
+  const startDate = new Date(userHydrationData.hydrationData[userHydrationData.hydrationData.length - 7].date);
+  const latestWeekOfHydrationEvents = userHydrationData.hydrationData
+    .filter((hydrationEvent) => {
+      const hydrationDate = new Date(hydrationEvent.date);
+      return startDate <= hydrationDate && hydrationDate <= endDate;
+    });
   return latestWeekOfHydrationEvents;
 }
 
@@ -279,6 +280,8 @@ const chartLatestWeekOfSleep = () => { //#3.5 b/c it invokes the latestWeekOfSle
         }]
       },
       options: {
+        responsive: true,
+        maintainAspectRatio: false,
         scales: {
           y: {
             beginAtZero: true
