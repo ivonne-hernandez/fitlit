@@ -236,11 +236,22 @@ const renderAllTimeAverageSleepQuality = () => {
 
 // eventListeners
 window.addEventListener('load', fetchAll);
+window.addEventListener('click', hideDropdown);
 hydrationDateToggle.addEventListener('click', showDropdown);
 sleepDateToggle.addEventListener('click', showDropdown);
 hydrationDropdown.addEventListener('click', renderHydrationCard);
 
 //event handlers
+function hideDropdown(event){
+  if(!(event.target === hydrationDateToggle)){
+    let dropdowns = document.querySelectorAll('.dropdown-content');
+    dropdowns.forEach((dropdown) => {
+      if(!dropdown.classList.contains('hidden')){
+        dropdown.classList.add('hidden');
+      }
+    });
+  }
+}
 function showDropdown(event){
   if(event.target === hydrationDateToggle){
     console.log("you got hydration!");
