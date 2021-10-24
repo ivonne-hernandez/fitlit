@@ -5,6 +5,9 @@ describe('Sleep Repository', () => {
   let sleepData;
   let sleepRepository;
   let user1SleepData;
+  let userId;
+  let startDate;
+  let endDate;
 
   beforeEach(function() {
     sleepData = [
@@ -110,6 +113,9 @@ describe('Sleep Repository', () => {
     ];
 
     sleepRepository = new SleepRepository(sleepData);
+    userId = 1;
+    startDate = "2019/06/15";
+    endDate = "2019/06/22";
   });
 
   it('should be a function', function () {
@@ -121,45 +127,60 @@ describe('Sleep Repository', () => {
   });
 
   it('given a user ID, it should return the user\'s sleep data', function() {
-   const result = sleepRepository.renderUserSleepData(1);
+   const result = sleepRepository.renderUserSleepData(userId);
+   expect(userId).to.equal(1);
    expect(result).to.deep.equal(user1SleepData);
   });
 
   it('given a user ID, it should return the average number of hours slept per day', function() {
-    const result = sleepRepository.calcAvgHoursSlept(1);
+    const result = sleepRepository.calcAvgHoursSlept(userId);
+    expect(userId).to.equal(1);
     expect(result).to.equal(7.6);
   });
 
   it('given a user ID, it should return the average sleep quality per day over all time', function() {
-    const result = sleepRepository.calcAvgSleepQuality(1);
+    const result = sleepRepository.calcAvgSleepQuality(userId);
+    
+    expect(userId).to.equal(1);
     expect(result).to.equal(2.6);
   });
 
   it('given a user ID and date, it should return how many hours a user slept on that date', function() {
-    const result = sleepRepository.renderHoursSleptOnDate(1, "2019/06/16");
-    expect(result).to.equal(4.1);
+    const result = sleepRepository.renderHoursSleptOnDate(userId, startDate);
+    
+    expect(userId).to.equal(1);
+    expect(startDate).to.equal("2019/06/15");
+    expect(result).to.equal(6.1);
   });
 
   it('given a user ID and date, it should return the user\'s sleep quality on that date', function() {
-    const result = sleepRepository.renderSleepQualityOnDate(1, "2019/06/16");
-    expect(result).to.equal(3.8);
+    const result = sleepRepository.renderSleepQualityOnDate(userId, startDate);
+    
+    expect(userId).to.equal(1);
+    expect(startDate).to.equal("2019/06/15");
+    expect(result).to.equal(2.2);
   });
 
-  it('given a user ID and days, it should return hours slept for each day', function() {
-    const result = sleepRepository.renderHoursSleptInDayRange(1,["2019/06/15", "2019/06/16", "2019/06/17", "2019/06/19", "2019/06/20", "2019/06/21", "2019/06/22"]);
+  it('given a user ID, start & end date, it should return hours slept for each day', function() {
+    const result = sleepRepository.renderHoursSleptByStartAndEndDate(userId, startDate, endDate);
+
+    expect(userId).to.equal(1);
+    expect(startDate).to.equal("2019/06/15");
+    expect(endDate).to.equal("2019/06/22");
     expect(result).to.deep.equal([6.1, 4.1, 8, 10.7, 9.3, 7.8, 7])
   })
 
-  it('given a user ID and days, it should return the sleep quality for each day', function() {
-    const result = sleepRepository.renderSleepQualityInDayRange(1,["2019/06/15", "2019/06/16", "2019/06/17", "2019/06/19", "2019/06/20", "2019/06/21", "2019/06/22"]);
+  it('given a user ID, start & end date, it should return the sleep quality for each day', function() {
+    const result = sleepRepository.renderSleepQualityByStartAndEndDate(userId, startDate, endDate);
+
+    expect(userId).to.equal(1);
+    expect(startDate).to.equal("2019/06/15");
+    expect(endDate).to.equal("2019/06/22");
     expect(result).to.deep.equal([2.2, 3.8, 2.6, 1.2, 1.2, 4.2, 3]);
   });
 
   it('should calculate average sleep quality for all users', function() {
-    const result =
-    sleepRepository.calcAllUsersAvgSleepQuality();
-
+    const result = sleepRepository.calcAllUsersAvgSleepQuality();
     expect(result).to.equal(3.1);
   })
-
 });
