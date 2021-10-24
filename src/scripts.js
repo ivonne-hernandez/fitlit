@@ -41,6 +41,8 @@ let userAllTimeAvgHoursSlept = document.querySelector('#userAllTimeAvgHoursSlept
 let userAllTimeAvgSleepQuality = document.querySelector('#userAllTimeAvgSleepQuality');
 let hydrationToday = document.querySelector('#hydrationToday');
 let hydrationLatestWeek = document.querySelector('#hydrationLatestWeek');
+let hydrationDateToggle = document.querySelector('#hydrationDateToggle');
+let sleepDateToggle = document.querySelector('#sleepDateToggle');
 
 let hydrationRepository;
 let userHydrationData;
@@ -229,3 +231,15 @@ const renderAllTimeAverageSleepQuality = () => {
 
 // eventListeners
 window.addEventListener('load', fetchAll);
+hydrationDateToggle.addEventListener('click', showDropdown);
+sleepDateToggle.addEventListener('click', showDropdown);
+
+function showDropdown(event){
+  if(event.target === hydrationDateToggle){
+    console.log("you got hydration!");
+    hydrationDateToggle.classList.toggle('show');
+
+  } else if(event.target === sleepDateToggle){
+    console.log("you got sleep!");
+  }
+}
