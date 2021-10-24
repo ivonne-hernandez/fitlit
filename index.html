@@ -2,6 +2,9 @@
 <html>
   <head>
     <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <title>Activity Tracker</title>
   </head>
   <body>
@@ -33,8 +36,8 @@
     <main>
       <!-- <header> -->
         <nav>
-          <h2> Dashboard </h2>
-          <h3 id="welcomeUser"></h3>
+          <h3> Dashboard </h3>
+          <p id="welcomeUser"></p>
           <div id="navDayDate" class="nav-day-date">
             <h3 id="navday" class="nav-day"> Today </h3>
             <p id="navDate" class="nav-date"> October 1, 2021 </p>
@@ -67,9 +70,14 @@
           <section class="hydration">
             <div class="card-header">
               <h4> Hydration </h4>
-              <div class="date-toggle">
-                <p>Today<p>
+              <div class="toggle-and-dropdown-menu">
+                <button id="hydrationDateToggle" class="date-toggle"> Today </button>
+                <div id="myDropdown" class="dropdown-content">
+                  <p>Today</p>
+                  <p>This Week</p>
+                </div>
               </div>
+                <!-- <img src="src/images/down-arrow.png" alt="Down arrow"> -->
             </div>
             <div class="card-deck">
               <div class="card">
@@ -84,9 +92,7 @@
           <section class="sleep">
             <div class="card-header">
               <h4> Sleep </h4>
-              <div class="date-toggle">
-                <p>Today<p>
-              </div>
+              <button id="sleepDateToggle" class="date-toggle">Today</button>
             </div>
             <div id="sleepCardDeck" class="card-deck">
               <div id="sleepCardsFirstRow" class="sleep-cards-first-row">
