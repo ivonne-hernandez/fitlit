@@ -290,16 +290,15 @@ const chartLatestWeekOfSleep = () => { //#3.5 b/c it invokes the latestWeekOfSle
 }
 
 const chartHydrationLatestWeek = () => { //#3.5 b/c it invokes the latestWeekOfSleepEvents on 243
-  const latestWeekHydrationEvents = latestWeekOfSleepEvents();
-  new Chart(chartSleepHoursForLatestWeek, //our querySelector needs to be the arg for this Chart
-    {
+  const latestWeekHydrationEvents = latestWeekOfHydrationEvents();
+  new Chart(chartHydrationForLatestWeek,   {
       type: 'bar',
       data: {
-        labels: latestWeekSleepEvents.map(event => event.date),//map the date for each sleep event
+        labels: latestWeekHydrationEvents.map(hydrationEvent => hydrationEvent.date),//map the date for each sleep event
         datasets: [{
-          label: 'Hours Slept',
-          data: latestWeekSleepEvents.map(event => event.hoursSlept),//map the hours slept for each sleep event
-          backgroundColor: 'purple'
+          label: 'Fluid Ounces',
+          data: latestWeekHydrationEvents.map(hydrationEvent => hydrationEvent.numOunces),//map the hours slept for each sleep event
+          backgroundColor: 'blue'
         }]
       },
       options: {
