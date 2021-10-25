@@ -13,7 +13,7 @@ class UserRepository {
       return accumulator += user.dailyStepGoal;
     }, 0);
 
-    return Math.floor(totalUserSteps/this.data.length);
+    return Math.floor(totalUserSteps / this.data.length);
   }
 
   getUsersByIds(userIds) {

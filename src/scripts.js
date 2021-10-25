@@ -53,6 +53,7 @@ let hydrationDateToggle = document.querySelector('#hydrationDateToggle');
 let hydrationDropdownToday = document.querySelector('#hydrationDropdownToday');
 let hydrationDropdownThisWeek = document.querySelector('#hydrationDropdownThisWeek');
 let hydrationCardThisWeek = document.querySelector('#hydrationCardThisWeek');
+let hydrationCardToday = document.querySelector('#hydrationCardToday');
 
 let hydrationRepository;
 let userHydrationData;
@@ -178,10 +179,10 @@ const latestWeekOfSleepEvents = () => { //#3 we need the latest week's events fo
   const endDate = new Date(userSleepEvents[userSleepEvents.length - 1].date);
   const startDate = new Date(userSleepEvents[userSleepEvents.length - 7].date);
   const latestWeekOfSleepEvents = userSleepEvents
-      .filter((sleepEvent) => {
-        const sleepDate = new Date(sleepEvent.date);
-        return startDate <= sleepDate && sleepDate <= endDate;
-      });
+    .filter((sleepEvent) => {
+      const sleepDate = new Date(sleepEvent.date);
+      return startDate <= sleepDate && sleepDate <= endDate;
+    });
   return latestWeekOfSleepEvents;
 }
 
@@ -196,15 +197,15 @@ const chartSleepToday = () => {
       data: {
         labels: [latestDayDate],
         datasets: [{
-            label: 'Sleep Quality',
-            data: [sleepQualityLatestDay],
-            backgroundColor: '#D7b4F3'
-          },
-          {
-            label: 'Hours Slept',
-            data: [hoursSleptLatestDay],
-            backgroundColor: 'purple',
-          }]
+          label: 'Sleep Quality',
+          data: [sleepQualityLatestDay],
+          backgroundColor: '#D7b4F3'
+        },
+        {
+          label: 'Hours Slept',
+          data: [hoursSleptLatestDay],
+          backgroundColor: 'purple',
+        }]
       },
       options: {
         responsive: true,
@@ -231,7 +232,7 @@ const chartLatestWeekOfSleepStats = () => { //#3.5 b/c it invokes the latestWeek
     {
       type: 'bar',
       data: {
-        labels: latestWeekSleepEvents.map(sleepEvent => sleepEvent.date),//map the date for each sleep event
+        labels: latestWeekSleepEvents.map(sleepEvent => sleepEvent.date), //map the date for each sleep event
         datasets: [{
           label: 'Sleep Quality',
           data: latestWeekSleepEvents.map(sleepEvent => sleepEvent.sleepQuality),
@@ -239,7 +240,7 @@ const chartLatestWeekOfSleepStats = () => { //#3.5 b/c it invokes the latestWeek
         },
         {
           label: 'Hours Slept',
-          data: latestWeekSleepEvents.map(sleepEvent => sleepEvent.hoursSlept),//map the hours slept for each sleep event
+          data: latestWeekSleepEvents.map(sleepEvent => sleepEvent.hoursSlept), //map the hours slept for each sleep event
           backgroundColor: 'purple'
         }]
       },
@@ -303,10 +304,10 @@ const latestWeekOfHydrationEvents = () => {
   const endDate = new Date(userHydrationData.hydrationData[userHydrationData.hydrationData.length - 1].date);
   const startDate = new Date(userHydrationData.hydrationData[userHydrationData.hydrationData.length - 7].date);
   const latestWeekOfHydrationEvents = userHydrationData.hydrationData
-  .filter((hydrationEvent) => {
-    const hydrationDate = new Date(hydrationEvent.date);
-    return startDate <= hydrationDate && hydrationDate <= endDate;
-  });
+    .filter((hydrationEvent) => {
+      const hydrationDate = new Date(hydrationEvent.date);
+      return startDate <= hydrationDate && hydrationDate <= endDate;
+    });
   return latestWeekOfHydrationEvents;
 }
 
@@ -346,10 +347,10 @@ sleepDropdown.addEventListener('click', renderSleepCard);
 
 //event handlers
 function hideDropdown(event) {
-  if(!(event.target === hydrationDateToggle) && !(event.target === sleepDateToggle)) {
+  if (!(event.target === hydrationDateToggle) && !(event.target === sleepDateToggle)) {
     let dropdowns = document.querySelectorAll('.dropdown-content');
     dropdowns.forEach((dropdown) => {
-      if(!dropdown.classList.contains('hidden')) {
+      if (!dropdown.classList.contains('hidden')) {
         dropdown.classList.add('hidden');
       }
     });
@@ -357,28 +358,28 @@ function hideDropdown(event) {
 }
 
 function showDropdown(event) {
-  if(event.target === hydrationDateToggle) {
+  if (event.target === hydrationDateToggle) {
     hydrationDropdown.classList.toggle('hidden');
   }
-  if(event.target === sleepDateToggle) {
+  if (event.target === sleepDateToggle) {
     sleepDropdown.classList.toggle('hidden');
   }
 }
 
 function renderSleepCard(event) {
-  if(event.target === sleepDropdownToday) {
+  if (event.target === sleepDropdownToday) {
     sleepCardThisWeek.classList.add('hidden');
     sleepCardAllTime.classList.add('hidden');
     sleepCardToday.classList.remove('hidden');
     sleepDateToggle.innerText = "Today";
   }
-  if(event.target === sleepDropdownThisWeek) {
+  if (event.target === sleepDropdownThisWeek) {
     sleepCardToday.classList.add('hidden');
     sleepCardAllTime.classList.add('hidden');
     sleepCardThisWeek.classList.remove('hidden');
     sleepDateToggle.innerText = "This Week";
   }
-  if(event.target === sleepDropdownAllTime) {
+  if (event.target === sleepDropdownAllTime) {
     sleepCardToday.classList.add('hidden');
     sleepCardThisWeek.classList.add('hidden');
     sleepCardAllTime.classList.remove('hidden');
@@ -387,12 +388,12 @@ function renderSleepCard(event) {
 }
 
 function renderHydrationCard(event) {
-  if(event.target === hydrationDropdownToday) {
+  if (event.target === hydrationDropdownToday) {
     hydrationCardThisWeek.classList.add('hidden');
     hydrationCardToday.classList.remove('hidden');
     hydrationDateToggle.innerText = "Today";
   }
-  if(event.target === hydrationDropdownThisWeek) {
+  if (event.target === hydrationDropdownThisWeek) {
     hydrationCardToday.classList.add('hidden');
     hydrationCardThisWeek.classList.remove('hidden');
     hydrationDateToggle.innerText = "This Week";
