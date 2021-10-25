@@ -34,7 +34,7 @@ button {
   cursor: pointer;
 }
 
-p {
+p, h2 {
   text-align: center;
 }
 
@@ -88,7 +88,7 @@ aside {
   display: flex;
   flex-wrap: wrap;
   overflow-wrap: normal;
-  margin: 4%;
+  margin: 5%;
 }
 
 h4 {
