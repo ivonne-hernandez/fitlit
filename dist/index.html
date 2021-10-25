@@ -17,20 +17,28 @@
       </div>
       <h2 id="userName"></h2>
       <section id="infoSection" class="info-section">
-        <div id="infoLabels" class="infoLabels">
-          <p> Address: </p>
-          <p> Email: </p>
-          <p> Stride: </p>
-          <p> Step Goal: </p>
-          <p> Friends: </p>
-        </div>
-        <div id="userInfo" class="user-info">
-          <p id="addressInfo"></p>
-          <p id="userEmail"></p>
-          <p id="userStrideLength"></p>
-          <p id="userStepGoal"></p>
-          <p id="userFriends"></p>
-        </div>
+        <table>
+          <tr class="contact-info">
+            <th> Address: </th>
+            <td id="addressInfo"> </td>
+          </tr>
+          <tr class="contact-info">
+            <th> Email: </th>
+            <td id="userEmail"> </td>
+          </tr>
+          <tr class="contact-info">
+            <th> Stride: </th>
+            <td id="userStrideLength"> </td>
+          </tr>
+          <tr class="contact-info">
+            <th> Step Goal: </th>
+            <td id="userStepGoal"> </td>
+          </tr>
+          <tr class="contact-info">
+            <th> Friends: </th>
+            <td id="userFriends"> </td>
+          </tr>
+        </table>
       <section>
     </aside>
     <main>
@@ -40,7 +48,7 @@
           <p id="welcomeUser"></p>
           <div id="navDayDate" class="nav-day-date">
             <h3 id="navday" class="nav-day"> Today </h3>
-            <p id="navDate" class="nav-date"> October 1, 2021 </p>
+            <p id="navDate" class="nav-date"></p>
           </div>
         </nav>
       <!-- </header> -->
@@ -82,6 +90,7 @@
             <div class="card-deck">
               <div id="hydrationCardToday" class="card">
                 <p class="card-title"> Hydration Today <p>
+                <p id="hydrationToday"></p>
               </div>
               <div id="hydrationCardThisWeek"class="card large hidden">
                 <p class="card-title"> Hydration this week <p>

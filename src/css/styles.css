@@ -3,7 +3,7 @@
   background-repeat: no-repeat;
   height: 100%;
 } */
-html,body {
+html, body {
   font-family: 'Roboto', sans-serif;
   display: flex;
   height: 100%;
@@ -16,7 +16,6 @@ main {
   display:flex;
   flex-direction: column;
   height: auto;
-  /* border: solid red 2px; */
   overflow: hidden;
 }
 
@@ -27,27 +26,26 @@ nav {
   align-items: center;
   padding-left: 60px;
   padding-right: 60px;
-  /* border: solid red 2px; */
   background-color: #f5f6fa;
   height: 100px;
 }
 
-button{
+button {
   cursor: pointer;
 }
 
+p, h2 {
+  text-align: center;
+}
+
 .dropdown-content {
-  display:block;
+  display: block;
   margin-left: 16px;
   text-align: center;
   background-color: LightGray;
   width: 85px;
   position: fixed;
   z-index: 1;
-}
-
-.toggle-and-dropdown-menu {
-
 }
 
 .nav-day-date {
@@ -66,7 +64,6 @@ button{
 
 aside {
   width: 370px;
-  /* border: solid black 2px; */
   overflow: hidden;
 }
 
@@ -84,9 +81,14 @@ aside {
 
 .info-section {
   display: flex;
+  justify-content: space-between;
 }
 
-p{
+.contact-info {
+  display: flex;
+  flex-wrap: wrap;
+  overflow-wrap: normal;
+  margin: 4%;
 }
 
 h4 {
@@ -99,7 +101,7 @@ h4 {
   display: flex;
   flex: 1;
   color: black;
-  overflow:hidden;
+  overflow: hidden;
 }
 
 .activity {
@@ -109,7 +111,6 @@ h4 {
 
 .activity-cards-second-row {
   display: flex;
-
 }
 
 .card {
@@ -126,7 +127,9 @@ h4 {
 
 .card-title{
   text-align: center;
+  font-weight: bold;
 }
+
 .grid-container {
   display: flex;
   flex-wrap: wrap;
@@ -156,7 +159,6 @@ h4 {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* flex-direction: column; */
 }
 
 .card-header {
@@ -175,7 +177,7 @@ h4 {
   align-self: start;
 }
 
-.date-toggle p{
+.date-toggle p {
   margin: 0;
 }
 
@@ -188,7 +190,7 @@ h4 {
 }
 
 .sleep-cards-first-row {
-  display:flex;
+  display: flex;
 }
 
 .friends {
