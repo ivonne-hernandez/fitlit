@@ -26,6 +26,7 @@ import Hydration from './Hydration';
 
 // querySelectors
 let welcomeUser = document.querySelector('#welcomeUser');
+let todaysDate = document.querySelector('#navDate');
 let userName = document.querySelector('#userName');
 let addressInfo = document.querySelector('#addressInfo');
 let userEmail = document.querySelector('#userEmail');
@@ -98,10 +99,13 @@ const parseHydrationData = (hydrationData) => {
   userHydrationData = new Hydration(hydrationRepository.renderUserData(userId));
 }
 
-// functions
-
+//DOM display TEST functions => need to be carefully removed during refactor phase
 const displayUserWelcomeMsg = () => {
   welcomeUser.innerText = `Welcome, ${user.renderUserFirstName()}!`;
+}
+
+const displayTodaysDate = () => {
+  todaysDate.innerText = `${renderLastSleepEventDate().toDateString()}`;
 }
 
 const displayUserName = () => {
@@ -167,8 +171,11 @@ const displayHydrationLatestWeek = () => {
   hydrationLatestWeek.innerText = `${renderUserHydrationLatestWeek()} ounces.`;
 }
 
+
+// functions that will display elements on the DOM once all information has been fetched & parsed
 const displayUserInfo = () => {
   displayUserWelcomeMsg();
+  displayTodaysDate();
   displayUserName();
   displayUserAddress();
   displayUserEmail();
@@ -178,6 +185,7 @@ const displayUserInfo = () => {
   displayStepGoalComparison();
 }
 
+// => these will need to be carefully removed during refactor phase and replaced with the chart functions where applicable
 const displayUserSleepInfo = () => {
   displayUserHoursSleptLatestDay();
   displayUserSleepQualityLatestDay();
@@ -209,6 +217,12 @@ const renderUserHoursSlept = () => {
   return sleepRepository.renderHoursSleptOnDate(userId, lastUserSleepEvent);
 }
 
+const renderLastSleepEventDate = () => {
+  let userSleepEvents = sleepRepository.renderUserSleepData(userId);
+  const lastUserSleepEventDate = new Date (userSleepEvents[userSleepEvents.length - 1].date);
+  return lastUserSleepEventDate;
+}
+
 const renderUserSleepQuality = () => {
   const userSleepEvents = sleepRepository.renderUserSleepData(userId);
   const lastUserSleepEvent = userSleepEvents[userSleepEvents.length - 1].date;
@@ -237,8 +251,6 @@ const renderAllTimeAverageSleepQuality = () => {
   return sleepRepository.calcAvgSleepQuality(userId);
 }
 
-
-
 // eventListeners
 window.addEventListener('load', fetchAll);
 window.addEventListener('click', hideDropdown);
@@ -248,39 +260,39 @@ sleepDateToggle.addEventListener('click', showDropdown);
 sleepDropdown.addEventListener('click', renderSleepCard);
 
 //event handlers
-function hideDropdown(event){
-  if(!(event.target === hydrationDateToggle) && !(event.target === sleepDateToggle)){
+function hideDropdown(event) {
+  if(!(event.target === hydrationDateToggle) && !(event.target === sleepDateToggle)) {
     let dropdowns = document.querySelectorAll('.dropdown-content');
     dropdowns.forEach((dropdown) => {
-      if(!dropdown.classList.contains('hidden')){
+      if(!dropdown.classList.contains('hidden')) {
         dropdown.classList.add('hidden');
       }
     });
   }
 }
-function showDropdown(event){
-  if(event.target === hydrationDateToggle){
+function showDropdown(event) {
+  if(event.target === hydrationDateToggle) {
     hydrationDropdown.classList.toggle('hidden');
   }
-  if(event.target === sleepDateToggle){
+  if(event.target === sleepDateToggle) {
     sleepDropdown.classList.toggle('hidden');
   }
 }
 
-function renderSleepCard(event){
-  if(event.target === sleepDropdownToday){
+function renderSleepCard(event) {
+  if(event.target === sleepDropdownToday) {
     sleepCardThisWeek.classList.add('hidden');
     sleepCardAllTime.classList.add('hidden');
     sleepCardToday.classList.remove('hidden');
     sleepDateToggle.innerText = "Today";
   }
-  if(event.target === sleepDropdownThisWeek){
+  if(event.target === sleepDropdownThisWeek) {
     sleepCardToday.classList.add('hidden');
     sleepCardAllTime.classList.add('hidden');
     sleepCardThisWeek.classList.remove('hidden');
     sleepDateToggle.innerText = "This Week";
   }
-  if(event.target === sleepDropdownAllTime){
+  if(event.target === sleepDropdownAllTime) {
     sleepCardToday.classList.add('hidden');
     sleepCardThisWeek.classList.add('hidden');
     sleepCardAllTime.classList.remove('hidden');
@@ -288,13 +300,13 @@ function renderSleepCard(event){
   }
 }
 
-function renderHydrationCard(event){
-  if(event.target === hydrationDropdownToday){
+function renderHydrationCard(event) {
+  if(event.target === hydrationDropdownToday) {
     hydrationCardThisWeek.classList.add('hidden');
     hydrationCardToday.classList.remove('hidden');
     hydrationDateToggle.innerText = "Today";
   }
-  if(event.target === hydrationDropdownThisWeek){
+  if(event.target === hydrationDropdownThisWeek) {
     hydrationCardToday.classList.add('hidden');
     hydrationCardThisWeek.classList.remove('hidden');
     hydrationDateToggle.innerText = "This Week";
