@@ -314,6 +314,7 @@ const chartSleepToday = () => {
   const userSleepEvents = sleepRepository.renderUserSleepData(userId);
   const hoursSleptLatestDay = userSleepEvents[userSleepEvents.length-1].hoursSlept;
   const sleepQualityLatestDay = userSleepEvents[userSleepEvents.length-1].sleepQuality;
+  const latestDayDate = userSleepEvents[userSleepEvents.length-1].date;
   console.log(hoursSleptLatestDay);
   console.log(sleepQualityLatestDay);
   const options = {
@@ -332,7 +333,7 @@ const chartSleepToday = () => {
     }
   }
   const data = {
-    labels: ['Hours Slept and Sleep Quality'],
+    labels: [latestDayDate],
     datasets: [
       {
       label: 'Sleep Quality',
