@@ -35,19 +35,11 @@ let userStrideLength = document.querySelector('#userStrideLength');
 let userStepGoal = document.querySelector('#userStepGoal');
 let userFriends = document.querySelector('#userFriends');
 let stepGoalComparison = document.querySelector('#stepGoalComparison');
-// let sleepLatestDay = document.querySelector('#userHoursSleptLatestDay');
-// let sleepQualityLatestDay = document.querySelector('#userSleepQualityLatestDay');
-// let sleepLatestWeek = document.querySelector('#userHoursSleptLatestWeek');
-// let sleepQualityLatestWeek = document.querySelector('#userSleepQualityLatestWeek');
-// let userAllTimeAvgHoursSlept = document.querySelector('#userAllTimeAvgHoursSlept');
-// let userAllTimeAvgSleepQuality = document.querySelector('#userAllTimeAvgSleepQuality');
 let hydrationToday = document.querySelector('#hydrationToday');
-// let hydrationLatestWeek = document.querySelector('#hydrationLatestWeek');
 let chartSleepHoursForLatestWeek = document.querySelector('#chartSleepHoursForLatestWeek').getContext('2d');
 let chartHydrationForLatestWeek = document.querySelector('#chartHydrationForLatestWeek').getContext('2d');
 let chartAllTimeSleepStats = document.querySelector('#chartAllTimeSleepStats').getContext('2d');
 let chartSleepHoursToday = document.querySelector('#chartSleepHoursToday').getContext('2d');
-//sleep toggle/dropdown
 let sleepDateToggle = document.querySelector('#sleepDateToggle');
 let sleepDropdown = document.querySelector('#sleepDropdown');
 let sleepDropdownToday = document.querySelector('#sleepDropdownToday');
@@ -56,7 +48,6 @@ let sleepDropdownAllTime = document.querySelector('#sleepDropdownAllTime');
 let sleepCardThisWeek = document.querySelector('#sleepCardThisWeek');
 let sleepCardAllTime = document.querySelector('#sleepCardAllTime');
 let sleepCardToday = document.querySelector('#sleepCardToday');
-//hydration toggle/dropdown
 let hydrationDropdown = document.querySelector('#hydrationDropdown');
 let hydrationDateToggle = document.querySelector('#hydrationDateToggle');
 let hydrationDropdownToday = document.querySelector('#hydrationDropdownToday');
@@ -143,43 +134,9 @@ const displayStepGoalComparison = () => {
   stepGoalComparison.innerText = `Your step goal: ${user.dailyStepGoal} compared to the average user step goal: ${userRepository.calculateAvgUserStepGoal()}.`;
 }
 
-//DOM display TEST functions => need to be carefully removed during refactor phase
-// const displayUserHoursSleptLatestDay = () => {
-//   sleepLatestDay.innerText = `Hours slept today: ${renderUserHoursSlept()}`;
-// }
-
-// const displayUserSleepQualityLatestDay = () => {
-//   sleepQualityLatestDay.innerText = `Sleep quality today: ${renderUserSleepQuality()}`;
-// }
-
-// const displayUserHoursSleptLatestWeek = () => {
-//   chartLatestWeekOfSleepStats(); //#2
-// }
-
-// const displayUserHoursSleptToday = () => {
-//   chartSleepToday(); //sleep donut chart today
-// }
-
-// const displayUserSleepQualityLatestWeek = () => {
-//   sleepQualityLatestWeek.innerText = `Sleep quality this week: ${renderSleepQualityLatestWeek()}`;
-// }
-
-
-// const displayAllTimeUserSleepStats = () => {
-//   chartAllTimeUserSleepStats();
-// }
-
-// const displayAllTimeAvgSleepQuality = () => {
-//   userAllTimeAvgSleepQuality.innerText = `Average sleep quality (all-time): ${renderAllTimeAverageSleepQuality()}`;
-// }
-
 const displayHydrationToday = () => {
   hydrationToday.innerText = `${renderUserHydrationToday()} ounces.`;
 }
-
-// const displayHydrationLatestWeek = () => {
-//   chartHydrationLatestWeek();
-// }
 
 // functions that will display elements on the DOM once all information has been fetched & parsed
 const displayUserInfo = () => {
@@ -194,20 +151,10 @@ const displayUserInfo = () => {
   displayStepGoalComparison();
 }
 
-// => these will need to be carefully removed during refactor phase and replaced with the chart functions where applicable
 const displayUserSleepInfo = () => {
-  // displayUserHoursSleptLatestDay();
-  // displayUserSleepQualityLatestDay();
   chartSleepToday();
   chartLatestWeekOfSleepStats();
   chartAllTimeUserSleepStats();
-  // displayUserHoursSleptLatestWeek();// #1 I created a chart for this one and invoked it in this function
-  // displayUserSleepQualityLatestWeek();
-  // displayAllTimeUserSleepStats();
-  // displayUserHoursSleptToday(); // chart for sleep today
-  // displayUserSleepQualityLatestWeek();
-  // displayAllTimeAvgHoursSlept();
-  // displayAllTimeAvgSleepQuality();
 }
 
 const displayUserHydrationInfo = () => {
@@ -215,57 +162,16 @@ const displayUserHydrationInfo = () => {
   chartHydrationLatestWeek();
 }
 
-// => these will need to be carefully removed during refactor phase since they are being replaced with the chartXInfo functions
-// const renderUserHydrationLatestWeek = () => {
-//   const endDate = userHydrationData.hydrationData[userHydrationData.hydrationData.length - 1].date;
-//   const startDate = userHydrationData.hydrationData[userHydrationData.hydrationData.length - 7].date;
-//   return userHydrationData.renderOuncesConsumedInDayRange(startDate, endDate);
-// }
-
 const renderUserHydrationToday = () => {
   const lastUserHydrationDate = userHydrationData.hydrationData[userHydrationData.hydrationData.length - 1].date;
   return userHydrationData.renderOuncesConsumedOnDate(lastUserHydrationDate);
 }
-
-// const renderUserHoursSlept = () => {
-//   const userSleepEvents = sleepRepository.renderUserSleepData(userId);
-//   const lastUserSleepEvent = userSleepEvents[userSleepEvents.length - 1].date;
-//   return sleepRepository.renderHoursSleptOnDate(userId, lastUserSleepEvent);
-// }
 
 const renderLastSleepEventDate = () => {
   let userSleepEvents = sleepRepository.renderUserSleepData(userId);
   const lastUserSleepEventDate = new Date (userSleepEvents[userSleepEvents.length - 1].date);
   return lastUserSleepEventDate;
 }
-
-// const renderUserSleepQuality = () => {
-//   const userSleepEvents = sleepRepository.renderUserSleepData(userId);
-//   const lastUserSleepEvent = userSleepEvents[userSleepEvents.length - 1].date;
-//   return sleepRepository.renderSleepQualityOnDate(userId, lastUserSleepEvent);
-// }
-
-// const renderHoursSleptLatestWeek = () => {
-//   const userSleepEvents = sleepRepository.renderUserSleepData(userId);
-//   const endDate = userSleepEvents[userSleepEvents.length - 1].date;
-//   const startDate = userSleepEvents[userSleepEvents.length - 7].date;
-//   return sleepRepository.renderHoursSleptByStartAndEndDate(userId, startDate, endDate);
-// }
-
-// const renderSleepQualityLatestWeek = () => {
-//   const userSleepEvents = sleepRepository.renderUserSleepData(userId);
-//   const endDate = userSleepEvents[userSleepEvents.length - 1].date;
-//   const startDate = userSleepEvents[userSleepEvents.length - 7].date;
-//   return sleepRepository.renderSleepQualityByStartAndEndDate(userId, startDate, endDate);
-// }
-
-// const renderAllTimeAverageHoursSlept = () => {
-//   return sleepRepository.calcAvgHoursSlept(userId);
-// }
-
-// const renderAllTimeAverageSleepQuality = () => {
-//   return sleepRepository.calcAvgSleepQuality(userId);
-// }
 
 const latestWeekOfSleepEvents = () => { //#3 we need the latest week's events for our chart
   const userSleepEvents = sleepRepository.renderUserSleepData(userId);
@@ -279,7 +185,47 @@ const latestWeekOfSleepEvents = () => { //#3 we need the latest week's events fo
   return latestWeekOfSleepEvents;
 }
 
-const chartLatestWeekOfSleepStats = () => { //#3.5 b/c it invokes the latestWeekOfSleepEvents on 243
+const chartSleepToday = () => {
+  const userSleepEvents = sleepRepository.renderUserSleepData(userId);
+  const hoursSleptLatestDay = userSleepEvents[userSleepEvents.length - 1].hoursSlept;
+  const sleepQualityLatestDay = userSleepEvents[userSleepEvents.length - 1].sleepQuality;
+  const latestDayDate = userSleepEvents[userSleepEvents.length - 1].date;
+  new Chart(chartSleepHoursToday, 
+    {
+      type: 'bar',
+      data: {
+        labels: [latestDayDate],
+        datasets: [{
+            label: 'Sleep Quality',
+            data: [sleepQualityLatestDay],
+            backgroundColor: '#D7b4F3'
+          },
+          {
+            label: 'Hours Slept',
+            data: [hoursSleptLatestDay],
+            backgroundColor: 'purple',
+          }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          x: {
+            stacked: true,
+            ticks: {
+              min: 0
+            }
+          },
+          y: {
+            stacked: true,
+            beginAtZero: true
+          }
+        }
+      }
+    }
+  );
+}
+
+const chartLatestWeekOfSleepStats = () => { //#3.5 b/c it invokes the latestWeekOfSleepEvents
   const latestWeekSleepEvents = latestWeekOfSleepEvents();
   new Chart(chartSleepHoursForLatestWeek, //our querySelector needs to be the arg for this Chart
     {
@@ -320,19 +266,19 @@ const chartAllTimeUserSleepStats = () => {
   const startDate = userSleepEvents[userSleepEvents.length - 7].date;
   const allTimeAvgSleepQuality = sleepRepository.calcAvgSleepQuality(userId);
   const allTimeAvgHoursSlept = sleepRepository.calcAvgHoursSlept(userId);
-  new Chart(chartAllTimeSleepStats, //our querySelector needs to be the arg for this Chart
+  new Chart(chartAllTimeSleepStats,
     {
       type: 'bar',
       data: {
-        labels: [`${startDate} - ${endDate}`],//map the date for each sleep event
+        labels: [`${startDate} - ${endDate}`],
         datasets: [{
           label: 'Avg Sleep Quality',
-          data: [allTimeAvgSleepQuality],//map the hours slept for each sleep event
+          data: [allTimeAvgSleepQuality],
           backgroundColor: '#D7B4F3'
         },
         {
           label: 'Avg Hours Slept',
-          data: [allTimeAvgHoursSlept],//map the hours slept for each sleep event
+          data: [allTimeAvgHoursSlept],
           backgroundColor: 'purple'
         }]
       },
@@ -366,7 +312,8 @@ const latestWeekOfHydrationEvents = () => {
 
 const chartHydrationLatestWeek = () => {
   const latestWeekHydrationEvents = latestWeekOfHydrationEvents();
-  new Chart(chartHydrationForLatestWeek,   {
+  new Chart(chartHydrationForLatestWeek,   
+    {
       type: 'bar',
       data: {
         labels: latestWeekHydrationEvents.map(hydrationEvent => hydrationEvent.date),
@@ -385,49 +332,6 @@ const chartHydrationLatestWeek = () => {
           }
         }
       }
-    }
-  );
-}
-
-const chartSleepToday = () => {
-  const userSleepEvents = sleepRepository.renderUserSleepData(userId);
-  const hoursSleptLatestDay = userSleepEvents[userSleepEvents.length-1].hoursSlept;
-  const sleepQualityLatestDay = userSleepEvents[userSleepEvents.length-1].sleepQuality;
-  const latestDayDate = userSleepEvents[userSleepEvents.length-1].date;
-  const options = {
-    responsive: true,
-    scales: {
-      x: {
-        stacked: true,
-        ticks: {
-          min: 0
-        },
-      },
-      y: {
-        stacked: true,
-        beginAtZero: true
-      }
-    }
-  }
-  const data = {
-    labels: [latestDayDate],
-    datasets: [
-      {
-      label: 'Sleep Quality',
-      data: [sleepQualityLatestDay],
-      backgroundColor: '#D7b4F3',
-      },
-      {
-        label: 'Hours Slept',
-        data: [hoursSleptLatestDay],
-        backgroundColor: 'purple',
-      },
-    ]
-  }
-  new Chart(chartSleepHoursToday, {
-    type: 'bar',
-    data: data,
-    options: options
     }
   );
 }
@@ -451,6 +355,7 @@ function hideDropdown(event) {
     });
   }
 }
+
 function showDropdown(event) {
   if(event.target === hydrationDateToggle) {
     hydrationDropdown.classList.toggle('hidden');
