@@ -275,16 +275,19 @@ function renderSleepCard(event){
     sleepCardThisWeek.classList.add('hidden');
     sleepCardAllTime.classList.add('hidden');
     sleepCardToday.classList.remove('hidden');
+    sleepDateToggle.innerText = "Today";
   }
   if(event.target === sleepDropdownThisWeek){
     sleepCardToday.classList.add('hidden');
     sleepCardAllTime.classList.add('hidden');
     sleepCardThisWeek.classList.remove('hidden');
+    sleepDateToggle.innerText = "This Week";
   }
   if(event.target === sleepDropdownAllTime){
     sleepCardToday.classList.add('hidden');
     sleepCardThisWeek.classList.add('hidden');
     sleepCardAllTime.classList.remove('hidden');
+    sleepDateToggle.innerText = "All Time";
   }
 }
 
@@ -292,6 +295,7 @@ function renderHydrationCard(event){
   if(event.target === hydrationDropdownToday){
     hydrationCardThisWeek.classList.add('hidden');
     hydrationCardToday.classList.remove('hidden');
+    hydrationDateToggle.innerText = "Today";
   }
   if(event.target === hydrationDropdownThisWeek){
     hydrationCardToday.classList.add('hidden');
