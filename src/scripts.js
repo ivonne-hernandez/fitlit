@@ -174,7 +174,7 @@ const renderLastSleepEventDate = () => {
   return lastUserSleepEventDate;
 }
 
-const latestWeekOfSleepEvents = () => { //#3 we need the latest week's events for our chart
+const latestWeekOfSleepEvents = () => {
   const userSleepEvents = sleepRepository.renderUserSleepData(userId);
   const endDate = new Date(userSleepEvents[userSleepEvents.length - 1].date);
   const startDate = new Date(userSleepEvents[userSleepEvents.length - 7].date);
@@ -226,13 +226,13 @@ const chartSleepToday = () => {
   );
 }
 
-const chartLatestWeekOfSleepStats = () => { //#3.5 b/c it invokes the latestWeekOfSleepEvents
+const chartLatestWeekOfSleepStats = () => { 
   const latestWeekSleepEvents = latestWeekOfSleepEvents();
-  new Chart(chartSleepHoursForLatestWeek, //our querySelector needs to be the arg for this Chart
+  new Chart(chartSleepHoursForLatestWeek, 
     {
       type: 'bar',
       data: {
-        labels: latestWeekSleepEvents.map(sleepEvent => sleepEvent.date), //map the date for each sleep event
+        labels: latestWeekSleepEvents.map(sleepEvent => sleepEvent.date),
         datasets: [{
           label: 'Sleep Quality',
           data: latestWeekSleepEvents.map(sleepEvent => sleepEvent.sleepQuality),
@@ -240,7 +240,7 @@ const chartLatestWeekOfSleepStats = () => { //#3.5 b/c it invokes the latestWeek
         },
         {
           label: 'Hours Slept',
-          data: latestWeekSleepEvents.map(sleepEvent => sleepEvent.hoursSlept), //map the hours slept for each sleep event
+          data: latestWeekSleepEvents.map(sleepEvent => sleepEvent.hoursSlept),
           backgroundColor: 'purple'
         }]
       },
