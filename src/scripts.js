@@ -23,6 +23,7 @@ import User from './User';
 import SleepRepository from './SleepRepository';
 import HydrationRepository from './HydrationRepository';
 import Hydration from './Hydration';
+import Chart from 'chart.js/auto';
 
 // querySelectors
 let welcomeUser = document.querySelector('#welcomeUser');
@@ -42,6 +43,8 @@ let userAllTimeAvgHoursSlept = document.querySelector('#userAllTimeAvgHoursSlept
 let userAllTimeAvgSleepQuality = document.querySelector('#userAllTimeAvgSleepQuality');
 let hydrationToday = document.querySelector('#hydrationToday');
 let hydrationLatestWeek = document.querySelector('#hydrationLatestWeek');
+let chartSleepHoursForLatestWeek = document.querySelector('#chartSleepHoursForLatestWeek').getContext('2d');
+let chartSleepHoursToday = document.querySelector('#chartSleepHoursToday').getContext('2d');
 //sleep toggle/dropdown
 let sleepDateToggle = document.querySelector('#sleepDateToggle');
 let sleepDropdown = document.querySelector('#sleepDropdown');
@@ -148,7 +151,11 @@ const displayUserSleepQualityLatestDay = () => {
 }
 
 const displayUserHoursSleptLatestWeek = () => {
-  sleepLatestWeek.innerText = `Hours slept this week: ${renderHoursSleptLatestWeek()}`;
+  chartLatestWeekOfSleep(); //#2
+}
+
+const displayUserHoursSleptToday = () => {
+  chartSleepToday(); //sleep donut chart today
 }
 
 const displayUserSleepQualityLatestWeek = () => {
@@ -188,7 +195,8 @@ const displayUserInfo = () => {
 const displayUserSleepInfo = () => {
   displayUserHoursSleptLatestDay();
   displayUserSleepQualityLatestDay();
-  displayUserHoursSleptLatestWeek();
+  displayUserHoursSleptLatestWeek();// #1 I created a chart for this one and invoked it in this function
+  displayUserHoursSleptToday(); // chart for sleep today
   displayUserSleepQualityLatestWeek();
   displayAllTimeAvgHoursSlept();
   displayAllTimeAvgSleepQuality();
@@ -249,6 +257,87 @@ const renderAllTimeAverageHoursSlept = () => {
 
 const renderAllTimeAverageSleepQuality = () => {
   return sleepRepository.calcAvgSleepQuality(userId);
+}
+
+const latestWeekOfSleepEvents = () => { //#3 we need the latest week's events for our chart
+  const userSleepEvents = sleepRepository.renderUserSleepData(userId);
+  const endDate = new Date(userSleepEvents[userSleepEvents.length - 1].date);
+  const startDate = new Date(userSleepEvents[userSleepEvents.length - 7].date);
+  const latestWeekOfSleepEvents = userSleepEvents
+      .filter((sleepEvent) => {
+        const sleepDate = new Date(sleepEvent.date);
+        return startDate <= sleepDate && sleepDate <= endDate;
+      });
+  return latestWeekOfSleepEvents;
+}
+
+const chartLatestWeekOfSleep = () => { //#3.5 b/c it invokes the latestWeekOfSleepEvents on 243
+  const latestWeekSleepEvents = latestWeekOfSleepEvents();
+  new Chart(chartSleepHoursForLatestWeek, //our querySelector needs to be the arg for this Chart
+    {
+      type: 'bar',
+      data: {
+        labels: latestWeekSleepEvents.map(event => event.date),//map the date for each sleep event
+        datasets: [{
+          label: 'Hours Slept',
+          data: latestWeekSleepEvents.map(event => event.hoursSlept),//map the hours slept for each sleep event
+          backgroundColor: 'purple'
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    }
+  );
+}
+
+const chartSleepToday = () => {
+  const userSleepEvents = sleepRepository.renderUserSleepData(userId);
+  const hoursSleptLatestDay = userSleepEvents[userSleepEvents.length-1].hoursSlept;
+  const sleepQualityLatestDay = userSleepEvents[userSleepEvents.length-1].sleepQuality;
+  const latestDayDate = userSleepEvents[userSleepEvents.length-1].date;
+  console.log(hoursSleptLatestDay);
+  console.log(sleepQualityLatestDay);
+  const options = {
+    responsive: true,
+    scales: {
+      x: {
+        stacked: true,
+        ticks: {
+          min: 0
+        },
+      },
+      y: {
+        stacked: true,
+        beginAtZero: true
+      }
+    }
+  }
+  const data = {
+    labels: [latestDayDate],
+    datasets: [
+      {
+      label: 'Sleep Quality',
+      data: [sleepQualityLatestDay],
+      backgroundColor: '#D7b4F3',
+      },
+      {
+        label: 'Hours Slept',
+        data: [hoursSleptLatestDay],
+        backgroundColor: 'purple',
+      },
+    ]
+  }
+  new Chart(chartSleepHoursToday, {
+    type: 'bar',
+    data: data,
+    options: options
+    }
+  );
 }
 
 // eventListeners

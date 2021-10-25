@@ -94,7 +94,7 @@
               </div>
               <div id="hydrationCardThisWeek"class="card large hidden">
                 <p class="card-title"> Hydration this week <p>
-                <p></p>
+                <p id="hydrationLatestWeek"></p>
               </div>
             </div>
           </section>
@@ -113,8 +113,12 @@
             <div id="sleepCardDeck" class="card-deck">
                 <div id="sleepCardToday" class="card">
                   <p class="card-title"> Sleep Today <p>
-                  <p id="userHoursSleptLatestDay"></p>
-                  <p id="userSleepQualityLatestDay"></p>
+                  <canvas id="chartSleepHoursToday" width=0px height=125px>
+                  </canvas>
+                  <div>
+                    <p id="userHoursSleptLatestDay"></p>
+                    <p id="userSleepQualityLatestDay"></p>
+                  </div>
                 </div>
                 <div id="sleepCardAllTime" class="card hidden">
                   <p class="card-title"> Sleep All Time <p>
@@ -122,6 +126,8 @@
                 </div>
               <div id="sleepCardThisWeek" class="card large hidden">
                 <p class="card-title"> Sleep This Week <p>
+                  <canvas id="chartSleepHoursForLatestWeek" width="200" height="160">//need to inj our JS chart
+                  </canvas>
                 <p id="userHoursSleptLatestWeek"></p>
                 <p id="userSleepQualityLatestWeek"></p>
                 <p id="userAllTimeAvgHoursSlept"></p>
@@ -137,5 +143,6 @@
     </main>
 
     <script src="bundle.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </body>
 </html>
