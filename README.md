@@ -30,9 +30,15 @@ Project Manager: Nik Seif
 
 
 ## Illustrations
+  On page load a random user's information will be displayed on the dashboard. The left-hand sidebar contains more detailed information about the current user on display. There is space above the user's information for a profile picture to be added (on a later iteration). Each color block contains information for specific set of tracked data. In the top right corner of the dashboard, the date for the latest user data is displayed.
 
 
 
+  When you click the button labeled `Today` a drop down menu will appear, allowing you to choose different date ranges to view a user's data for a `week` or for `all time`.
+
+  <img width="596" alt="sleep_hydration_charts" src="https://user-images.githubusercontent.com/83175748/138776187-520c7695-6233-4de1-8d0b-dc6d8101b8f5.png">
+
+  
 
 ## Install + Setup
   - clone down the repository
