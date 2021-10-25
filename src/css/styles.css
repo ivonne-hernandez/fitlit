@@ -77,6 +77,15 @@ aside {
 
 .info-section {
   display: flex;
+  justify-content: space-between;
+}
+
+.contact-info {
+  display: flex;
+  flex-wrap: wrap;
+  overflow-wrap: normal;
+  margin: 4px;
+  padding-bottom: 2%;
 }
 
 h4 {
