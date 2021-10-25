@@ -53,10 +53,12 @@ Project Manager: Nik Seif
 	- Learned new technologies such as third party libraries(chart.js) and design tools(figma).
 
 ## Challenges + Improvements
-  - 
-	- What was difficult & how you would like to improve on code/project
-	- Any Bugs
-	- Future Iterations
+  - Increased complexity over all throughout project spec.
+  - Delegation of work division between multiple team members.
+  - Technical challenges with integrating API data efficiently to project.
+  - Improve chart configuration to fit activity cards.
+  - Refactor sleep class to be less redundant and avoid duplications in scripts.js file.  
+	- Future Iterations: TBD.
 
 
 ## Project Specs
