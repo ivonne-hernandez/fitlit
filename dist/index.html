@@ -105,8 +105,12 @@
             <div id="sleepCardDeck" class="card-deck">
                 <div id="sleepCardToday" class="card">
                   <p class="card-title"> Sleep Today <p>
-                  <p id="userHoursSleptLatestDay"></p>
-                  <p id="userSleepQualityLatestDay"></p>
+                  <canvas id="chartSleepHoursToday" width=0px height=125px>
+                  </canvas>
+                  <div>
+                    <p id="userHoursSleptLatestDay"></p>
+                    <p id="userSleepQualityLatestDay"></p>
+                  </div>
                 </div>
                 <div id="sleepCardAllTime" class="card hidden">
                   <p class="card-title"> Sleep All Time <p>

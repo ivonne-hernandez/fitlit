@@ -43,6 +43,7 @@ let userAllTimeAvgSleepQuality = document.querySelector('#userAllTimeAvgSleepQua
 let hydrationToday = document.querySelector('#hydrationToday');
 let hydrationLatestWeek = document.querySelector('#hydrationLatestWeek');
 let chartSleepHoursForLatestWeek = document.querySelector('#chartSleepHoursForLatestWeek').getContext('2d');
+let chartSleepHoursToday = document.querySelector('#chartSleepHoursToday').getContext('2d');
 //sleep toggle/dropdown
 let sleepDateToggle = document.querySelector('#sleepDateToggle');
 let sleepDropdown = document.querySelector('#sleepDropdown');
@@ -152,6 +153,10 @@ const displayUserHoursSleptLatestWeek = () => {
   chartLatestWeekOfSleep(); //#2
 }
 
+const displayUserHoursSleptToday = () => {
+  chartSleepToday(); //sleep donut chart today
+}
+
 const displayUserSleepQualityLatestWeek = () => {
   sleepQualityLatestWeek.innerText = `Sleep quality this week: ${renderSleepQualityLatestWeek()}`;
 }
@@ -187,6 +192,7 @@ const displayUserSleepInfo = () => {
   displayUserHoursSleptLatestDay();
   displayUserSleepQualityLatestDay();
   displayUserHoursSleptLatestWeek();// #1 I created a chart for this one and invoked it in this function
+  displayUserHoursSleptToday(); // chart for sleep today
   displayUserSleepQualityLatestWeek();
   displayAllTimeAvgHoursSlept();
   displayAllTimeAvgSleepQuality();
@@ -277,7 +283,76 @@ const chartLatestWeekOfSleep = () => { //#3.5 b/c it invokes the latestWeekOfSle
     }
   );
 }
+// const chartSleepToday = () => {
+//   const data =  {
+//     datasets: [{
+//       label: 'Sleep Today',
+//       data: [300, 50, 100],
+//       backgroundColor: [
+//         'rgb(255, 99, 132)',
+//         'rgb(54, 162, 235)',
+//         'rgb(255, 205, 86)'
+//       ],
+//       hoverOffset: 4
+//     }]
+//   };
+//   const options = {
+//     cutout: '70%',
+//     radius: 60,
+//     responsive: true,
+//     maintainAspectRatio: false,
+//   }
+//   new Chart(chartSleepHoursToday, {
+//     type:'doughnut',
+//     data: data,
+//     options: options
+//     }
+//   );
+// }
 
+const chartSleepToday = () => {
+  const userSleepEvents = sleepRepository.renderUserSleepData(userId);
+  const hoursSleptLatestDay = userSleepEvents[userSleepEvents.length-1].hoursSlept;
+  const sleepQualityLatestDay = userSleepEvents[userSleepEvents.length-1].sleepQuality;
+  console.log(hoursSleptLatestDay);
+  console.log(sleepQualityLatestDay);
+  const options = {
+    responsive: true,
+    scales: {
+      x: {
+        stacked: true,
+        ticks: {
+          min: 0
+        },
+      },
+      y: {
+        stacked: true,
+        beginAtZero: true
+      }
+    }
+  }
+  const data = {
+    labels: ['Hours Slept and Sleep Quality'],
+    datasets: [
+      {
+      label: 'Sleep Quality',
+      data: [sleepQualityLatestDay],
+      backgroundColor: '#D7b4F3',
+      },
+      {
+        label: 'Hours Slept',
+        data: [hoursSleptLatestDay],
+        backgroundColor: 'purple',
+      },
+    ]
+  }
+  new Chart(chartSleepHoursToday, {
+    type: 'bar',
+    data: data,
+    options: options
+    }
+  );
+}
 // eventListeners
 window.addEventListener('load', fetchAll);
 window.addEventListener('click', hideDropdown);
