@@ -1,5 +1,6 @@
 # Title
 Mod 2  Fitlit
+Project Manager: Nik Seif
 
 
 ## Table of Contents
@@ -18,22 +19,26 @@ Mod 2  Fitlit
 ## Technologies
   - Javascript
   - eslint
+  - html
+  - css
   - node
   - Atom
 	- WebPack
 	- API
-
+  - Chart.js
 
 
 ## Illustrations
 
-Use https://gifcap.dev/ to make GIFs
+
 
 
 ## Install + Setup
-	- Install instructions, how to access the website and how to use the website
-
-
+  - clone down the repository
+  - npm Install
+  - npm install chart.js
+  - npm start
+  - copy URL into browser to view page
 
 ## Contributors
   - [Hayley Dixon](https://github.com/hheyhhay)
