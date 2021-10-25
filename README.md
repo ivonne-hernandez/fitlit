@@ -1,82 +1,70 @@
-# FitLit Starter Kit
+# Title
+Mod 2  Fitlit
 
-The details of this project are outline in [this project spec](http://frontend.turing.io/projects/fitlit.html).
+Project Manager: Nik Seif
 
-## Setup
+## Table of Contents
+  - [Abstract](#abstract)
+  - [Technologies](#technologies)
+  - [Illustrations](#illustrations)
+  - [Install + Setup](#set-up)
+  - [Contributors](#contributors)
+  - [Wins](#wins)
+  - [Challenges + Improvements](#challenges-+-Improvements)
+  - [Project Specs](#project-specs)
 
-1. Within your group, decide on one person to have the project repository (repo) on their GitHub account. Then, that person should fork this repo - on the top right corner of this page, click the **Fork** button.
-1. Both memebers of the group should clone down the _forked_ repo. Since you don't want to name your project "activity-tracker-starter", you can use an optional argument when you run git clone (you replace the [...] with the terminal command arguments): `git clone [remote-address] [what you want to name the repo]`
-1. Once you have cloned the repo, change into the directory and install the project dependencies. Run `npm install` to install project dependencies.
-1. Run `npm start` in the terminal to see the HTML page (you should see some boilerplate HTML displayed on the page)
-1. Make sure both members of your team are collaborators on the forked repo.
+## Abstract
+This was a group project to build an activity tracker for many users over many days. Our goal was to present a useful dashboard for a user to view and see their latest activity data, goals, and milestones.
 
-## Testing
+## Technologies
+  - Javascript
+  - eslint
+  - html
+  - css
+  - node
+  - Atom
+  - WebPack
+  - API
+  - Chart.js
+  - Figma
 
-There is no boilerplate for testing in this starter-kit repo. You will need to set this up yourself. However, if you ran `npm install`, then the tooling you need to start testing is already installed (`mocha` and `chai`).
+## Illustrations
+  On page load a random user's information will be displayed on the dashboard. The left-hand sidebar contains more detailed information about the current user on display. There is space above the user's information for a profile picture to be added (on a later iteration). Each color block contains information for specific set of tracked data. In the top right corner of the dashboard, the date for the latest user data is displayed.
 
-## Linting Your Code
+  ![full_dashboard](https://user-images.githubusercontent.com/83175748/138778542-49e24f42-7dba-4fcb-af8c-4e94d8e072fc.png)
 
-Run the command in your terminal `npm run lint` to run the linter on your JavaScript code. There will be errors and warnings right from the start in this starter kit, but that's ok - the linter is still running successfully.
+  When you click the button labeled `Today` a drop down menu will appear, allowing you to choose different date ranges to view a user's data for a `week` or for `all time`.
 
-Your linter will look only at the JavaScript files you have within the `src` and the `test` directories.
+  ![sleep_dropdown](https://user-images.githubusercontent.com/83175748/138778301-c3324b1a-446d-4a16-ab18-9a342f5913c3.png)
 
-## Data Model
+  <img width="596" alt="sleep_hydration_charts" src="https://user-images.githubusercontent.com/83175748/138776187-520c7695-6233-4de1-8d0b-dc6d8101b8f5.png">
 
-**Users**
 
-```
-[
-  {
-    "id": [number],
-    "name": [string],
-    "address": [string],
-    "email": [string],
-    "strideLength": [number - feet],
-    "dailyStepGoal": [number - steps],
-    "friends": [array - one-way connection to other user(s)]
-  },
-  ...more user data
-]
-```
+## Install + Setup
+  - clone down the repository
+  - npm Install
+  - npm install chart.js
+  - npm start
+  - copy URL into browser to view page
 
-**Activity**
+## Contributors
+  - [Eric Wang](https://github.com/ewang0)
+  - [August Reid](https://github.com/augustreid)
+  - [Jessica Organ](https://github.com/Jorgan612)
+  - [Ivonne Hernandez](https://github.com/ivonne-hernandez)
 
-```
-[
-  {
-    "userID": [number],
-    "date": [string YYYY/MM/DD],
-    "numSteps": [number - steps],
-    "minutesActive": [number - minutes],
-    "flightsOfStairs": [number - flights]
-  },
-  ...more activity data
-]
-```
+## Wins
+  - Successfully displayed the data for each section.
+  - Maintained consistency with workflow, pull requests, and communication throughout the project.
+  - Learned new technologies such as third party libraries(chart.js) and design tools(figma).
 
-**Hydration**
+## Challenges + Improvements
+  - Increased complexity over all throughout project spec.
+  - Delegation of work division between multiple team members.
+  - Technical challenges with integrating API data efficiently to project.
+  - Improve chart configuration to fit activity cards.
+  - Refactor sleep class to be less redundant and avoid duplications in scripts.js file.  
+  - Future Iterations: TBD.
 
-```
-[
-  {
-    "userID": [number],
-    "date": [string YYYY/MM/DD],
-    "numOunces": [number - ounces]
-  },
-  ...more hydration data
-]
-```
-
-**Sleep**
-
-```
-[
-  {
-    "userID": [number],
-    "date": [string YYYY/MM/DD],
-    "hoursSlept": [number - hours],
-    "sleepQuality": [number - unitless]
-  },
-  ...more sleep data
-]
-```
+## Project Specs
+  - The project spec & rubric can be found [here](https://frontend.turing.edu/projects/Fitlit-part-one.html)
