@@ -8,12 +8,12 @@ Project Manager: Nik Seif
   - [Illustrations](#illustrations)
   - [Install + Setup](#set-up)
   - [Contributors](#contributors)
-	- [Wins](#wins)
-	- [Challenges + Improvements](#challenges-+-Improvements)
+  - [Wins](#wins)
+  - [Challenges + Improvements](#challenges-+-Improvements)
   - [Project Specs](#project-specs)
 
 ## Abstract
-	This was a group project to build an activity tracker for many users over many days. Our goal was to present a useful dashboard for a user to view and see their latest activity data, goals, and milestones.
+This was a group project to build an activity tracker for many users over many days. Our goal was to present a useful dashboard for a user to view and see their latest activity data, goals, and milestones.
 
 ## Technologies
   - Javascript
@@ -22,8 +22,8 @@ Project Manager: Nik Seif
   - css
   - node
   - Atom
-	- WebPack
-	- API
+  - WebPack
+  - API
   - Chart.js
   - Figma
 
@@ -53,9 +53,9 @@ Project Manager: Nik Seif
   - [Ivonne Hernandez](https://github.com/ivonne-hernandez)
 
 ## Wins
-	- Successfully displayed the data for each section.
+  - Successfully displayed the data for each section.
   - Maintained consistency with workflow, pull requests, and communication throughout the project.
-	- Learned new technologies such as third party libraries(chart.js) and design tools(figma).
+  - Learned new technologies such as third party libraries(chart.js) and design tools(figma).
 
 ## Challenges + Improvements
   - Increased complexity over all throughout project spec.
@@ -63,7 +63,7 @@ Project Manager: Nik Seif
   - Technical challenges with integrating API data efficiently to project.
   - Improve chart configuration to fit activity cards.
   - Refactor sleep class to be less redundant and avoid duplications in scripts.js file.  
-	- Future Iterations: TBD.
+  - Future Iterations: TBD.
 
 ## Project Specs
   - The project spec & rubric can be found [here](https://frontend.turing.edu/projects/Fitlit-part-one.html)
