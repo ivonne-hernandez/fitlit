@@ -76,7 +76,7 @@ let userId = renderRandomIndex(1, 50);
 
 const fetchAll = () => {
   const userDataPromise = fetchUserData();
-  const sleepDataPromise = fetchSleepData()
+  const sleepDataPromise = fetchSleepData();
   const hydrationDataPromise = fetchHydrationData();
   Promise.all([userDataPromise, sleepDataPromise, hydrationDataPromise])
     .then(data => {
@@ -319,15 +319,15 @@ const chartAllTimeUserSleepStats = () => {
     {
       type: 'bar',
       data: {
-        labels: [startDate, endDate],//map the date for each sleep event
+        labels: [`${startDate} - ${endDate}`],//map the date for each sleep event
         datasets: [{
           label: 'Avg Sleep Quality',
-          data: allTimeAvgSleepQuality,//map the hours slept for each sleep event
+          data: [allTimeAvgSleepQuality],//map the hours slept for each sleep event
           backgroundColor: '#D7B4F3'
         },
         {
           label: 'Avg Hours Slept',
-          data: allTimeAvgHoursSlept,//map the hours slept for each sleep event
+          data: [allTimeAvgHoursSlept],//map the hours slept for each sleep event
           backgroundColor: 'purple'
         }]
       },
