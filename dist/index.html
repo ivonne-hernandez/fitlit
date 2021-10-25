@@ -9,7 +9,7 @@
   </head>
   <body>
     <aside>
-      <div id="logo" class="logo">
+      <div id="logo" class="logo">ƒ
         <h1> Logo </h1>
       </div>
       <div id="profilePic" class="profile-pic"
@@ -94,7 +94,9 @@
               </div>
               <div id="hydrationCardThisWeek"class="card large hidden">
                 <p class="card-title"> Hydration this week <p>
-                <p id="hydrationLatestWeek"></p>
+                <canvas id="chartHydrationForLatestWeek" width="200" height="160">
+                </canvas>
+                <!-- <p id="hydrationLatestWeek"></p> -->
               </div>
             </div>
           </section>
@@ -121,18 +123,16 @@
                   </div>
                 </div>
                 <div id="sleepCardAllTime" class="card hidden">
-                  <p class="card-title"> Sleep All Time <p>
-                  <p></p>
+                  <p class="card-title"> Sleep All Time </p>
+                  <canvas id="chartAllTimeSleepStats" width="160" height="160">
+                  </canvas>
                 </div>
               <div id="sleepCardThisWeek" class="card large hidden">
-                <p class="card-title"> Sleep This Week <p>
-                  <canvas id="chartSleepHoursForLatestWeek" width="200" height="160">//need to inj our JS chart
-                  </canvas>
-                <p id="userHoursSleptLatestWeek"></p>
-                <p id="userSleepQualityLatestWeek"></p>
-                <p id="userAllTimeAvgHoursSlept"></p>
-                <p id="userAllTimeAvgSleepQuality"></p>
+                <p class="card-title">Hours This Week</p>
+                <canvas id="chartSleepHoursForLatestWeek" width="160" height="160">
+                </canvas>
               </div>
+                <!-- <p id="userHoursSleptLatestWeek"></p> -->
             </div>
           </section>
         </div>
