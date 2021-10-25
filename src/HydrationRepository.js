@@ -8,6 +8,6 @@ class HydrationRepository {
     });
     return userHydrationOccurances;
   }
-};
+}
 
 export default HydrationRepository;
