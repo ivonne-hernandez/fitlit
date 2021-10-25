@@ -2,6 +2,9 @@
 <html>
   <head>
     <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <title>Activity Tracker</title>
   </head>
   <body>
@@ -14,30 +17,38 @@
       </div>
       <h2 id="userName"></h2>
       <section id="infoSection" class="info-section">
-        <div id="infoLabels" class="infoLabels">
-          <p> Address: </p>
-          <p> Email: </p>
-          <p> Stride: </p>
-          <p> Step Goal: </p>
-          <p> Friends: </p>
-        </div>
-        <div id="userInfo" class="user-info">
-          <p id="addressInfo"></p>
-          <p id="userEmail"></p>
-          <p id="userStrideLength"></p>
-          <p id="userStepGoal"></p>
-          <p id="userFriends"></p>
-        </div>
+        <table>
+          <tr class="contact-info">
+            <th> Address: </th>
+            <td id="addressInfo"> </td>
+          </tr>
+          <tr class="contact-info">
+            <th> Email: </th>
+            <td id="userEmail"> </td>
+          </tr>
+          <tr class="contact-info">
+            <th> Stride: </th>
+            <td id="userStrideLength"> </td>
+          </tr>
+          <tr class="contact-info">
+            <th> Step Goal: </th>
+            <td id="userStepGoal"> </td>
+          </tr>
+          <tr class="contact-info">
+            <th> Friends: </th>
+            <td id="userFriends"> </td>
+          </tr>
+        </table>
       <section>
     </aside>
     <main>
       <!-- <header> -->
         <nav>
-          <h2> Dashboard </h2>
-          <h3 id="welcomeUser"></h3>
+          <h3> Dashboard </h3>
+          <p id="welcomeUser"></p>
           <div id="navDayDate" class="nav-day-date">
             <h3 id="navday" class="nav-day"> Today </h3>
-            <p id="navDate" class="nav-date"> October 1, 2021 </p>
+            <p id="navDate" class="nav-date"></p>
           </div>
         </nav>
       <!-- </header> -->
@@ -67,14 +78,22 @@
           <section class="hydration">
             <div class="card-header">
               <h4> Hydration </h4>
-              <div class="date-toggle">
-                <p>Today<p>
-                  
+              <div class="toggle-and-dropdown-menu">
+                <button id="hydrationDateToggle" class="date-toggle"> Today </button>
+                <div id="hydrationDropdown" class="dropdown-content hidden">
+                  <button id="hydrationDropdownToday">Today</button>
+                  <button id="hydrationDropdownThisWeek">This Week</button>
+                </div>
               </div>
+                <!-- <img src="src/images/down-arrow.png" alt="Down arrow"> -->
             </div>
             <div class="card-deck">
-              <div class="card">
+              <div id="hydrationCardToday" class="card">
                 <p class="card-title"> Hydration Today <p>
+                <p id="hydrationToday"></p>
+              </div>
+              <div id="hydrationCardThisWeek"class="card large hidden">
+                <p class="card-title"> Hydration this week <p>
                 <p></p>
               </div>
             </div>
@@ -82,21 +101,38 @@
           <section class="sleep">
             <div class="card-header">
               <h4> Sleep </h4>
-              <div class="date-toggle">
-                <p>Today<p>
+              <div class="toggle-and-dropdown-menu">
+                <button id="sleepDateToggle" class="date-toggle">Today</button>
+                <div id="sleepDropdown" class="dropdown-content hidden">
+                  <button id="sleepDropdownToday">Today</button>
+                  <button id="sleepDropdownThisWeek">This Week</button>
+                  <button id="sleepDropdownAllTime">All-Time</button>
+                </div>
               </div>
             </div>
-            <div class="card-deck">
-              <div class="card">
-                <p class="card-title"> Sleep Today <p>
-                <p></p>
+            <div id="sleepCardDeck" class="card-deck">
+                <div id="sleepCardToday" class="card">
+                  <p class="card-title"> Sleep Today <p>
+                  <p id="userHoursSleptLatestDay"></p>
+                  <p id="userSleepQualityLatestDay"></p>
+                </div>
+                <div id="sleepCardAllTime" class="card hidden">
+                  <p class="card-title"> Sleep All Time <p>
+                  <p></p>
+                </div>
+              <div id="sleepCardThisWeek" class="card large hidden">
+                <p class="card-title"> Sleep This Week <p>
+                <p id="userHoursSleptLatestWeek"></p>
+                <p id="userSleepQualityLatestWeek"></p>
+                <p id="userAllTimeAvgHoursSlept"></p>
+                <p id="userAllTimeAvgSleepQuality"></p>
               </div>
             </div>
           </section>
         </div>
-        <section class="friends">
+        <!-- <section class="friends">
           <h4> Friends </h4>
-        </section>
+        </section> -->
       </section>
     </main>
 

@@ -17,9 +17,12 @@ class Hydration {
     return givenDate.numOunces;
   }
 
-  renderOuncesConsumedInDayRange(days) {
-    const ouncesForDays = this.hydrationData.filter((hydrationOccurance) => {
-      return days.includes(hydrationOccurance.date);
+  renderOuncesConsumedInDayRange(start, end) {
+    const startDate = new Date(start);
+    const endDate = new Date(end);
+    const ouncesForDays = this.hydrationData.filter((hydrationOccurence) => {
+      const hydrationDate = new Date(hydrationOccurence.date);
+      return startDate <= hydrationDate && hydrationDate <= endDate;
     })
     .map((day) => {
       return day.numOunces;

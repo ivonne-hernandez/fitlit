@@ -4,71 +4,77 @@ class SleepRepository {
   }
 
   renderUserSleepData(userID) {
-    const userSleepOccurrences = this.sleepDataSet.filter((user) => user.userID === userID);
-    return userSleepOccurrences;
+    const userSleepEvents = this.sleepDataSet.filter((user) => user.userID === userID);
+    return userSleepEvents;
   }
 
   calcAvgHoursSlept(userID) {
-    const userSleepOccurrences = this.renderUserSleepData(userID);
-    const totalHoursSlept = userSleepOccurrences.reduce((accumulator, sleepOccurrence) => {
-      return accumulator + sleepOccurrence.hoursSlept;
+    const userSleepEvents = this.renderUserSleepData(userID);
+    const totalHoursSlept = userSleepEvents.reduce((accumulator, sleepEvent) => {
+      return accumulator + sleepEvent.hoursSlept;
     }, 0);
 
-    return Number((totalHoursSlept/userSleepOccurrences.length).toFixed(1));
+    return Number((totalHoursSlept/userSleepEvents.length).toFixed(1));
   }
 
   calcAvgSleepQuality(userID) {
-    const userSleepOccurrences = this.renderUserSleepData(userID);
-    const totalSleepQuality = userSleepOccurrences.reduce((accumulator, sleepOccurrence) => {
-      return accumulator + sleepOccurrence.sleepQuality;
+    const userSleepEvents = this.renderUserSleepData(userID);
+    const totalSleepQuality = userSleepEvents.reduce((accumulator, sleepEvent) => {
+      return accumulator + sleepEvent.sleepQuality;
     }, 0);
 
-    return totalSleepQuality/userSleepOccurrences.length;
+    return Number((totalSleepQuality/userSleepEvents.length).toFixed(1));
   }
 
   renderHoursSleptOnDate(userID, date) {
-    const userSleepOccurrences = this.renderUserSleepData(userID);
-    const sleepOccurrenceOnDate = userSleepOccurrences.find((sleepOccurrence) => {
-        return sleepOccurrence.date === date;
+    const userSleepEvents = this.renderUserSleepData(userID);
+    const sleepEventOnDate = userSleepEvents.find((sleepEvent) => {
+        return sleepEvent.date === date;
     });
-    return sleepOccurrenceOnDate.hoursSlept;
+    return sleepEventOnDate.hoursSlept;
   }
 
   renderSleepQualityOnDate(userID, date) {
-    const userSleepOccurrences = this.renderUserSleepData(userID);
-    const sleepOccurrenceOnDate = userSleepOccurrences.find((sleepOccurrence) => {
-        return sleepOccurrence.date === date;
+    const userSleepEvents = this.renderUserSleepData(userID);
+    const sleepEventOnDate = userSleepEvents.find((sleepEvent) => {
+        return sleepEvent.date === date;
     });
-    return sleepOccurrenceOnDate.sleepQuality;
+    return sleepEventOnDate.sleepQuality;
   }
 
-  renderHoursSleptInDayRange(userID, days) {
-    const userSleepOccurrences = this.renderUserSleepData(userID);
-    const hoursSleptForChosenDays = userSleepOccurrences
-      .filter((sleepOccurrence) => {
-        return days.includes(sleepOccurrence.date);
+  renderHoursSleptByStartAndEndDate(userID, start, end) {
+    const userSleepEvents = this.renderUserSleepData(userID);
+    const startDate = new Date(start);
+    const endDate = new Date(end);
+    const hoursSleptForChosenDays = userSleepEvents
+      .filter((sleepEvent) => {
+        const sleepDate = new Date(sleepEvent.date);
+        return startDate <= sleepDate && sleepDate <= endDate;
       })
-      .map((renderedSleepOccurance) => {
-        return renderedSleepOccurance.hoursSlept;
+      .map((renderedSleepEvent) => {
+        return renderedSleepEvent.hoursSlept;
       });
     return hoursSleptForChosenDays;
   }
 
-  renderSleepQualityInDayRange(userID, days) {
-    const userSleepOccurrences = this.renderUserSleepData(userID);
-    const sleepQualityForChosenDays = userSleepOccurrences
-      .filter((sleepOccurrence) => {
-        return days.includes(sleepOccurrence.date);
+  renderSleepQualityByStartAndEndDate(userID, start, end) {
+    const userSleepEvents = this.renderUserSleepData(userID);
+    const startDate = new Date(start);
+    const endDate = new Date(end);
+    const sleepQualityForChosenDays = userSleepEvents
+      .filter((sleepEvent) => {
+        const sleepDate = new Date(sleepEvent.date);
+        return startDate <= sleepDate && sleepDate <= endDate;
       })
-      .map((renderedSleepOccurance) => {
-        return renderedSleepOccurance.sleepQuality;
+      .map((renderedSleepEvent) => {
+        return renderedSleepEvent.sleepQuality;
       });
     return sleepQualityForChosenDays;
   }
 
   calcAllUsersAvgSleepQuality () {
-    const totalSleepQualityAllUsers = this.sleepDataSet.reduce((acc, sleepOccurrence) => {
-      return acc += sleepOccurrence.sleepQuality;
+    const totalSleepQualityAllUsers = this.sleepDataSet.reduce((acc, sleepEvent) => {
+      return acc += sleepEvent.sleepQuality;
     },0);
     return Number((totalSleepQualityAllUsers/this.sleepDataSet.length).toFixed(1));
   }
