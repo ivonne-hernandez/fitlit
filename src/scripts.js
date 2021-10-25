@@ -265,6 +265,11 @@ const chartLatestWeekOfSleep = () => { //#3.5 b/c it invokes the latestWeekOfSle
       data: {
         labels: latestWeekSleepEvents.map(sleepEvent => sleepEvent.date),//map the date for each sleep event
         datasets: [{
+          label: 'Sleep Quality',
+          data: latestWeekSleepEvents.map(sleepEvent => sleepEvent.sleepQuality),
+          backgroundColor: '#D7B4F3'
+        },
+        {
           label: 'Hours Slept',
           data: latestWeekSleepEvents.map(sleepEvent => sleepEvent.hoursSlept),//map the hours slept for each sleep event
           backgroundColor: 'purple'
@@ -274,7 +279,11 @@ const chartLatestWeekOfSleep = () => { //#3.5 b/c it invokes the latestWeekOfSle
         responsive: true,
         maintainAspectRatio: false,
         scales: {
+          x: {
+            stacked: true,
+          },
           y: {
+            stacked: true,
             beginAtZero: true
           }
         }
