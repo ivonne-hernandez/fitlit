@@ -35,14 +35,14 @@ let userStrideLength = document.querySelector('#userStrideLength');
 let userStepGoal = document.querySelector('#userStepGoal');
 let userFriends = document.querySelector('#userFriends');
 let stepGoalComparison = document.querySelector('#stepGoalComparison');
-let sleepLatestDay = document.querySelector('#userHoursSleptLatestDay');
-let sleepQualityLatestDay = document.querySelector('#userSleepQualityLatestDay');
-let sleepLatestWeek = document.querySelector('#userHoursSleptLatestWeek');
-let sleepQualityLatestWeek = document.querySelector('#userSleepQualityLatestWeek');
-let userAllTimeAvgHoursSlept = document.querySelector('#userAllTimeAvgHoursSlept');
-let userAllTimeAvgSleepQuality = document.querySelector('#userAllTimeAvgSleepQuality');
+// let sleepLatestDay = document.querySelector('#userHoursSleptLatestDay');
+// let sleepQualityLatestDay = document.querySelector('#userSleepQualityLatestDay');
+// let sleepLatestWeek = document.querySelector('#userHoursSleptLatestWeek');
+// let sleepQualityLatestWeek = document.querySelector('#userSleepQualityLatestWeek');
+// let userAllTimeAvgHoursSlept = document.querySelector('#userAllTimeAvgHoursSlept');
+// let userAllTimeAvgSleepQuality = document.querySelector('#userAllTimeAvgSleepQuality');
 let hydrationToday = document.querySelector('#hydrationToday');
-let hydrationLatestWeek = document.querySelector('#hydrationLatestWeek');
+// let hydrationLatestWeek = document.querySelector('#hydrationLatestWeek');
 let chartSleepHoursForLatestWeek = document.querySelector('#chartSleepHoursForLatestWeek').getContext('2d');
 let chartHydrationForLatestWeek = document.querySelector('#chartHydrationForLatestWeek').getContext('2d');
 let chartAllTimeSleepStats = document.querySelector('#chartAllTimeSleepStats').getContext('2d');
@@ -144,41 +144,42 @@ const displayStepGoalComparison = () => {
 }
 
 //DOM display TEST functions => need to be carefully removed during refactor phase
-const displayUserHoursSleptLatestDay = () => {
-  sleepLatestDay.innerText = `Hours slept today: ${renderUserHoursSlept()}`;
-}
+// const displayUserHoursSleptLatestDay = () => {
+//   sleepLatestDay.innerText = `Hours slept today: ${renderUserHoursSlept()}`;
+// }
 
-const displayUserSleepQualityLatestDay = () => {
-  sleepQualityLatestDay.innerText = `Sleep quality today: ${renderUserSleepQuality()}`;
-}
+// const displayUserSleepQualityLatestDay = () => {
+//   sleepQualityLatestDay.innerText = `Sleep quality today: ${renderUserSleepQuality()}`;
+// }
 
-const displayUserHoursSleptLatestWeek = () => {
-  chartLatestWeekOfSleepStats(); //#2
-}
+// const displayUserHoursSleptLatestWeek = () => {
+//   chartLatestWeekOfSleepStats(); //#2
+// }
 
-const displayUserHoursSleptToday = () => {
-  chartSleepToday(); //sleep donut chart today
-}
+// const displayUserHoursSleptToday = () => {
+//   chartSleepToday(); //sleep donut chart today
+// }
 
 // const displayUserSleepQualityLatestWeek = () => {
 //   sleepQualityLatestWeek.innerText = `Sleep quality this week: ${renderSleepQualityLatestWeek()}`;
 // }
 
-const displayAllTimeUserSleepStats = () => {
-  chartAllTimeUserSleepStats();
-}
 
-const displayAllTimeAvgSleepQuality = () => {
-  userAllTimeAvgSleepQuality.innerText = `Average sleep quality (all-time): ${renderAllTimeAverageSleepQuality()}`;
-}
+// const displayAllTimeUserSleepStats = () => {
+//   chartAllTimeUserSleepStats();
+// }
+
+// const displayAllTimeAvgSleepQuality = () => {
+//   userAllTimeAvgSleepQuality.innerText = `Average sleep quality (all-time): ${renderAllTimeAverageSleepQuality()}`;
+// }
 
 const displayHydrationToday = () => {
   hydrationToday.innerText = `${renderUserHydrationToday()} ounces.`;
 }
 
-const displayHydrationLatestWeek = () => {
-  chartHydrationLatestWeek();
-}
+// const displayHydrationLatestWeek = () => {
+//   chartHydrationLatestWeek();
+// }
 
 // functions that will display elements on the DOM once all information has been fetched & parsed
 const displayUserInfo = () => {
@@ -195,39 +196,42 @@ const displayUserInfo = () => {
 
 // => these will need to be carefully removed during refactor phase and replaced with the chart functions where applicable
 const displayUserSleepInfo = () => {
-  displayUserHoursSleptLatestDay();
-  displayUserSleepQualityLatestDay();
-  displayUserHoursSleptLatestWeek();// #1 I created a chart for this one and invoked it in this function
+  // displayUserHoursSleptLatestDay();
+  // displayUserSleepQualityLatestDay();
+  chartSleepToday();
+  chartLatestWeekOfSleepStats();
+  chartAllTimeUserSleepStats();
+  // displayUserHoursSleptLatestWeek();// #1 I created a chart for this one and invoked it in this function
   // displayUserSleepQualityLatestWeek();
-  displayAllTimeUserSleepStats();
-  displayUserHoursSleptToday(); // chart for sleep today
-  displayUserSleepQualityLatestWeek();
-  displayAllTimeAvgHoursSlept();
-  displayAllTimeAvgSleepQuality();
+  // displayAllTimeUserSleepStats();
+  // displayUserHoursSleptToday(); // chart for sleep today
+  // displayUserSleepQualityLatestWeek();
+  // displayAllTimeAvgHoursSlept();
+  // displayAllTimeAvgSleepQuality();
 }
 
 const displayUserHydrationInfo = () => {
   displayHydrationToday();
-  displayHydrationLatestWeek();
+  chartHydrationLatestWeek();
 }
 
 // => these will need to be carefully removed during refactor phase since they are being replaced with the chartXInfo functions
-const renderUserHydrationLatestWeek = () => {
-  const endDate = userHydrationData.hydrationData[userHydrationData.hydrationData.length - 1].date;
-  const startDate = userHydrationData.hydrationData[userHydrationData.hydrationData.length - 7].date;
-  return userHydrationData.renderOuncesConsumedInDayRange(startDate, endDate);
-}
+// const renderUserHydrationLatestWeek = () => {
+//   const endDate = userHydrationData.hydrationData[userHydrationData.hydrationData.length - 1].date;
+//   const startDate = userHydrationData.hydrationData[userHydrationData.hydrationData.length - 7].date;
+//   return userHydrationData.renderOuncesConsumedInDayRange(startDate, endDate);
+// }
 
 const renderUserHydrationToday = () => {
   const lastUserHydrationDate = userHydrationData.hydrationData[userHydrationData.hydrationData.length - 1].date;
   return userHydrationData.renderOuncesConsumedOnDate(lastUserHydrationDate);
 }
 
-const renderUserHoursSlept = () => {
-  const userSleepEvents = sleepRepository.renderUserSleepData(userId);
-  const lastUserSleepEvent = userSleepEvents[userSleepEvents.length - 1].date;
-  return sleepRepository.renderHoursSleptOnDate(userId, lastUserSleepEvent);
-}
+// const renderUserHoursSlept = () => {
+//   const userSleepEvents = sleepRepository.renderUserSleepData(userId);
+//   const lastUserSleepEvent = userSleepEvents[userSleepEvents.length - 1].date;
+//   return sleepRepository.renderHoursSleptOnDate(userId, lastUserSleepEvent);
+// }
 
 const renderLastSleepEventDate = () => {
   let userSleepEvents = sleepRepository.renderUserSleepData(userId);
@@ -235,33 +239,33 @@ const renderLastSleepEventDate = () => {
   return lastUserSleepEventDate;
 }
 
-const renderUserSleepQuality = () => {
-  const userSleepEvents = sleepRepository.renderUserSleepData(userId);
-  const lastUserSleepEvent = userSleepEvents[userSleepEvents.length - 1].date;
-  return sleepRepository.renderSleepQualityOnDate(userId, lastUserSleepEvent);
-}
+// const renderUserSleepQuality = () => {
+//   const userSleepEvents = sleepRepository.renderUserSleepData(userId);
+//   const lastUserSleepEvent = userSleepEvents[userSleepEvents.length - 1].date;
+//   return sleepRepository.renderSleepQualityOnDate(userId, lastUserSleepEvent);
+// }
 
-const renderHoursSleptLatestWeek = () => {
-  const userSleepEvents = sleepRepository.renderUserSleepData(userId);
-  const endDate = userSleepEvents[userSleepEvents.length - 1].date;
-  const startDate = userSleepEvents[userSleepEvents.length - 7].date;
-  return sleepRepository.renderHoursSleptByStartAndEndDate(userId, startDate, endDate);
-}
+// const renderHoursSleptLatestWeek = () => {
+//   const userSleepEvents = sleepRepository.renderUserSleepData(userId);
+//   const endDate = userSleepEvents[userSleepEvents.length - 1].date;
+//   const startDate = userSleepEvents[userSleepEvents.length - 7].date;
+//   return sleepRepository.renderHoursSleptByStartAndEndDate(userId, startDate, endDate);
+// }
 
-const renderSleepQualityLatestWeek = () => {
-  const userSleepEvents = sleepRepository.renderUserSleepData(userId);
-  const endDate = userSleepEvents[userSleepEvents.length - 1].date;
-  const startDate = userSleepEvents[userSleepEvents.length - 7].date;
-  return sleepRepository.renderSleepQualityByStartAndEndDate(userId, startDate, endDate);
-}
+// const renderSleepQualityLatestWeek = () => {
+//   const userSleepEvents = sleepRepository.renderUserSleepData(userId);
+//   const endDate = userSleepEvents[userSleepEvents.length - 1].date;
+//   const startDate = userSleepEvents[userSleepEvents.length - 7].date;
+//   return sleepRepository.renderSleepQualityByStartAndEndDate(userId, startDate, endDate);
+// }
 
-const renderAllTimeAverageHoursSlept = () => {
-  return sleepRepository.calcAvgHoursSlept(userId);
-}
+// const renderAllTimeAverageHoursSlept = () => {
+//   return sleepRepository.calcAvgHoursSlept(userId);
+// }
 
-const renderAllTimeAverageSleepQuality = () => {
-  return sleepRepository.calcAvgSleepQuality(userId);
-}
+// const renderAllTimeAverageSleepQuality = () => {
+//   return sleepRepository.calcAvgSleepQuality(userId);
+// }
 
 const latestWeekOfSleepEvents = () => { //#3 we need the latest week's events for our chart
   const userSleepEvents = sleepRepository.renderUserSleepData(userId);
@@ -274,7 +278,6 @@ const latestWeekOfSleepEvents = () => { //#3 we need the latest week's events fo
       });
   return latestWeekOfSleepEvents;
 }
-
 
 const chartLatestWeekOfSleepStats = () => { //#3.5 b/c it invokes the latestWeekOfSleepEvents on 243
   const latestWeekSleepEvents = latestWeekOfSleepEvents();
@@ -310,8 +313,6 @@ const chartLatestWeekOfSleepStats = () => { //#3.5 b/c it invokes the latestWeek
     }
   );
 }
-
-
 
 const chartAllTimeUserSleepStats = () => {
   const userSleepEvents = sleepRepository.renderUserSleepData(userId);
@@ -393,8 +394,6 @@ const chartSleepToday = () => {
   const hoursSleptLatestDay = userSleepEvents[userSleepEvents.length-1].hoursSlept;
   const sleepQualityLatestDay = userSleepEvents[userSleepEvents.length-1].sleepQuality;
   const latestDayDate = userSleepEvents[userSleepEvents.length-1].date;
-  console.log(hoursSleptLatestDay);
-  console.log(sleepQualityLatestDay);
   const options = {
     responsive: true,
     scales: {
