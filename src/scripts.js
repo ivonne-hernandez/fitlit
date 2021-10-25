@@ -44,6 +44,7 @@ let hydrationToday = document.querySelector('#hydrationToday');
 let hydrationLatestWeek = document.querySelector('#hydrationLatestWeek');
 let chartSleepHoursForLatestWeek = document.querySelector('#chartSleepHoursForLatestWeek').getContext('2d');
 let chartHydrationForLatestWeek = document.querySelector('#chartHydrationForLatestWeek').getContext('2d');
+let chartSleepQualityForLatestWeek = document.querySelector('#chartSleepQualityForLatestWeek').getContext('2d');
 //sleep toggle/dropdown
 let sleepDateToggle = document.querySelector('#sleepDateToggle');
 let sleepDropdown = document.querySelector('#sleepDropdown');
@@ -154,7 +155,7 @@ const displayUserHoursSleptLatestWeek = () => {
 }
 
 const displayUserSleepQualityLatestWeek = () => {
-  sleepQualityLatestWeek.innerText = `Sleep quality this week: ${renderSleepQualityLatestWeek()}`;
+  chartSleepQualityLatestWeek();
 }
 
 const displayAllTimeAvgHoursSlept = () => {
@@ -255,16 +256,6 @@ const latestWeekOfSleepEvents = () => { //#3 we need the latest week's events fo
   return latestWeekOfSleepEvents;
 }
 
-const latestWeekOfHydrationEvents = () => { //#3 we need the latest week's events for our chart
-  const endDate = new Date(userHydrationData.hydrationData[userHydrationData.hydrationData.length - 1].date);
-  const startDate = new Date(userHydrationData.hydrationData[userHydrationData.hydrationData.length - 7].date);
-  const latestWeekOfHydrationEvents = userHydrationData.hydrationData
-    .filter((hydrationEvent) => {
-      const hydrationDate = new Date(hydrationEvent.date);
-      return startDate <= hydrationDate && hydrationDate <= endDate;
-    });
-  return latestWeekOfHydrationEvents;
-}
 
 const chartLatestWeekOfSleep = () => { //#3.5 b/c it invokes the latestWeekOfSleepEvents on 243
   const latestWeekSleepEvents = latestWeekOfSleepEvents();
@@ -272,10 +263,10 @@ const chartLatestWeekOfSleep = () => { //#3.5 b/c it invokes the latestWeekOfSle
     {
       type: 'bar',
       data: {
-        labels: latestWeekSleepEvents.map(event => event.date),//map the date for each sleep event
+        labels: latestWeekSleepEvents.map(sleepEvent => sleepEvent.date),//map the date for each sleep event
         datasets: [{
           label: 'Hours Slept',
-          data: latestWeekSleepEvents.map(event => event.hoursSlept),//map the hours slept for each sleep event
+          data: latestWeekSleepEvents.map(sleepEvent => sleepEvent.hoursSlept),//map the hours slept for each sleep event
           backgroundColor: 'purple'
         }]
       },
@@ -292,15 +283,52 @@ const chartLatestWeekOfSleep = () => { //#3.5 b/c it invokes the latestWeekOfSle
   );
 }
 
-const chartHydrationLatestWeek = () => { //#3.5 b/c it invokes the latestWeekOfSleepEvents on 243
+const chartSleepQualityLatestWeek = () => {
+  const latestWeekSleepEvents = latestWeekOfSleepEvents();
+  new Chart(chartSleepQualityForLatestWeek, //our querySelector needs to be the arg for this Chart
+    {
+      type: 'bar',
+      data: {
+        labels: latestWeekSleepEvents.map(sleepEvent => sleepEvent.date),//map the date for each sleep event
+        datasets: [{
+          label: 'Sleep Quality',
+          data: latestWeekSleepEvents.map(sleepEvent => sleepEvent.sleepQuality),//map the hours slept for each sleep event
+          backgroundColor: 'purple'
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    }
+  );
+}
+
+const latestWeekOfHydrationEvents = () => {
+  const endDate = new Date(userHydrationData.hydrationData[userHydrationData.hydrationData.length - 1].date);
+  const startDate = new Date(userHydrationData.hydrationData[userHydrationData.hydrationData.length - 7].date);
+  const latestWeekOfHydrationEvents = userHydrationData.hydrationData
+  .filter((hydrationEvent) => {
+    const hydrationDate = new Date(hydrationEvent.date);
+    return startDate <= hydrationDate && hydrationDate <= endDate;
+  });
+  return latestWeekOfHydrationEvents;
+}
+
+const chartHydrationLatestWeek = () => {
   const latestWeekHydrationEvents = latestWeekOfHydrationEvents();
   new Chart(chartHydrationForLatestWeek,   {
       type: 'bar',
       data: {
-        labels: latestWeekHydrationEvents.map(hydrationEvent => hydrationEvent.date),//map the date for each sleep event
+        labels: latestWeekHydrationEvents.map(hydrationEvent => hydrationEvent.date),
         datasets: [{
           label: 'Fluid Ounces',
-          data: latestWeekHydrationEvents.map(hydrationEvent => hydrationEvent.numOunces),//map the hours slept for each sleep event
+          data: latestWeekHydrationEvents.map(hydrationEvent => hydrationEvent.numOunces),
           backgroundColor: 'blue'
         }]
       },
