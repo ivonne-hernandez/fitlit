@@ -306,15 +306,10 @@ const chartLatestWeekOfSleepStats = () => { //#3.5 b/c it invokes the latestWeek
 
 const chartAllTimeUserSleepStats = () => {
   const userSleepEvents = sleepRepository.renderUserSleepData(userId);
-  console.log('userSleepEvents', userSleepEvents)
   const endDate = userSleepEvents[userSleepEvents.length - 1].date;
-  console.log('endDate', endDate);
   const startDate = userSleepEvents[userSleepEvents.length - 7].date;
-  console.log('startDate', startDate);
   const allTimeAvgSleepQuality = sleepRepository.calcAvgSleepQuality(userId);
-  console.log('allTimeAvgSleepQuality', allTimeAvgSleepQuality)
   const allTimeAvgHoursSlept = sleepRepository.calcAvgHoursSlept(userId);
-  console.log('allTimeAvgHoursSlept', allTimeAvgHoursSlept);
   new Chart(chartAllTimeSleepStats, //our querySelector needs to be the arg for this Chart
     {
       type: 'bar',
