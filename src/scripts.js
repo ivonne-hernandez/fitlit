@@ -296,5 +296,6 @@ function renderHydrationCard(event){
   if(event.target === hydrationDropdownThisWeek){
     hydrationCardToday.classList.add('hidden');
     hydrationCardThisWeek.classList.remove('hidden');
+    hydrationDateToggle.innerText = "This Week";
   }
 }
