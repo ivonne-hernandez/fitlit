@@ -44,7 +44,7 @@ let hydrationToday = document.querySelector('#hydrationToday');
 let hydrationLatestWeek = document.querySelector('#hydrationLatestWeek');
 let chartSleepHoursForLatestWeek = document.querySelector('#chartSleepHoursForLatestWeek').getContext('2d');
 let chartHydrationForLatestWeek = document.querySelector('#chartHydrationForLatestWeek').getContext('2d');
-let chartSleepQualityForLatestWeek = document.querySelector('#chartSleepQualityForLatestWeek').getContext('2d');
+let chartAllTimeSleepStats = document.querySelector('#chartAllTimeSleepStats').getContext('2d');
 //sleep toggle/dropdown
 let sleepDateToggle = document.querySelector('#sleepDateToggle');
 let sleepDropdown = document.querySelector('#sleepDropdown');
@@ -151,15 +151,15 @@ const displayUserSleepQualityLatestDay = () => {
 }
 
 const displayUserHoursSleptLatestWeek = () => {
-  chartLatestWeekOfSleep(); //#2
+  chartLatestWeekOfSleepStats(); //#2
 }
 
-const displayUserSleepQualityLatestWeek = () => {
-  chartSleepQualityLatestWeek();
-}
+// const displayUserSleepQualityLatestWeek = () => {
+//   chartSleepQualityLatestWeek();
+// }
 
-const displayAllTimeAvgHoursSlept = () => {
-  userAllTimeAvgHoursSlept.innerText = `Average hours slept (all-time): ${renderAllTimeAverageHoursSlept()}`;
+const displayAllTimeUserSleepStats = () => {
+  chartAllTimeUserSleepStats();
 }
 
 const displayAllTimeAvgSleepQuality = () => {
@@ -189,9 +189,8 @@ const displayUserSleepInfo = () => {
   displayUserHoursSleptLatestDay();
   displayUserSleepQualityLatestDay();
   displayUserHoursSleptLatestWeek();// #1 I created a chart for this one and invoked it in this function
-  displayUserSleepQualityLatestWeek();
-  displayAllTimeAvgHoursSlept();
-  displayAllTimeAvgSleepQuality();
+  // displayUserSleepQualityLatestWeek();
+  displayAllTimeUserSleepStats();
 }
 
 const displayUserHydrationInfo = () => {
@@ -257,7 +256,7 @@ const latestWeekOfSleepEvents = () => { //#3 we need the latest week's events fo
 }
 
 
-const chartLatestWeekOfSleep = () => { //#3.5 b/c it invokes the latestWeekOfSleepEvents on 243
+const chartLatestWeekOfSleepStats = () => { //#3.5 b/c it invokes the latestWeekOfSleepEvents on 243
   const latestWeekSleepEvents = latestWeekOfSleepEvents();
   new Chart(chartSleepHoursForLatestWeek, //our querySelector needs to be the arg for this Chart
     {
@@ -292,16 +291,32 @@ const chartLatestWeekOfSleep = () => { //#3.5 b/c it invokes the latestWeekOfSle
   );
 }
 
-const chartSleepQualityLatestWeek = () => {
-  const latestWeekSleepEvents = latestWeekOfSleepEvents();
-  new Chart(chartSleepQualityForLatestWeek, //our querySelector needs to be the arg for this Chart
+
+
+const chartAllTimeUserSleepStats = () => {
+  const userSleepEvents = sleepRepository.renderUserSleepData(userId);
+  console.log('userSleepEvents', userSleepEvents)
+  const endDate = userSleepEvents[userSleepEvents.length - 1].date;
+  console.log('endDate', endDate);
+  const startDate = userSleepEvents[userSleepEvents.length - 7].date;
+  console.log('startDate', startDate);
+  const allTimeAvgSleepQuality = sleepRepository.calcAvgSleepQuality(userId);
+  console.log('allTimeAvgSleepQuality', allTimeAvgSleepQuality)
+  const allTimeAvgHoursSlept = sleepRepository.calcAvgHoursSlept(userId);
+  console.log('allTimeAvgHoursSlept', allTimeAvgHoursSlept);
+  new Chart(chartAllTimeSleepStats, //our querySelector needs to be the arg for this Chart
     {
       type: 'bar',
       data: {
-        labels: latestWeekSleepEvents.map(sleepEvent => sleepEvent.date),//map the date for each sleep event
+        labels: [startDate, endDate],//map the date for each sleep event
         datasets: [{
-          label: 'Sleep Quality',
-          data: latestWeekSleepEvents.map(sleepEvent => sleepEvent.sleepQuality),//map the hours slept for each sleep event
+          label: 'Avg Sleep Quality',
+          data: allTimeAvgSleepQuality,//map the hours slept for each sleep event
+          backgroundColor: '#D7B4F3'
+        },
+        {
+          label: 'Avg Hours Slept',
+          data: allTimeAvgHoursSlept,//map the hours slept for each sleep event
           backgroundColor: 'purple'
         }]
       },
@@ -309,7 +324,11 @@ const chartSleepQualityLatestWeek = () => {
         responsive: true,
         maintainAspectRatio: false,
         scales: {
+          x: {
+            stacked: true,
+          },
           y: {
+            stacked: true,
             beginAtZero: true
           }
         }
