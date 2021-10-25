@@ -99,7 +99,6 @@ const parseHydrationData = (hydrationData) => {
   userHydrationData = new Hydration(hydrationRepository.renderUserData(userId));
 }
 
-//DOM display TEST functions => need to be carefully removed during refactor phase
 const displayUserWelcomeMsg = () => {
   welcomeUser.innerText = `Welcome, ${user.renderUserFirstName()}!`;
 }
@@ -139,6 +138,7 @@ const displayStepGoalComparison = () => {
   stepGoalComparison.innerText = `Your step goal: ${user.dailyStepGoal} compared to the average user step goal: ${userRepository.calculateAvgUserStepGoal()}.`;
 }
 
+//DOM display TEST functions => need to be carefully removed during refactor phase
 const displayUserHoursSleptLatestDay = () => {
   sleepLatestDay.innerText = `Hours slept today: ${renderUserHoursSlept()}`;
 }
@@ -171,7 +171,6 @@ const displayHydrationLatestWeek = () => {
   hydrationLatestWeek.innerText = `${renderUserHydrationLatestWeek()} ounces.`;
 }
 
-
 // functions that will display elements on the DOM once all information has been fetched & parsed
 const displayUserInfo = () => {
   displayUserWelcomeMsg();
@@ -200,6 +199,7 @@ const displayUserHydrationInfo = () => {
   displayHydrationLatestWeek();
 }
 
+// => these will need to be carefully removed during refactor phase since they are being replaced with the chartXInfo functions
 const renderUserHydrationLatestWeek = () => {
   const endDate = userHydrationData.hydrationData[userHydrationData.hydrationData.length - 1].date;
   const startDate = userHydrationData.hydrationData[userHydrationData.hydrationData.length - 7].date;
