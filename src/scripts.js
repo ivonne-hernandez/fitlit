@@ -70,19 +70,16 @@ let renderRandomIndex = (min, max) => {
 let userId = renderRandomIndex(1, 50);
 
 const fetchAll = () => {
-  fetchUserData()
+  const userDataPromise = fetchUserData();
+  const sleepDataPromise = fetchSleepData()
+  const hydrationDataPromise = fetchHydrationData();
+  Promise.all([userDataPromise, sleepDataPromise, hydrationDataPromise])
     .then(data => {
-      parseAllData(data);
+      parseAllData(data[0]);
+      parseSleepData(data[1]);
+      parseHydrationData(data[2]);
       displayUserInfo();
-    });
-  fetchSleepData()
-    .then(sleepData => {
-      parseSleepData(sleepData);
       displayUserSleepInfo();
-    });
-    fetchHydrationData()
-    .then(hydrationData => {
-      parseHydrationData(hydrationData);
       displayUserHydrationInfo();
     })
 }
