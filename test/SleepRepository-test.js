@@ -11,61 +11,61 @@ describe('Sleep Repository', () => {
 
   beforeEach(function() {
     sleepData = [
-        {
-          "userID": 1,
-          "date": "2019/06/15",
-          "hoursSlept": 6.1,
-          "sleepQuality": 2.2
-        },
-        {
-          "userID": 2,
-          "date": "2019/06/15",
-          "hoursSlept": 7,
-          "sleepQuality": 4.7
-        },
-        {
-          "userID": 3,
-          "date": "2019/06/15",
-          "hoursSlept": 10.8,
-          "sleepQuality": 4.7
-        },
-        {
-          "userID":1,
-          "date":"2019/06/16",
-          "hoursSlept":4.1,
-          "sleepQuality":3.8
-        },
-        {
-          "userID": 1,
-          "date": "2019/06/17",
-          "hoursSlept": 8,
-          "sleepQuality": 2.6
-        },
-        {
-          "userID": 1,
-          "date": "2019/06/19",
-          "hoursSlept": 10.7,
-          "sleepQuality": 1.2
-        },
-        {
-          "userID": 1,
-          "date": "2019/06/20",
-          "hoursSlept": 9.3,
-          "sleepQuality": 1.2
-        },
-        {
-          "userID": 1,
-          "date": "2019/06/21",
-          "hoursSlept": 7.8,
-          "sleepQuality": 4.2
-        },
-        {
-          "userID": 1,
-          "date": "2019/06/22",
-          "hoursSlept": 7,
-          "sleepQuality": 3
-        }
-      ];
+      {
+        "userID": 1,
+        "date": "2019/06/15",
+        "hoursSlept": 6.1,
+        "sleepQuality": 2.2
+      },
+      {
+        "userID": 2,
+        "date": "2019/06/15",
+        "hoursSlept": 7,
+        "sleepQuality": 4.7
+      },
+      {
+        "userID": 3,
+        "date": "2019/06/15",
+        "hoursSlept": 10.8,
+        "sleepQuality": 4.7
+      },
+      {
+        "userID": 1,
+        "date": "2019/06/16",
+        "hoursSlept": 4.1,
+        "sleepQuality": 3.8
+      },
+      {
+        "userID": 1,
+        "date": "2019/06/17",
+        "hoursSlept": 8,
+        "sleepQuality": 2.6
+      },
+      {
+        "userID": 1,
+        "date": "2019/06/19",
+        "hoursSlept": 10.7,
+        "sleepQuality": 1.2
+      },
+      {
+        "userID": 1,
+        "date": "2019/06/20",
+        "hoursSlept": 9.3,
+        "sleepQuality": 1.2
+      },
+      {
+        "userID": 1,
+        "date": "2019/06/21",
+        "hoursSlept": 7.8,
+        "sleepQuality": 4.2
+      },
+      {
+        "userID": 1,
+        "date": "2019/06/22",
+        "hoursSlept": 7,
+        "sleepQuality": 3
+      }
+    ];
 
     user1SleepData = [
       {
@@ -75,10 +75,10 @@ describe('Sleep Repository', () => {
         "sleepQuality": 2.2
       },
       {
-        "userID":1,
-        "date":"2019/06/16",
-        "hoursSlept":4.1,
-        "sleepQuality":3.8
+        "userID": 1,
+        "date": "2019/06/16",
+        "hoursSlept": 4.1,
+        "sleepQuality": 3.8
       },
       {
         "userID": 1,
@@ -127,9 +127,9 @@ describe('Sleep Repository', () => {
   });
 
   it('given a user ID, it should return the user\'s sleep data', function() {
-   const result = sleepRepository.renderUserSleepData(userId);
-   expect(userId).to.equal(1);
-   expect(result).to.deep.equal(user1SleepData);
+    const result = sleepRepository.renderUserSleepData(userId);
+    expect(userId).to.equal(1);
+    expect(result).to.deep.equal(user1SleepData);
   });
 
   it('given a user ID, it should return the average number of hours slept per day', function() {
