@@ -1,5 +1,4 @@
-# Title
-Mod 2  Fitlit
+# Fitlit
 
 Project Manager: Nik Seif
 
@@ -18,22 +17,22 @@ This was a group project to build an activity tracker for many users over many d
 
 ## Technologies
   - Javascript
-  - eslint
-  - html
-  - css
-  - node
-  - Atom
+  - HTML
+  - CSS
   - WebPack
   - API
   - Chart.js
   - Figma
+  - Node
+  - Atom
+  - eslint
 
 ## Illustrations
-  On page load a random user's information will be displayed on the dashboard. The left-hand sidebar contains more detailed information about the current user on display. There is space above the user's information for a profile picture to be added (on a later iteration). Each color block contains information for specific set of tracked data. In the top right corner of the dashboard, the date for the latest user data is displayed.
+  On page load a random user's information will be displayed on the dashboard. The left-hand sidebar contains more detailed information about the current user on display. There is space above the user's information for a profile picture to be added (future enhancement). Each color block contains information for specific set of tracked data. In the top right corner of the dashboard, the date for the latest user data is displayed.
 
   ![full_dashboard](https://user-images.githubusercontent.com/83175748/138778542-49e24f42-7dba-4fcb-af8c-4e94d8e072fc.png)
 
-  When you click the button labeled `Today` a drop down menu will appear, allowing you to choose different date ranges to view a user's data for a `week` or for `all time`.
+  When you click the button labeled `Today` a drop down menu will appear, allowing you to choose different date ranges to view a user's data for `Today`, `This Week` or for `All-Time`.
 
   ![sleep_dropdown](https://user-images.githubusercontent.com/83175748/138778301-c3324b1a-446d-4a16-ab18-9a342f5913c3.png)
 
@@ -42,7 +41,7 @@ This was a group project to build an activity tracker for many users over many d
 
 ## Install + Setup
   - clone down the repository
-  - npm Install
+  - npm install
   - npm install chart.js
   - npm start
   - copy URL into browser to view page
@@ -56,14 +55,14 @@ This was a group project to build an activity tracker for many users over many d
 ## Wins
   - Successfully displayed the data for each section.
   - Maintained consistency with workflow, pull requests, and communication throughout the project.
-  - Learned new technologies such as third party libraries(chart.js) and design tools(figma).
+  - Learned and implemented new technologies such as Chart.js and Figma.
 
 ## Challenges + Improvements
-  - Increased complexity over all throughout project spec.
-  - Delegation of work division between multiple team members.
-  - Technical challenges with integrating API data efficiently to project.
-  - Improve chart configuration to fit activity cards.
-  - Refactor sleep class to be less redundant and avoid duplications in scripts.js file.  
+  - Increased complexity in regards to class-to-class interactions, as well as function and variables scopes.
+  - Delegation of work between multiple team members was challenging at times.
+  - Technical challenges with integrating API data via fetch calls.
+  - Trying to fit the charts on the activity cards was a last minute challenge.
+  - We'd like to refactor the SleepRepository class so that the method invocations are less redundant.
   - Future Iterations: TBD.
 
 ## Project Specs
