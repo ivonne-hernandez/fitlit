@@ -91,6 +91,10 @@ aside {
   margin: 4%;
 }
 
+p{
+  margin-bottom: 0;
+
+}
 h4 {
   margin-top: 35px;
   margin-left: 60px;
@@ -114,6 +118,7 @@ h4 {
 }
 
 .card {
+  text-align: center;
   background-color: white;
   height: 200px;
   width: 200px;
@@ -127,7 +132,18 @@ h4 {
 
 .card-title{
   text-align: center;
-  font-weight: bold;
+}
+
+.chart-box-large {
+  height: 140px;
+  width: 400px;
+  padding-left: 10px;
+}
+
+.chart-box-small {
+  height: 140px;
+  width: 150px;
+  padding-left: 20px;
 }
 
 .grid-container {
