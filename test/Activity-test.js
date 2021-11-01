@@ -1,12 +1,13 @@
 import { expect } from 'chai';
 import Activity from '../src/Activity';
-
+import User from '../src/User';
 
 describe('Activity', () => {
   let userActivityEvents;
   let startDate;
   let endDate;
   let userActivitiesData;
+  let user;
 
 beforeEach(function() {
   userActivitiesData = [{
@@ -59,9 +60,18 @@ beforeEach(function() {
     "flightsOfStairs": 6
   }];
 
-startDate = '2019/06/15';
-endDate = '2019/06/21';
-userActivityEvents = new Activity(userActivitiesData);
+  startDate = '2019/06/15';
+  endDate = '2019/06/21';
+  user = new User({
+    "id": 1,
+    "name": "Luisa Hane",
+    "address": "15195 Nakia Tunnel, Erdmanport VA 19901-1697",
+    "email": "Diana.Hayes1@hotmail.com",
+    "strideLength": 4.3,
+    "dailyStepGoal": 10000,
+    "friends": [16, 4, 8]
+  });
+  userActivityEvents = new Activity(userActivitiesData, user.strideLength);
 })
 
 it('It should be a function',  function() {
@@ -73,6 +83,10 @@ it('It should be an instance of Activity', function() {
 it('It should store activity data for a user', function() {
   expect(userActivityEvents.userActivities).to.deep.equal(userActivitiesData);
 })
+it('It should return miles a user has walked for a specific day', function() {
+  const result = userActivityEvents.getMilesWalked(startDate);
 
+  expect(result).to.deep.equal(2.91);
+})
 
 })
