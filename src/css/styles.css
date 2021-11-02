@@ -184,6 +184,11 @@ h4 {
 
 .card-header {
   display: flex;
+  justify-content: space-between;
+}
+
+.section-title-with-dropdown {
+  display: flex;
 }
 
 .date-toggle {
@@ -205,6 +210,19 @@ h4 {
 
 .date-toggle i {
   margin-left: 5px;
+}
+
+.add-data {
+  display: flex;
+  align-items: center;
+  color: white;
+  text-decoration: underline;
+  margin-right: 60px;
+}
+
+.add-data i {
+  margin-right: 5px;
+  text-decoration: none;
 }
 
 .sleep {
