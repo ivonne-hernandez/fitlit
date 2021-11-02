@@ -23,6 +23,8 @@ import User from './User';
 import SleepRepository from './SleepRepository';
 import HydrationRepository from './HydrationRepository';
 import Hydration from './Hydration';
+import Activity from './Activity';
+import ActivityRepository from './ActivityRepository';
 import Chart from 'chart.js/auto';
 
 // querySelectors
@@ -60,6 +62,8 @@ let userHydrationData;
 let userRepository;
 let user;
 let sleepRepository;
+let activityRepository;
+let userActivities;
 
 let renderRandomIndex = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -71,14 +75,16 @@ const fetchAll = () => {
   const userDataPromise = fetchUserData();
   const sleepDataPromise = fetchSleepData();
   const hydrationDataPromise = fetchHydrationData();
-  Promise.all([userDataPromise, sleepDataPromise, hydrationDataPromise])
+  Promise.all([userDataPromise, sleepDataPromise, hydrationDataPromise, activityDataPromise])
     .then(data => {
       parseAllData(data[0]);
       parseSleepData(data[1]);
       parseHydrationData(data[2]);
+      parseActivityData(data[3]);
       displayUserInfo();
       displayUserSleepInfo();
       displayUserHydrationInfo();
+      displayUserActivityInfo();
     })
 }
 
@@ -94,6 +100,11 @@ const parseSleepData = (sleepData) => {
 const parseHydrationData = (hydrationData) => {
   hydrationRepository = new HydrationRepository(hydrationData.hydrationData);
   userHydrationData = new Hydration(hydrationRepository.renderUserData(userId));
+}
+
+const parseActivityData = (activityData) => {
+  activityRepository = new ActivityRepository(activityData.activityData);
+  userActivities = new Activity(activityRepository.getUserActivity(userId));
 }
 
 const displayUserWelcomeMsg = () => {
@@ -161,6 +172,11 @@ const displayUserSleepInfo = () => {
 const displayUserHydrationInfo = () => {
   displayHydrationToday();
   chartHydrationLatestWeek();
+}
+
+const displayUserActivityInfo = () => {
+  console.log(`userActivities`, userActivities);
+  console.log(`userActivities`, userActivities);
 }
 
 const renderUserHydrationToday = () => {
