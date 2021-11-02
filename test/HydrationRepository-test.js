@@ -31,7 +31,7 @@ describe('Hydration Repository', () => {
     hydrationRepository = new HydrationRepository(data);
   });
 
-  it('should be a function', function () {
+  it('should be a function', function() {
     expect(HydrationRepository).to.be.a('function');
   });
 
