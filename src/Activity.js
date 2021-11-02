@@ -69,6 +69,17 @@ class Activity {
     return datesThatExceededStepGoal;
   }
 
+  findAllTimeStairClimbingRecord() {
+    const activitiesSortedByStairs = this.userActivities.sort((a,b) => {
+      return b.flightsOfStairs - a.flightsOfStairs;
+    });
+    return activitiesSortedByStairs[0].flightsOfStairs;
+  }
+
+  
+
+
+
 
 }
 

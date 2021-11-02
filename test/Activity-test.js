@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { expect } from 'chai';
 import Activity from '../src/Activity';
 import User from '../src/User';
@@ -115,6 +116,11 @@ describe('Activity', () => {
   it('Should return all the days where they exceeded their step goal', function() {
     const result = userActivityEvents.getDaysThatExceededStepGoal();
     expect(result).to.deep.equal([userActivitiesData[2].date, userActivitiesData[5].date]);
+  })
+
+  it('Should return all time stair climbing record', function() {
+    const result = userActivityEvents.findAllTimeStairClimbingRecord();
+    expect(result).to.equal(36);
   })
 
 })
