@@ -122,6 +122,9 @@ h4 {
 }
 
 .card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
   background-color: white;
   height: 200px;
@@ -129,6 +132,7 @@ h4 {
   border-radius: 20px;
   margin: 0px 15px 0px 15px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  position: relative;
 }
 
 .card p {
@@ -141,6 +145,50 @@ h4 {
 
 .card-title{
   text-align: center;
+}
+
+.card-content {
+  display: flex;
+  width: inherit;
+  justify-content: space-between;
+}
+
+.card-content-left {
+  width:215px;
+}
+
+.card-divider {
+  width:0px;
+  height: 130px;
+  border-right: solid 2px lightgray;
+  position: absolute;
+  margin-top: 50px;
+}
+.card-content-right {
+  width: 215px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.card-content-right span {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.card-content-right span i {
+  margin-right: 5px;
+}
+
+.card-goals{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 130px;
+  margin-left:20px;
+  margin-right: 20px;
 }
 
 .chart-box-large {
