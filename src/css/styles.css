@@ -188,7 +188,11 @@ h4 {
   justify-content: center;
   height: 130px;
   margin-left:20px;
-  margin-right: 20px;
+  margin-right: 40px;
+}
+
+.card-goals span b {
+  font-size: large;
 }
 
 .chart-box-large {
