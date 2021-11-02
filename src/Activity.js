@@ -1,3 +1,5 @@
+import User from "./User";
+
 class Activity {
   constructor(userActivitiesData, strideLength, stepGoal) {
     this.userActivities = userActivitiesData;
@@ -51,6 +53,20 @@ class Activity {
     } else {
       return false;
     }
+  }
+
+  getDaysThatExceededStepGoal() {
+    const datesThatExceededStepGoal = this.userActivities
+      .filter((userActivity) => {
+        if (userActivity.numSteps > this.dailyStepGoal) {
+          return userActivity;
+        }
+      })
+      .map((resultingActivity) => {
+        return resultingActivity.date;
+      });
+
+    return datesThatExceededStepGoal;
   }
 
 
