@@ -98,6 +98,7 @@ p{
 
 }
 h4 {
+  font-size: large;
   margin-top: 35px;
   margin-bottom: 35px;
   margin-left: 60px;
@@ -186,19 +187,24 @@ h4 {
 }
 
 .date-toggle {
-  border: solid 2px white;
-  padding: 10px 20px 10px 20px;
-  border-radius: 30px;
-  background-color: inherit;
+  border: none;
+  padding: 9px 15px 8px 15px;
+  border-radius: 5px;
+  background-color: white;
+  background-color:rgba(255, 255, 255, 0.4);
   color: white;
   font-size: 16px;
-  margin-top: 23px;
+  margin-top: 28px;
   margin-left: 15px;
   align-self: start;
 }
 
 .date-toggle p {
   margin: 0;
+}
+
+.date-toggle i {
+  margin-left: 5px;
 }
 
 .sleep {
