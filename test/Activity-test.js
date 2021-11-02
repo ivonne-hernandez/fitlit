@@ -107,4 +107,9 @@ it('Given a start and end date, it should return the average active minutes for 
   expect(result).to.equal(171);
 });
 
+it('Given a date, it should state whether or not the user reached their step goal', function() {
+  const result = userActivityEvents.wasStepGoalReached(startDate);
+  expect(result).to.equal(false);
+});
+
 })
