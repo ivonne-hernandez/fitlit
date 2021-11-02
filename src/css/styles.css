@@ -40,7 +40,6 @@ p, h2 {
 }
 
 .dropdown-content {
-  display: block;
   margin-left: 16px;
   text-align: center;
   background-color: LightGray;
