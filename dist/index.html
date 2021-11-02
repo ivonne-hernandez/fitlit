@@ -56,7 +56,19 @@
       <section class="main-sections">
         <section class="activity">
           <div class="card-header">
-            <h4> Activity </h4>
+            <div id="sectionTitleWithDropdown" class="section-title-with-dropdown">
+              <h4> Activity </h4>
+              <div id="sectionHeaderToggle">
+                <button id="activityDateToggle" class="date-toggle"> Today <i class="fas fa-chevron-down fa-sm"></i> </button>
+                <div id="activityDropdown" class="dropdown-content hidden">
+                  <button id="activityDropdownToday">Today</button>
+                  <button id="activityDropdownThisWeek">This Week</button>
+                </div>
+              </div>
+            </div>
+            <div class="add-data">
+              <span><i class="fas fa-plus"></i>Add data</span>
+            </div>
           </div>
           <div class="grid-container">
             <div id="stepsCard" class="card large">
@@ -107,17 +119,22 @@
             </div>
           </section>
           <section class="sleep">
-            <div class="card-header">
-              <h4> Sleep </h4>
-              <div class="toggle-and-dropdown-menu">
-                <button id="sleepDateToggle" class="date-toggle">Today <i class="fas fa-chevron-down fa-sm"></i></button>
-                <div id="sleepDropdown" class="dropdown-content hidden">
-                  <button id="sleepDropdownToday">Today</button>
-                  <button id="sleepDropdownThisWeek">This Week</button>
-                  <button id="sleepDropdownAllTime">All-Time</button>
+              <div class="card-header">
+                <div id="sectionTitleWithDropdown" class="section-title-with-dropdown">
+                  <h4> Sleep </h4>
+                  <div id="sectionHeaderToggle">
+                    <button id="sleepDateToggle" class="date-toggle"> Today <i class="fas fa-chevron-down fa-sm"></i> </button>
+                    <div id="sleepDropdown" class="dropdown-content hidden">
+                      <button id="sleepDropdownToday">Today</button>
+                      <button id="sleepDropdownThisWeek">This Week</button>
+                      <button id="sleepDropdownAllTime">All-Time</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="add-data">
+                  <span><i class="fas fa-plus"></i>Add data</span>
                 </div>
               </div>
-            </div>
             <div id="sleepCardDeck" class="card-deck">
                 <div id="sleepCardToday" class="card">
                   <p class="card-title"> Sleep Today <p>
