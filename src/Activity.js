@@ -22,6 +22,22 @@ class Activity {
     return activityOnDate.minutesActive;
   }
 
+  //For a user, how many minutes active did they average for a given week (7 days)?
+  getAvgMinsActiveByStartAndEnd(start, end) {
+    const startDate = new Date(start);
+    const endDate = new Date(end);
+
+    const totalActiveMinsForWk = this.userActivities
+      .filter((activityEvent) => {
+        const activityDate = new Date(activityEvent.date);
+        return startDate <= activityDate && activityDate <= endDate;
+      })
+      .reduce((acc, renderedActivityEvent) => {
+        return acc += renderedActivityEvent.minutesActive;
+      }, 0);
+
+    return Math.floor(totalActiveMinsForWk / 7);
+  }
 }
 
 

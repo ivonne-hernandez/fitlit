@@ -102,4 +102,9 @@ it('It should return the user\'s minutes active for a specific day', function() 
   expect(result).to.equal(140);
 });
 
+it('Given a start and end date, it should return the average active minutes for a week', function() {
+  const result = userActivityEvents.getAvgMinsActiveByStartAndEnd(startDate, endDate);
+  expect(result).to.equal(171);
+});
+
 })
