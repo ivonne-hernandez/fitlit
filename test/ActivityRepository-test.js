@@ -71,8 +71,13 @@ describe('ActivityRepository', () => {
     expect(result).to.deep.equal([activityData[0]]);
   });
 
+  it('Given a date and activity type, it should return average activity for all users', function() {
+    const averageStairsClimbedOnDate = activityRepository.getAverageActivityOnDate("2019/06/15", "flightsOfStairs");
+    const averageStepsOnDate = activityRepository.getAverageActivityOnDate("2019/06/15", "numSteps");
+    const averageMinutesActiveOnDate = activityRepository.getAverageActivityOnDate("2019/06/15", "minutesActive");
 
-
-
-
+    expect(averageStairsClimbedOnDate).to.equal(20);
+    expect(averageStepsOnDate).to.equal(7490);
+    expect(averageMinutesActiveOnDate).to.equal(168);
+  }); 
 });

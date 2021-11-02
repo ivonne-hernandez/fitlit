@@ -1,5 +1,3 @@
-import User from "./User";
-
 class Activity {
   constructor(userActivitiesData, strideLength, stepGoal) {
     this.userActivities = userActivitiesData;
@@ -75,15 +73,6 @@ class Activity {
     });
     return activitiesSortedByStairs[0].flightsOfStairs;
   }
-
-  
-
-
-
-
 }
-
-
-
 
 export default Activity;

@@ -122,5 +122,4 @@ describe('Activity', () => {
     const result = userActivityEvents.findAllTimeStairClimbingRecord();
     expect(result).to.equal(36);
   })
-
 })
