@@ -158,6 +158,10 @@ h4 {
   width:215px;
 }
 
+.card-content-left i{
+  color: #8C1c13;
+}
+
 .card-divider {
   width:0px;
   height: 130px;
