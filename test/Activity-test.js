@@ -72,21 +72,34 @@ beforeEach(function() {
     "friends": [16, 4, 8]
   });
   userActivityEvents = new Activity(userActivitiesData, user.strideLength);
-})
+});
 
 it('It should be a function',  function() {
   expect(Activity).to.be.a('function');
-})
+});
+
 it('It should be an instance of Activity', function() {
   expect(userActivityEvents).to.be.an.instanceOf(Activity);
-})
+});
+
 it('It should store activity data for a user', function() {
   expect(userActivityEvents.userActivities).to.deep.equal(userActivitiesData);
-})
+});
+
+it('It should have a strideLength', function() {
+  expect(userActivityEvents.strideLength).to.equal(user.strideLength);
+});
+
 it('It should return miles a user has walked for a specific day', function() {
   const result = userActivityEvents.getMilesWalked(startDate);
 
-  expect(result).to.deep.equal(2.91);
-})
+  expect(result).to.equal(2.91);
+});
+
+it('It should return the user\'s minutes active for a specific day', function() {
+  const result = userActivityEvents.getMinutesActive(startDate);
+
+  expect(result).to.equal(140);
+});
 
 })

@@ -60,14 +60,16 @@ describe('ActivityRepository', () => {
   it('It should be an instance of ActivityRepository', function() {
     expect(activityRepository).to.be.an.instanceOf(ActivityRepository);
   });
+
   it('It should store activity data', function() {
     expect(activityRepository.activityDataSet).to.deep.equal(activityData);
-  })
+  });
+
   it('Given a userID it should return a user\'s activity events.', function() {
     const result = activityRepository.getUserActivity(userId);
 
     expect(result).to.deep.equal([activityData[0]]);
-  })
+  });
 
 
 
