@@ -5,6 +5,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/8b5f878867.js" crossorigin="anonymous"></script>
     <title>Activity Tracker</title>
   </head>
   <body>
@@ -45,7 +46,7 @@
       <!-- <header> -->
         <nav>
           <h3> Dashboard </h3>
-          <p id="welcomeUser"></p>
+          <span id="welcomeUser"></span>
           <div id="navDayDate" class="nav-day-date">
             <h3 id="navday" class="nav-day"> Today </h3>
             <p id="navDate" class="nav-date"></p>
@@ -55,67 +56,125 @@
       <section class="main-sections">
         <section class="activity">
           <div class="card-header">
-            <h4> Activity </h4>
+            <div id="sectionTitleWithDropdown" class="section-title-with-dropdown">
+              <h4> Activity </h4>
+              <div id="sectionHeaderToggle">
+                <button id="activityDateToggle" class="date-toggle"> Today <i class="fas fa-chevron-down fa-sm"></i> </button>
+                <div id="activityDropdown" class="dropdown-content hidden">
+                  <button id="activityDropdownToday">Today</button>
+                  <button id="activityDropdownThisWeek">This Week</button>
+                </div>
+              </div>
+            </div>
+            <div class="add-data">
+              <span><i class="fas fa-plus"></i>Add data</span>
+            </div>
           </div>
           <div class="grid-container">
-            <div id="stepsCard" class="card large">
+            <article id="stepsCard" class="card large">
               <p class="card-title"> Steps <p>
               <p id="stepGoalComparison"></p>
-            </div>
-            <div class="activity-cards-second-row">
-              <div class="card">
-                <p class="card-title"> Stairs <p>
-                <p></p>
+            </article>
+            <article id="stairsCard" class="card large">
+              <p class="card-title"> Stairs <p>
+              <div id="cardDivider" class="card-divider"></div>
+              <div id="stairsContent" class="card-content">
+                <div id="stairsContentLeft" class="card-content-left">
+                  <i class="fas fa-angle-double-up fa-5x"></i>
+                  <p id="stairsToday"><b>6</b> flights of stairs</p>
+                </div>
+                <div id="stairsGoals" class="card-content-right">
+                  <article class="card-goals">
+                    <span id="stairsAvgUserGoal"><b>10 flights</b><br>Average user goal </span>
+                    <span id="stairsPersonalGoal"><b>9 flights</b><br>Personal goal</span>
+                  </article>
+                </div>
               </div>
-              <div class="card">
-                <p class="card-title"> Minutes Active <p>
-                <p></p>
-              </div>
-            </div>
+            </article>
+            <article id="minutesCard" class="card large">
+              <p class="card-title"> Active Minutes <p>
+                <div id="cardDivider" class="card-divider"></div>
+                <div id="minutesContent" class="card-content">
+                  <div id="minutesContentLeft" class="card-content-left">
+                    <i class="fas fa-heartbeat fa-5x"></i>
+                    <p id="minutesToday"><b>54</b> active minutes</p>
+                  </div>
+                  <div id="minutesGoals" class="card-content-right">
+                    <article class="card-goals">
+                      <span id="minutesAvgUserGoal"><b>60 minutes</b><br>Average user goal </span>
+                      <span id="minutesPersonalGoal"><b>90 minutes</b><br>Personal goal</span>
+                    </article>
+                  </div>
+                </div>
+              </article>
+            <article id="distanceCard" class="card large">
+              <p class="card-title"> Distance Travelled <p>
+                <div id="cardDivider" class="card-divider"></div>
+                <div id="distanceContent" class="card-content">
+                  <div id="distanceContentLeft" class="card-content-left">
+                    <i class="fas fa-route fa-5x"></i>
+                    <p id="distanceToday"><b>1.5</b> miles</p>
+                  </div>
+                  <div id="distanceGoals" class="card-content-right">
+                    <article class="card-goals">
+                      <span id="distanceAvgUserGoal"><b>2.3 mi</b><br>Average user goal </span>
+                      <span id="distancePersonalGoal"><b>4.3 mi</b><br>Personal goal</span>
+                    </article>
+                  </div>
+                </div>
+            </article>
           </div>
         </section>
         <div id="hydrationSleep" class="hydration-sleep">
           <section class="hydration">
             <div class="card-header">
-              <h4> Hydration </h4>
-              <div class="toggle-and-dropdown-menu">
-                <button id="hydrationDateToggle" class="date-toggle"> Today </button>
-                <div id="hydrationDropdown" class="dropdown-content hidden">
-                  <button id="hydrationDropdownToday">Today</button>
-                  <button id="hydrationDropdownThisWeek">This Week</button>
+              <div id="sectionTitleWithDropdown" class="section-title-with-dropdown">
+                <h4> Hydration </h4>
+                <div id="sectionHeaderToggle">
+                  <button id="hydrationDateToggle" class="date-toggle"> Today <i class="fas fa-chevron-down fa-sm"></i> </button>
+                  <div id="hydrationDropdown" class="dropdown-content hidden">
+                    <button id="hydrationDropdownToday">Today</button>
+                    <button id="hydrationDropdownThisWeek">This Week</button>
+                  </div>
                 </div>
               </div>
-                <!-- <img src="src/images/down-arrow.png" alt="Down arrow"> -->
+              <div class="add-data">
+                <span><i class="fas fa-plus"></i>Add data</span>
+              </div>
             </div>
             <div class="card-deck">
-              <div id="hydrationCardToday" class="card">
+              <article id="hydrationCardToday" class="card">
                 <p class="card-title"> Hydration Today <p>
                 <p id="hydrationToday"></p>
-              </div>
-              <div id="hydrationCardThisWeek"class="card large hidden">
+              </article>
+              <article id="hydrationCardThisWeek"class="card large hidden">
                 <p class="card-title"> Hydration this week <p>
                 <div class="chart-box-large">
                   <canvas id="chartHydrationForLatestWeek">
                   </canvas>
                 </div>
-                <!-- <p id="hydrationLatestWeek"></p> -->
-              </div>
+              </article>
             </div>
           </section>
           <section class="sleep">
-            <div class="card-header">
-              <h4> Sleep </h4>
-              <div class="toggle-and-dropdown-menu">
-                <button id="sleepDateToggle" class="date-toggle">Today</button>
-                <div id="sleepDropdown" class="dropdown-content hidden">
-                  <button id="sleepDropdownToday">Today</button>
-                  <button id="sleepDropdownThisWeek">This Week</button>
-                  <button id="sleepDropdownAllTime">All-Time</button>
+              <div class="card-header">
+                <div id="sectionTitleWithDropdown" class="section-title-with-dropdown">
+                  <h4> Sleep </h4>
+                  <div id="sectionHeaderToggle">
+                    <button id="sleepDateToggle" class="date-toggle"> Today <i class="fas fa-chevron-down fa-sm"></i> </button>
+                    <div id="sleepDropdown" class="dropdown-content hidden">
+                      <button id="sleepDropdownToday">Today</button>
+                      <button id="sleepDropdownThisWeek">This Week</button>
+                      <button id="sleepDropdownAllTime">All-Time</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="add-data">
+                  <span><i class="fas fa-plus"></i>Add data</span>
                 </div>
               </div>
-            </div>
             <div id="sleepCardDeck" class="card-deck">
-                <div id="sleepCardToday" class="card">
+                <article id="sleepCardToday" class="card">
                   <p class="card-title"> Sleep Today <p>
                   <div class="chart-box-small">
                     <canvas id="chartSleepHoursToday" width=0px height=125px>
@@ -125,22 +184,21 @@
                     <p id="userHoursSleptLatestDay"></p>
                     <p id="userSleepQualityLatestDay"></p>
                   </div>
-                </div>
-                <div id="sleepCardAllTime" class="card hidden">
+                </article>
+                <article id="sleepCardAllTime" class="card hidden">
                   <p class="card-title"> Sleep All Time </p>
                   <div class="chart-box-small">
                     <canvas id="chartAllTimeSleepStats" width="160" height="160">
                     </canvas>
                   </div>
-                </div>
-              <div id="sleepCardThisWeek" class="card large hidden">
-                <p class="card-title">Hours This Week</p>
-                <div class="chart-box-large">
-                  <canvas id="chartSleepHoursForLatestWeek" width="160" height="160">
-                  </canvas>
-                </div>
-              </div>
-                <!-- <p id="userHoursSleptLatestWeek"></p> -->
+                </article>
+                <article id="sleepCardThisWeek" class="card large hidden">
+                  <p class="card-title">Hours This Week</p>
+                  <div class="chart-box-large">
+                    <canvas id="chartSleepHoursForLatestWeek" width="160" height="160">
+                    </canvas>
+                  </div>
+                </article>
             </div>
           </section>
         </div>

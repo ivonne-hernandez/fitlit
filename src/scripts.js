@@ -75,6 +75,7 @@ const fetchAll = () => {
   const userDataPromise = fetchUserData();
   const sleepDataPromise = fetchSleepData();
   const hydrationDataPromise = fetchHydrationData();
+  const activityDataPromise = fetchActivityData();
   Promise.all([userDataPromise, sleepDataPromise, hydrationDataPromise, activityDataPromise])
     .then(data => {
       parseAllData(data[0]);
