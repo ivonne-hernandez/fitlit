@@ -114,6 +114,7 @@ h4 {
 .activity {
   width: 48%;
   background-color: #fd7326;
+  padding-bottom: 40px;
   overflow: scroll;
 }
 
