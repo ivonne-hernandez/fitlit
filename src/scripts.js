@@ -63,6 +63,7 @@ let stairsToday = document.querySelector('#stairsToday');
 let stepsTodayForAvgUser = document.querySelector('#numberOfStepsTodayAvgUser');
 let minutesActiveAvgUser = document.querySelector('#minutesActiveAvgUser');
 let stairsForAvgUser = document.querySelector('#stairsAvgUser');
+let chartLatestWeekOfSteps = document.querySelector('#chartStepsForLatestWeek');//this is temp until we hv section 
 
 let hydrationRepository;
 let userHydrationData;
@@ -226,6 +227,7 @@ const displayUserActivityInfo = () => {
   displayStairsToday();
   displayMinsActiveAvgUser();
   displayStairFlightAvgUser();
+  chartActivityLatestWeekSteps();
 }
 
 const renderUserHydrationToday = () => {
@@ -401,6 +403,45 @@ const chartHydrationLatestWeek = () => {
     }
   );
 }
+
+const latestWeekOfActivityEvents = () => {
+  const endDate = new Date(userActivities.userActivities[userActivities.userActivities.length - 1].date);
+  const startDate = new Date(userActivities.userActivities[userActivities.userActivities.length - 7].date);
+  const latestWeekOfActivityEvents = userActivities.userActivities
+    .filter((activityEvent) => {
+      const activityDate = new Date(activityEvent.date);
+      return startDate <= activityDate && activityDate <= endDate;
+    });
+  return latestWeekOfActivityEvents;
+}
+
+const chartActivityLatestWeekSteps = () => {
+  const latestWeekActivityEvents = latestWeekOfActivityEvents();
+  new Chart(chartLatestWeekOfSteps,  ///this will change once we have a section 
+    {
+      type: 'bar',
+      data: {
+        labels: latestWeekActivityEvents.map(activityEvent => activityEvent.date),
+        datasets: [{
+          label: 'Step Count',
+          data: latestWeekActivityEvents.map(activityEvent => activityEvent.numSteps),
+          backgroundColor: 'red'
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    }
+  );
+}
+
+
 
 // eventListeners
 window.addEventListener('load', fetchAll);
