@@ -58,6 +58,7 @@ let hydrationCardThisWeek = document.querySelector('#hydrationCardThisWeek');
 let hydrationCardToday = document.querySelector('#hydrationCardToday');
 let numberOfStepsToday = document.querySelector('#numberOfStepsToday');
 let activeMinsToday = document.querySelector('#minutesToday');
+let milesWalkedToday = document.querySelector('#distanceToday');
 
 let hydrationRepository;
 let userHydrationData;
@@ -107,7 +108,7 @@ const parseHydrationData = (hydrationData) => {
 
 const parseActivityData = (activityData) => {
   activityRepository = new ActivityRepository(activityData.activityData);
-  userActivities = new Activity(activityRepository.getUserActivity(userId));
+  userActivities = new Activity(activityRepository.getUserActivity(userId), user.strideLength, user.dailyStepGoal);
 }
 
 const displayUserWelcomeMsg = () => {
@@ -160,6 +161,11 @@ const displayNumMinsActiveToday = () => {
   activeMinsToday.innerHTML = `<b>${userActivities.userActivities[userActivities.userActivities.length - 1].minutesActive}</b> active minutes`;
 }
 
+const displayMilesWalkedToday = () => {
+  const todaysDate = userActivities.userActivities[userActivities.userActivities.length - 1].date;
+  milesWalkedToday.innerHTML = `<b>${userActivities.getMilesWalked(todaysDate)}</b> miles`;
+}
+
 // functions that will display elements on the DOM once all information has been fetched & parsed
 const displayUserInfo = () => {
   displayUserWelcomeMsg();
@@ -189,6 +195,7 @@ const displayUserActivityInfo = () => {
   console.log(`userActivities`, userActivities);
   displayNumStepsToday();
   displayNumMinsActiveToday();
+  displayMilesWalkedToday();
 }
 
 const renderUserHydrationToday = () => {
