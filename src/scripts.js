@@ -220,8 +220,6 @@ const displayUserHydrationInfo = () => {
 }
 
 const displayUserActivityInfo = () => {
-  console.log(`activityRepository`, activityRepository);
-  console.log(`userActivities`, userActivities);
   displayNumStepsToday();
   displayNumStepsForAvgUser();
   displayNumMinsActiveToday();
@@ -229,8 +227,8 @@ const displayUserActivityInfo = () => {
   displayStairsToday();
   displayMinsActiveAvgUser();
   displayStairFlightAvgUser();
-  chartActivityTypeForLatestWeek("numSteps", 'Step Count', chartLatestWeekOfSteps);
-  chartActivityTypeForLatestWeek("flightsOfStairs", 'Stairs Climbed', chartStairsClimbedForLatestWeek);
+  chartActivityTypeForLatestWeek("numSteps", "Step Count", chartLatestWeekOfSteps);
+  chartActivityTypeForLatestWeek("flightsOfStairs", "Stairs Climbed", chartStairsClimbedForLatestWeek);
   chartActivityTypeForLatestWeek("minutesActive", "Active Minutes", chartActiveMinsForLatestWeek);
 }
 
