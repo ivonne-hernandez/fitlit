@@ -62,6 +62,7 @@ let milesWalkedToday = document.querySelector('#distanceToday');
 let stairsToday = document.querySelector('#stairsToday');
 let stepsTodayForAvgUser = document.querySelector('#numberOfStepsTodayAvgUser');
 let minutesActiveAvgUser = document.querySelector('#minutesActiveAvgUser');
+let stairsForAvgUser = document.querySelector('#stairsAvgUser');
 
 let hydrationRepository;
 let userHydrationData;
@@ -183,7 +184,12 @@ const displayMinsActiveAvgUser = () => {
   minutesActiveAvgUser.innerHTML = `<b>${activityRepository.getAverageActivityOnDate(todaysDate, "minutesActive")} minutes</b><br>Average user`; 
 }
 
-// How their number of steps, minutes active, and flights of stairs climbed compares to all users for the latest day
+const displayStairFlightAvgUser = () => {
+  const todaysDate = activityRepository.activityDataSet[activityRepository.activityDataSet.length - 1].date;
+  stairsForAvgUser.innerHTML = `<b>${activityRepository.getAverageActivityOnDate(todaysDate, "flightsOfStairs")} flights</b><br>Average user`;
+}
+
+
 
 
 // functions that will display elements on the DOM once all information has been fetched & parsed
@@ -219,6 +225,7 @@ const displayUserActivityInfo = () => {
   displayMilesWalkedToday();
   displayStairsToday();
   displayMinsActiveAvgUser();
+  displayStairFlightAvgUser();
 }
 
 const renderUserHydrationToday = () => {
