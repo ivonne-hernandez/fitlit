@@ -56,6 +56,7 @@ let hydrationDropdownToday = document.querySelector('#hydrationDropdownToday');
 let hydrationDropdownThisWeek = document.querySelector('#hydrationDropdownThisWeek');
 let hydrationCardThisWeek = document.querySelector('#hydrationCardThisWeek');
 let hydrationCardToday = document.querySelector('#hydrationCardToday');
+let numberOfStepsToday = document.querySelector('#numberOfStepsToday');
 
 let hydrationRepository;
 let userHydrationData;
@@ -144,11 +145,15 @@ const displayUserFriends = () => {
 }
 
 const displayStepGoalComparison = () => {
-  stepGoalComparison.innerText = `Your step goal: ${user.dailyStepGoal} compared to the average user step goal: ${userRepository.calculateAvgUserStepGoal()}.`;
+  stepGoalComparison.innerHTML = `<b>Your step goal:</b> ${user.dailyStepGoal.toLocaleString()} compared to the average user step goal: ${userRepository.calculateAvgUserStepGoal().toLocaleString()}.`;
 }
 
 const displayHydrationToday = () => {
   hydrationToday.innerText = `${renderUserHydrationToday()} ounces.`;
+}
+
+const displayNumStepsToday = () => {
+  numberOfStepsToday.innerHTML = `<b>Number of steps today:</b> ${userActivities.userActivities[userActivities.userActivities.length - 1].numSteps.toLocaleString()}`;
 }
 
 // functions that will display elements on the DOM once all information has been fetched & parsed
@@ -176,8 +181,9 @@ const displayUserHydrationInfo = () => {
 }
 
 const displayUserActivityInfo = () => {
+  console.log(`activityRepository`, activityRepository);
   console.log(`userActivities`, userActivities);
-  console.log(`userActivities`, userActivities);
+  displayNumStepsToday();
 }
 
 const renderUserHydrationToday = () => {
