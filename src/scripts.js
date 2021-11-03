@@ -61,6 +61,7 @@ let activeMinsToday = document.querySelector('#minutesToday');
 let milesWalkedToday = document.querySelector('#distanceToday');
 let stairsToday = document.querySelector('#stairsToday');
 let stepsTodayForAvgUser = document.querySelector('#numberOfStepsTodayAvgUser');
+let minutesActiveAvgUser = document.querySelector('#minutesActiveAvgUser');
 
 let hydrationRepository;
 let userHydrationData;
@@ -177,6 +178,11 @@ const displayMilesWalkedToday = () => {
   milesWalkedToday.innerHTML = `<b>${userActivities.getMilesWalked(todaysDate)}</b> miles`;
 }
 
+const displayMinsActiveAvgUser = () => {
+  const todaysDate = activityRepository.activityDataSet[activityRepository.activityDataSet.length - 1].date;
+  minutesActiveAvgUser.innerHTML = `<b>${activityRepository.getAverageActivityOnDate(todaysDate, "minutesActive")} minutes</b><br>Average user`; 
+}
+
 // How their number of steps, minutes active, and flights of stairs climbed compares to all users for the latest day
 
 
@@ -212,7 +218,7 @@ const displayUserActivityInfo = () => {
   displayNumMinsActiveToday();
   displayMilesWalkedToday();
   displayStairsToday();
-
+  displayMinsActiveAvgUser();
 }
 
 const renderUserHydrationToday = () => {
