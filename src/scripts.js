@@ -59,6 +59,7 @@ let hydrationCardToday = document.querySelector('#hydrationCardToday');
 let numberOfStepsToday = document.querySelector('#numberOfStepsToday');
 let activeMinsToday = document.querySelector('#minutesToday');
 let milesWalkedToday = document.querySelector('#distanceToday');
+let stairsToday = document.querySelector('#stairsToday');
 
 let hydrationRepository;
 let userHydrationData;
@@ -157,6 +158,10 @@ const displayHydrationToday = () => {
 const displayNumStepsToday = () => {
   numberOfStepsToday.innerHTML = `<b>Number of steps today:</b> ${userActivities.userActivities[userActivities.userActivities.length - 1].numSteps.toLocaleString()}`;
 }
+
+const displayStairsToday = () => {
+  stairsToday.innerHTML = `<b>${userActivities.userActivities[userActivities.userActivities.length - 1].flightsOfStairs}</b> flights of stairs`;
+}
 const displayNumMinsActiveToday = () => {
   activeMinsToday.innerHTML = `<b>${userActivities.userActivities[userActivities.userActivities.length - 1].minutesActive}</b> active minutes`;
 }
@@ -165,6 +170,9 @@ const displayMilesWalkedToday = () => {
   const todaysDate = userActivities.userActivities[userActivities.userActivities.length - 1].date;
   milesWalkedToday.innerHTML = `<b>${userActivities.getMilesWalked(todaysDate)}</b> miles`;
 }
+
+// How their number of steps, minutes active, and flights of stairs climbed compares to all users for the latest day
+
 
 // functions that will display elements on the DOM once all information has been fetched & parsed
 const displayUserInfo = () => {
@@ -196,6 +204,7 @@ const displayUserActivityInfo = () => {
   displayNumStepsToday();
   displayNumMinsActiveToday();
   displayMilesWalkedToday();
+  displayStairsToday();
 }
 
 const renderUserHydrationToday = () => {
