@@ -57,6 +57,7 @@ let hydrationDropdownThisWeek = document.querySelector('#hydrationDropdownThisWe
 let hydrationCardThisWeek = document.querySelector('#hydrationCardThisWeek');
 let hydrationCardToday = document.querySelector('#hydrationCardToday');
 let numberOfStepsToday = document.querySelector('#numberOfStepsToday');
+let activeMinsToday = document.querySelector('#minutesToday');
 
 let hydrationRepository;
 let userHydrationData;
@@ -155,6 +156,9 @@ const displayHydrationToday = () => {
 const displayNumStepsToday = () => {
   numberOfStepsToday.innerHTML = `<b>Number of steps today:</b> ${userActivities.userActivities[userActivities.userActivities.length - 1].numSteps.toLocaleString()}`;
 }
+const displayNumMinsActiveToday = () => {
+  activeMinsToday.innerHTML = `<b>${userActivities.userActivities[userActivities.userActivities.length - 1].minutesActive}</b> active minutes`;
+}
 
 // functions that will display elements on the DOM once all information has been fetched & parsed
 const displayUserInfo = () => {
@@ -184,6 +188,7 @@ const displayUserActivityInfo = () => {
   console.log(`activityRepository`, activityRepository);
   console.log(`userActivities`, userActivities);
   displayNumStepsToday();
+  displayNumMinsActiveToday();
 }
 
 const renderUserHydrationToday = () => {
