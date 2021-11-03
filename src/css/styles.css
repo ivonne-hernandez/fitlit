@@ -159,8 +159,14 @@ h4 {
 }
 
 .card-content-left i{
+  padding-top: 5px;
   color: #8C1c13;
 }
+
+.card-content-left p{
+  margin-top: 10px;
+}
+
 
 .card-divider {
   width:0px;
@@ -169,6 +175,7 @@ h4 {
   position: absolute;
   margin-top: 50px;
 }
+
 .card-content-right {
   width: 215px;
   text-align: left;

@@ -64,13 +64,18 @@
                   <button id="activityDropdownToday">Today</button>
                   <button id="activityDropdownThisWeek">This Week</button>
                 </div>
+                <div id="activityDropdown" class="dropdown-content hidden">
+                  <button id="activityDropdownToday">Today</button>
+                  <button id="activityDropdownThisWeek">This Week</button>
+                </div>
               </div>
             </div>
             <div class="add-data">
               <span><i class="fas fa-plus"></i>Add data</span>
             </div>
           </div>
-          <div class="grid-container">
+          <!-- activity cards today -->
+          <div id="activityCardsToday" class="grid-container">
             <article id="stepsCard" class="card large">
               <p class="card-title"> Steps <p>
               <p id="stepGoalComparison"></p>
@@ -122,6 +127,22 @@
                     </article>
                   </div>
                 </div>
+            </article>
+          </div>
+          <!-- activity week -->
+          <div id="activityCardsThisWeek" class="grid-container hidden">
+            <article id="stepsCardWeek" class="card large">
+              <p class="card-title"> Steps <p>
+              <p id="stepGoalComparison"></p>
+            </article>
+            <article id="stairsCardWeek" class="card large">
+              <p class="card-title"> Stairs <p>
+            </article>
+            <article id="minutesCard" class="card large">
+              <p class="card-title"> Active Minutes <p>
+            </article>
+            <article id="distanceCard" class="card large">
+              <p class="card-title"> Distance Travelled <p>
             </article>
           </div>
         </section>
