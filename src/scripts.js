@@ -60,6 +60,7 @@ let numberOfStepsToday = document.querySelector('#numberOfStepsToday');
 let activeMinsToday = document.querySelector('#minutesToday');
 let milesWalkedToday = document.querySelector('#distanceToday');
 let stairsToday = document.querySelector('#stairsToday');
+let stepsTodayForAvgUser = document.querySelector('#numberOfStepsTodayAvgUser');
 
 let hydrationRepository;
 let userHydrationData;
@@ -159,6 +160,11 @@ const displayNumStepsToday = () => {
   numberOfStepsToday.innerHTML = `<b>Number of steps today:</b> ${userActivities.userActivities[userActivities.userActivities.length - 1].numSteps.toLocaleString()}`;
 }
 
+const displayNumStepsForAvgUser = () => {
+  const todaysDate = activityRepository.activityDataSet[activityRepository.activityDataSet.length - 1].date;
+  stepsTodayForAvgUser.innerHTML = `<b>Steps for average user:</b> ${activityRepository.getAverageActivityOnDate(todaysDate, "numSteps").toLocaleString()}`;
+}
+
 const displayStairsToday = () => {
   stairsToday.innerHTML = `<b>${userActivities.userActivities[userActivities.userActivities.length - 1].flightsOfStairs}</b> flights of stairs`;
 }
@@ -202,9 +208,11 @@ const displayUserActivityInfo = () => {
   console.log(`activityRepository`, activityRepository);
   console.log(`userActivities`, userActivities);
   displayNumStepsToday();
+  displayNumStepsForAvgUser();
   displayNumMinsActiveToday();
   displayMilesWalkedToday();
   displayStairsToday();
+
 }
 
 const renderUserHydrationToday = () => {
