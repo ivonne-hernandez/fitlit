@@ -64,6 +64,7 @@ let stepsTodayForAvgUser = document.querySelector('#numberOfStepsTodayAvgUser');
 let minutesActiveAvgUser = document.querySelector('#minutesActiveAvgUser');
 let stairsForAvgUser = document.querySelector('#stairsAvgUser');
 let chartLatestWeekOfSteps = document.querySelector('#chartStepsForLatestWeek');//this is temp until we hv section 
+let chartStairsClimbedForLatestWeek = document.querySelector('#chartStairsForLatestWeek');
 
 let hydrationRepository;
 let userHydrationData;
@@ -227,7 +228,8 @@ const displayUserActivityInfo = () => {
   displayStairsToday();
   displayMinsActiveAvgUser();
   displayStairFlightAvgUser();
-  chartActivityLatestWeekSteps();
+  chartActivityTypeForLatestWeek("numSteps", 'Step Count', chartLatestWeekOfSteps);
+  chartActivityTypeForLatestWeek("flightsOfStairs", 'Stairs Climbed', chartStairsClimbedForLatestWeek);
 }
 
 const renderUserHydrationToday = () => {
@@ -415,16 +417,16 @@ const latestWeekOfActivityEvents = () => {
   return latestWeekOfActivityEvents;
 }
 
-const chartActivityLatestWeekSteps = () => {
+const chartActivityTypeForLatestWeek = (activityType, label, querySelector) => {
   const latestWeekActivityEvents = latestWeekOfActivityEvents();
-  new Chart(chartLatestWeekOfSteps,  ///this will change once we have a section 
+  new Chart(querySelector,  ///this will change once we have a section 
     {
       type: 'bar',
       data: {
         labels: latestWeekActivityEvents.map(activityEvent => activityEvent.date),
         datasets: [{
-          label: 'Step Count',
-          data: latestWeekActivityEvents.map(activityEvent => activityEvent.numSteps),
+          label: label,
+          data: latestWeekActivityEvents.map(activityEvent => activityEvent[activityType]),
           backgroundColor: 'red'
         }]
       },
