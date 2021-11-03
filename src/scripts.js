@@ -65,6 +65,7 @@ let minutesActiveAvgUser = document.querySelector('#minutesActiveAvgUser');
 let stairsForAvgUser = document.querySelector('#stairsAvgUser');
 let chartLatestWeekOfSteps = document.querySelector('#chartStepsForLatestWeek');//this is temp until we hv section 
 let chartStairsClimbedForLatestWeek = document.querySelector('#chartStairsForLatestWeek');
+let chartActiveMinsForLatestWeek = document.querySelector('#chartActiveMinsForLatestWeek');
 
 let hydrationRepository;
 let userHydrationData;
@@ -230,6 +231,7 @@ const displayUserActivityInfo = () => {
   displayStairFlightAvgUser();
   chartActivityTypeForLatestWeek("numSteps", 'Step Count', chartLatestWeekOfSteps);
   chartActivityTypeForLatestWeek("flightsOfStairs", 'Stairs Climbed', chartStairsClimbedForLatestWeek);
+  chartActivityTypeForLatestWeek("minutesActive", "Active Minutes", chartActiveMinsForLatestWeek);
 }
 
 const renderUserHydrationToday = () => {
