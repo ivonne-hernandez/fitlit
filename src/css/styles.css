@@ -171,7 +171,7 @@ h4 {
 }
 .card-content-right {
   width: 215px;
-  text-align: left;
+  text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
