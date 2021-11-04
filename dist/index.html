@@ -77,17 +77,13 @@
           <!-- activity cards today -->
           <div id="activityCardsToday" class="grid-container">
             <article id="stepsCard" class="card large">
-              <p class="card-title"> Steps <p>
-              <canvas id="chartStepsForLatestWeek" class="hidden">
-              </canvas>
+              <p class="card-title"> Steps </p>
               <p id="numberOfStepsToday"></p>
               <p id="numberOfStepsTodayAvgUser"></p>
               <p id="stepGoalComparison"></p>
             </article>
             <article id="stairsCard" class="card large">
-              <p class="card-title"> Stairs <p>
-                <canvas id="chartStairsForLatestWeek" class="hidden">
-                </canvas>
+              <p class="card-title"> Stairs </p>
               <div id="cardDivider" class="card-divider"></div>
               <div id="stairsContent" class="card-content">
                 <div id="stairsContentLeft" class="card-content-left">
@@ -102,9 +98,7 @@
               </div>
             </article>
             <article id="minutesCard" class="card large">
-              <p class="card-title"> Active Minutes <p>
-                <canvas id="chartActiveMinsForLatestWeek" class="hidden">
-                </canvas>
+              <p class="card-title"> Active Minutes </p>
                 <div id="cardDivider" class="card-divider"></div>
                 <div id="minutesContent" class="card-content">
                   <div id="minutesContentLeft" class="card-content-left">
@@ -119,7 +113,7 @@
                 </div>
               </article>
             <article id="distanceCard" class="card large">
-              <p class="card-title"> Distance Travelled <p>
+              <p class="card-title"> Distance Travelled </p>
                 <div id="cardDivider" class="card-divider"></div>
                 <div id="distanceContent" class="card-content">
                   <div id="distanceContentLeft" class="card-content-left">
@@ -137,17 +131,22 @@
           <!-- activity week -->
           <div id="activityCardsThisWeek" class="grid-container hidden">
             <article id="stepsCardWeek" class="card large">
-              <p class="card-title"> Steps <p>
-              <p id="stepGoalComparison"></p>
+              <p class="card-title"> Steps </p>
+              <div class="chart-box-large">
+                <canvas id="chartStepsForLatestWeek"></canvas>
+              </div>
             </article>
             <article id="stairsCardWeek" class="card large">
-              <p class="card-title"> Stairs <p>
+              <p class="card-title"> Stairs </p>
+              <div class="chart-box-large">
+                <canvas id="chartStairsForLatestWeek"></canvas>
+              </div>
             </article>
             <article id="minutesCard" class="card large">
-              <p class="card-title"> Active Minutes <p>
-            </article>
-            <article id="distanceCard" class="card large">
-              <p class="card-title"> Distance Travelled <p>
+              <p class="card-title"> Active Minutes </p>
+              <div class="chart-box-large">
+                <canvas id="chartActiveMinsForLatestWeek"></canvas>
+              </div>
             </article>
           </div>
         </section>
@@ -170,14 +169,13 @@
             </div>
             <div class="card-deck">
               <article id="hydrationCardToday" class="card">
-                <p class="card-title"> Hydration Today <p>
+                <p class="card-title"> Hydration Today</p>
                 <p id="hydrationToday"></p>
               </article>
               <article id="hydrationCardThisWeek"class="card large hidden">
-                <p class="card-title"> Hydration this week <p>
+                <p class="card-title"> Hydration this week</p>
                 <div class="chart-box-large">
-                  <canvas id="chartHydrationForLatestWeek">
-                  </canvas>
+                  <canvas id="chartHydrationForLatestWeek"></canvas>
                 </div>
               </article>
             </div>
@@ -201,7 +199,7 @@
               </div>
             <div id="sleepCardDeck" class="card-deck">
                 <article id="sleepCardToday" class="card">
-                  <p class="card-title"> Sleep Today <p>
+                  <p class="card-title"> Sleep Today</p>
                   <div class="chart-box-small">
                     <canvas id="chartSleepHoursToday" width=0px height=125px>
                     </canvas>
@@ -212,7 +210,7 @@
                   </div>
                 </article>
                 <article id="sleepCardAllTime" class="card hidden">
-                  <p class="card-title"> Sleep All Time </p>
+                  <p class="card-title"> Sleep All Time</p>
                   <div class="chart-box-small">
                     <canvas id="chartAllTimeSleepStats" width="160" height="160">
                     </canvas>

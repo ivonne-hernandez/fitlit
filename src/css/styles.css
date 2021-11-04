@@ -152,6 +152,7 @@ h4 {
   display: flex;
   width: inherit;
   justify-content: space-between;
+  margin-top: 15px;
 }
 
 .card-content-left {
@@ -210,13 +211,13 @@ h4 {
 .chart-box-large {
   height: 140px;
   width: 400px;
-  padding-left: 10px;
+  padding-top: 10px;
 }
 
 .chart-box-small {
   height: 140px;
   width: 150px;
-  padding-left: 20px;
+  padding-top: 10px;
 }
 
 .grid-container {
