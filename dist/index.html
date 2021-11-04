@@ -78,36 +78,42 @@
           <div id="activityCardsToday" class="grid-container">
             <article id="stepsCard" class="card large">
               <p class="card-title"> Steps <p>
+              <canvas id="chartStepsForLatestWeek" class="hidden">
+              </canvas>
+              <p id="numberOfStepsToday"></p>
+              <p id="numberOfStepsTodayAvgUser"></p>
               <p id="stepGoalComparison"></p>
             </article>
             <article id="stairsCard" class="card large">
               <p class="card-title"> Stairs <p>
+                <canvas id="chartStairsForLatestWeek" class="hidden">
+                </canvas>
               <div id="cardDivider" class="card-divider"></div>
               <div id="stairsContent" class="card-content">
                 <div id="stairsContentLeft" class="card-content-left">
                   <i class="fas fa-angle-double-up fa-5x"></i>
-                  <p id="stairsToday"><b>6</b> flights of stairs</p>
+                  <p id="stairsToday"></p>
                 </div>
                 <div id="stairsGoals" class="card-content-right">
                   <article class="card-goals">
-                    <span id="stairsAvgUserGoal"><b>10 flights</b><br>Average user goal </span>
-                    <span id="stairsPersonalGoal"><b>9 flights</b><br>Personal goal</span>
+                    <span id="stairsAvgUser"></span>
                   </article>
                 </div>
               </div>
             </article>
             <article id="minutesCard" class="card large">
               <p class="card-title"> Active Minutes <p>
+                <canvas id="chartActiveMinsForLatestWeek" class="hidden">
+                </canvas>
                 <div id="cardDivider" class="card-divider"></div>
                 <div id="minutesContent" class="card-content">
                   <div id="minutesContentLeft" class="card-content-left">
                     <i class="fas fa-heartbeat fa-5x"></i>
-                    <p id="minutesToday"><b>54</b> active minutes</p>
+                    <p id="minutesToday"></p>
                   </div>
                   <div id="minutesGoals" class="card-content-right">
                     <article class="card-goals">
-                      <span id="minutesAvgUserGoal"><b>60 minutes</b><br>Average user goal </span>
-                      <span id="minutesPersonalGoal"><b>90 minutes</b><br>Personal goal</span>
+                      <span id="minutesActiveAvgUser"></span>
                     </article>
                   </div>
                 </div>
@@ -118,12 +124,11 @@
                 <div id="distanceContent" class="card-content">
                   <div id="distanceContentLeft" class="card-content-left">
                     <i class="fas fa-route fa-5x"></i>
-                    <p id="distanceToday"><b>1.5</b> miles</p>
+                    <p id="distanceToday"></p>
                   </div>
                   <div id="distanceGoals" class="card-content-right">
                     <article class="card-goals">
-                      <span id="distanceAvgUserGoal"><b>2.3 mi</b><br>Average user goal </span>
-                      <span id="distancePersonalGoal"><b>4.3 mi</b><br>Personal goal</span>
+                      <span id="distanceAvgUserGoal"><b>Please delete</b><br>Average user</span>
                     </article>
                   </div>
                 </div>

@@ -23,6 +23,8 @@ import User from './User';
 import SleepRepository from './SleepRepository';
 import HydrationRepository from './HydrationRepository';
 import Hydration from './Hydration';
+import Activity from './Activity';
+import ActivityRepository from './ActivityRepository';
 import Chart from 'chart.js/auto';
 
 // querySelectors
@@ -60,12 +62,25 @@ let activityCardsThisWeek = document.querySelector('#activityCardsThisWeek');
 let activityDropdown = document.querySelector('#activityDropdown');
 let activityDropdownToday = document.querySelector('#activityDropdownToday');
 let activityDropdownThisWeek = document.querySelector('#activityDropdownThisWeek');
+let numberOfStepsToday = document.querySelector('#numberOfStepsToday');
+let activeMinsToday = document.querySelector('#minutesToday');
+let milesWalkedToday = document.querySelector('#distanceToday');
+let stairsToday = document.querySelector('#stairsToday');
+let stepsTodayForAvgUser = document.querySelector('#numberOfStepsTodayAvgUser');
+let minutesActiveAvgUser = document.querySelector('#minutesActiveAvgUser');
+let stairsForAvgUser = document.querySelector('#stairsAvgUser');
+let chartLatestWeekOfSteps = document.querySelector('#chartStepsForLatestWeek');//this is temp until we hv section 
+let chartStairsClimbedForLatestWeek = document.querySelector('#chartStairsForLatestWeek');
+let chartActiveMinsForLatestWeek = document.querySelector('#chartActiveMinsForLatestWeek');
+
 
 let hydrationRepository;
 let userHydrationData;
 let userRepository;
 let user;
 let sleepRepository;
+let activityRepository;
+let userActivities;
 
 let renderRandomIndex = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -77,14 +92,17 @@ const fetchAll = () => {
   const userDataPromise = fetchUserData();
   const sleepDataPromise = fetchSleepData();
   const hydrationDataPromise = fetchHydrationData();
-  Promise.all([userDataPromise, sleepDataPromise, hydrationDataPromise])
+  const activityDataPromise = fetchActivityData();
+  Promise.all([userDataPromise, sleepDataPromise, hydrationDataPromise, activityDataPromise])
     .then(data => {
       parseAllData(data[0]);
       parseSleepData(data[1]);
       parseHydrationData(data[2]);
+      parseActivityData(data[3]);
       displayUserInfo();
       displayUserSleepInfo();
       displayUserHydrationInfo();
+      displayUserActivityInfo();
     })
 }
 
@@ -100,6 +118,11 @@ const parseSleepData = (sleepData) => {
 const parseHydrationData = (hydrationData) => {
   hydrationRepository = new HydrationRepository(hydrationData.hydrationData);
   userHydrationData = new Hydration(hydrationRepository.renderUserData(userId));
+}
+
+const parseActivityData = (activityData) => {
+  activityRepository = new ActivityRepository(activityData.activityData);
+  userActivities = new Activity(activityRepository.getUserActivity(userId), user.strideLength, user.dailyStepGoal);
 }
 
 const displayUserWelcomeMsg = () => {
@@ -138,12 +161,46 @@ const displayUserFriends = () => {
 }
 
 const displayStepGoalComparison = () => {
-  stepGoalComparison.innerText = `Your step goal: ${user.dailyStepGoal} compared to the average user step goal: ${userRepository.calculateAvgUserStepGoal()}.`;
+  stepGoalComparison.innerHTML = `<b>Your step goal:</b> ${user.dailyStepGoal.toLocaleString()} compared to the average user step goal: ${userRepository.calculateAvgUserStepGoal().toLocaleString()}.`;
 }
 
 const displayHydrationToday = () => {
   hydrationToday.innerText = `${renderUserHydrationToday()} ounces.`;
 }
+
+const displayNumStepsToday = () => {
+  numberOfStepsToday.innerHTML = `<b>Number of steps today:</b> ${userActivities.userActivities[userActivities.userActivities.length - 1].numSteps.toLocaleString()}`;
+}
+
+const displayNumStepsForAvgUser = () => {
+  const todaysDate = activityRepository.activityDataSet[activityRepository.activityDataSet.length - 1].date;
+  stepsTodayForAvgUser.innerHTML = `<b>Steps for average user:</b> ${activityRepository.getAverageActivityOnDate(todaysDate, "numSteps").toLocaleString()}`;
+}
+
+const displayStairsToday = () => {
+  stairsToday.innerHTML = `<b>${userActivities.userActivities[userActivities.userActivities.length - 1].flightsOfStairs}</b> flights of stairs`;
+}
+const displayNumMinsActiveToday = () => {
+  activeMinsToday.innerHTML = `<b>${userActivities.userActivities[userActivities.userActivities.length - 1].minutesActive}</b> active minutes`;
+}
+
+const displayMilesWalkedToday = () => {
+  const todaysDate = userActivities.userActivities[userActivities.userActivities.length - 1].date;
+  milesWalkedToday.innerHTML = `<b>${userActivities.getMilesWalked(todaysDate)}</b> miles`;
+}
+
+const displayMinsActiveAvgUser = () => {
+  const todaysDate = activityRepository.activityDataSet[activityRepository.activityDataSet.length - 1].date;
+  minutesActiveAvgUser.innerHTML = `<b>${activityRepository.getAverageActivityOnDate(todaysDate, "minutesActive")} minutes</b><br>Average user`; 
+}
+
+const displayStairFlightAvgUser = () => {
+  const todaysDate = activityRepository.activityDataSet[activityRepository.activityDataSet.length - 1].date;
+  stairsForAvgUser.innerHTML = `<b>${activityRepository.getAverageActivityOnDate(todaysDate, "flightsOfStairs")} flights</b><br>Average user`;
+}
+
+
+
 
 // functions that will display elements on the DOM once all information has been fetched & parsed
 const displayUserInfo = () => {
@@ -167,6 +224,19 @@ const displayUserSleepInfo = () => {
 const displayUserHydrationInfo = () => {
   displayHydrationToday();
   chartHydrationLatestWeek();
+}
+
+const displayUserActivityInfo = () => {
+  displayNumStepsToday();
+  displayNumStepsForAvgUser();
+  displayNumMinsActiveToday();
+  displayMilesWalkedToday();
+  displayStairsToday();
+  displayMinsActiveAvgUser();
+  displayStairFlightAvgUser();
+  chartActivityTypeForLatestWeek("numSteps", "Step Count", chartLatestWeekOfSteps);
+  chartActivityTypeForLatestWeek("flightsOfStairs", "Stairs Climbed", chartStairsClimbedForLatestWeek);
+  chartActivityTypeForLatestWeek("minutesActive", "Active Minutes", chartActiveMinsForLatestWeek);
 }
 
 const renderUserHydrationToday = () => {
@@ -342,6 +412,45 @@ const chartHydrationLatestWeek = () => {
     }
   );
 }
+
+const latestWeekOfActivityEvents = () => {
+  const endDate = new Date(userActivities.userActivities[userActivities.userActivities.length - 1].date);
+  const startDate = new Date(userActivities.userActivities[userActivities.userActivities.length - 7].date);
+  const latestWeekOfActivityEvents = userActivities.userActivities
+    .filter((activityEvent) => {
+      const activityDate = new Date(activityEvent.date);
+      return startDate <= activityDate && activityDate <= endDate;
+    });
+  return latestWeekOfActivityEvents;
+}
+
+const chartActivityTypeForLatestWeek = (activityType, label, querySelector) => {
+  const latestWeekActivityEvents = latestWeekOfActivityEvents();
+  new Chart(querySelector,  ///this will change once we have a section 
+    {
+      type: 'bar',
+      data: {
+        labels: latestWeekActivityEvents.map(activityEvent => activityEvent.date),
+        datasets: [{
+          label: label,
+          data: latestWeekActivityEvents.map(activityEvent => activityEvent[activityType]),
+          backgroundColor: 'red'
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    }
+  );
+}
+
+
 
 // eventListeners
 window.addEventListener('load', fetchAll);
