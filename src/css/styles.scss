@@ -1,8 +1,4 @@
-/* body, html {
-  background-image: linear-gradient(to top, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
-  background-repeat: no-repeat;
-  height: 100%;
-} */
+
 @use "_cards.scss";
 
 body,
@@ -96,10 +92,6 @@ aside {
   margin: 4%;
 }
 
-p {
-  margin-bottom: 0;
-}
-
 h4 {
   font-size: large;
   margin-top: 35px;
@@ -120,10 +112,6 @@ h4 {
   background-color: #fd7326;
   padding-bottom: 40px;
   overflow: scroll;
-}
-
-.activity-cards-second-row {
-  display: flex;
 }
 
 .grid-container {
@@ -198,10 +186,6 @@ h4 {
   flex-direction: column;
   justify-content: flex-start;
   flex: 1;
-}
-
-.sleep-cards-first-row {
-  display: flex;
 }
 
 .hidden {
