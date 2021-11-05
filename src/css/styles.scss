@@ -81,14 +81,17 @@ aside {
 }
 
 .info-section {
+  height: 50%;
   display: flex;
   justify-content: space-between;
 }
 
 .contact-info {
+  height: 100%;
+  width: 100%;
+  overflow: scroll;
   display: flex;
   flex-wrap: wrap;
-  overflow-wrap: normal;
   margin: 4%;
 }
 
