@@ -1,0 +1,90 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background-color: white;
+  height: 200px;
+  width: 200px;
+  border-radius: 20px;
+  margin: 0 15px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  position: relative;
+}
+
+.card p {
+  margin-bottom: 0;
+}
+
+.large {
+  width: 430px;
+}
+
+.card-title {
+  text-align: center;
+}
+
+.card-content {
+  display: flex;
+  width: inherit;
+  justify-content: space-between;
+}
+
+.card-content-left {
+  width: 215px;
+}
+
+.card-content-left i {
+  color: #8C1c13;
+}
+
+.card-divider {
+  width: 0;
+  height: 130px;
+  border-right: solid 2px lightgray;
+  position: absolute;
+  margin-top: 50px;
+}
+
+.card-content-right {
+  width: 215px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.card-content-right span {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.card-content-right span i {
+  margin-right: 5px;
+}
+
+.card-goals {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 130px;
+  margin-left: 20px;
+  margin-right: 40px;
+}
+
+.card-goals span b {
+  font-size: large;
+}
+
+.chart-box-large {
+  height: 140px;
+  width: 400px;
+  padding-left: 10px;
+}
+
+.chart-box-small {
+  height: 140px;
+  width: 150px;
+  padding-left: 20px;
+}
