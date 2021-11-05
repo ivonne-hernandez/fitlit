@@ -8,6 +8,11 @@ let hydrationDateInput = document.querySelector('#addHydrationDate');
 let ouncesInput = document.querySelector('#addOzDrank');
 let hydrationSubmitButton = document.querySelector('#submitHydrationData');
 let hydrationInputForm = document.querySelector('#hydrationInputForm');
+let sleepDateInput = document.querySelector('#addSleepDate');
+let hoursSleptInput = document.querySelector('#addHoursSlept');
+let sleepQualityInput = document.querySelector('#addSleepQuality');
+let sleepInputForm = document.querySelector('#sleepInputForm');
+let sleepSubmitButton = document.querySelector('#submitSleepData');
 
 const validateActivityInput = () => {
   if (activityDateInput.value && activityStepsInput.value && activityStairsInput.value && activityMinutesInput.value) {
@@ -25,9 +30,17 @@ const validateHydrationInput = () => {
   }
 }
 
+const validateSleepInput = () => {
+  if (sleepDateInput.value && hoursSleptInput.value && sleepQualityInput.value) {
+    sleepSubmitButton.disabled = false;
+  } else {
+    sleepSubmitButton.disabled = true;
+  }
+}
+
 activityInputForm.addEventListener("keyup", validateActivityInput)
 hydrationInputForm.addEventListener("keyup", validateHydrationInput);
-
+sleepInputForm.addEventListener("keyup", validateSleepInput);
 
 
 
