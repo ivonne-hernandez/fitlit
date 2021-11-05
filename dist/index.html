@@ -64,25 +64,43 @@
                   <button id="activityDropdownToday">Today</button>
                   <button id="activityDropdownThisWeek">This Week</button>
                 </div>
+                <div id="activityDropdown" class="dropdown-content hidden">
+                  <button id="activityDropdownToday">Today</button>
+                  <button id="activityDropdownThisWeek">This Week</button>
+                </div>
               </div>
             </div>
             <div class="add-data">
               <span><i class="fas fa-plus"></i>Add data</span>
+              <div class="add-data-form">
+                <i class="fas fa-times"></i>
+                <div id="activityFormHeader" class="add-data-form-header">
+                  <p>Add Activity Data</p>
+                </div>
+                <form action="">
+                  <label for="date">Date</label>
+                  <input type="text" id="addDataDate" name="date">
+                  <label for="steps">Steps</label>
+                  <input type="text" id="addDataSteps" name="steps">
+                  <label for="stairs">Flights of Stairs</label>
+                  <input type="text" id="addDataStairs name="stairs">
+                  <label for="minutesActive">Minutes Active</label>
+                  <input type="text" id="addDataMinutesActive" name="minutesActive">
+                </form>
+                <button id="submitActivityData">Submit</button>
+              </div>
             </div>
           </div>
-          <div class="grid-container">
+          <!-- activity cards today -->
+          <div id="activityCardsToday" class="grid-container">
             <article id="stepsCard" class="card large">
-              <p class="card-title"> Steps <p>
-              <canvas id="chartStepsForLatestWeek" class="hidden">
-              </canvas>
+              <p class="card-title"> Steps </p>
               <p id="numberOfStepsToday"></p>
               <p id="numberOfStepsTodayAvgUser"></p>
               <p id="stepGoalComparison"></p>
             </article>
             <article id="stairsCard" class="card large">
-              <p class="card-title"> Stairs <p>
-                <canvas id="chartStairsForLatestWeek" class="hidden">
-                </canvas>
+              <p class="card-title"> Stairs </p>
               <div id="cardDivider" class="card-divider"></div>
               <div id="stairsContent" class="card-content">
                 <div id="stairsContentLeft" class="card-content-left">
@@ -97,9 +115,7 @@
               </div>
             </article>
             <article id="minutesCard" class="card large">
-              <p class="card-title"> Active Minutes <p>
-                <canvas id="chartActiveMinsForLatestWeek" class="hidden">
-                </canvas>
+              <p class="card-title"> Active Minutes </p>
                 <div id="cardDivider" class="card-divider"></div>
                 <div id="minutesContent" class="card-content">
                   <div id="minutesContentLeft" class="card-content-left">
@@ -114,7 +130,7 @@
                 </div>
               </article>
             <article id="distanceCard" class="card large">
-              <p class="card-title"> Distance Travelled <p>
+              <p class="card-title"> Distance Travelled </p>
                 <div id="cardDivider" class="card-divider"></div>
                 <div id="distanceContent" class="card-content">
                   <div id="distanceContentLeft" class="card-content-left">
@@ -127,6 +143,27 @@
                     </article>
                   </div>
                 </div>
+            </article>
+          </div>
+          <!-- activity week -->
+          <div id="activityCardsThisWeek" class="grid-container hidden">
+            <article id="stepsCardWeek" class="card large">
+              <p class="card-title"> Steps </p>
+              <div class="chart-box-large">
+                <canvas id="chartStepsForLatestWeek"></canvas>
+              </div>
+            </article>
+            <article id="stairsCardWeek" class="card large">
+              <p class="card-title"> Stairs </p>
+              <div class="chart-box-large">
+                <canvas id="chartStairsForLatestWeek"></canvas>
+              </div>
+            </article>
+            <article id="minutesCard" class="card large">
+              <p class="card-title"> Active Minutes </p>
+              <div class="chart-box-large">
+                <canvas id="chartActiveMinsForLatestWeek"></canvas>
+              </div>
             </article>
           </div>
         </section>
@@ -145,18 +182,30 @@
               </div>
               <div class="add-data">
                 <span><i class="fas fa-plus"></i>Add data</span>
+                <div class="add-data-form">
+                  <i class="fas fa-times"></i>
+                  <div id="hydrationFormHeader" class="add-data-form-header">
+                    <p>Add Hydration Data</p>
+                  </div>
+                  <form action="">
+                    <label for="date">Date</label>
+                    <input type="text" id="addDataDate" name="date">
+                    <label for="hoursSlept">Ounces Drank</label>
+                    <input type="text" id="addDataOzDrank" name="ozDrank">
+                  </form>
+                  <button id="submitHydrationData">Submit</button>
+                </div>
               </div>
             </div>
             <div class="card-deck">
               <article id="hydrationCardToday" class="card">
-                <p class="card-title"> Hydration Today <p>
+                <p class="card-title"> Hydration Today</p>
                 <p id="hydrationToday"></p>
               </article>
               <article id="hydrationCardThisWeek"class="card large hidden">
-                <p class="card-title"> Hydration this week <p>
+                <p class="card-title"> Hydration this week</p>
                 <div class="chart-box-large">
-                  <canvas id="chartHydrationForLatestWeek">
-                  </canvas>
+                  <canvas id="chartHydrationForLatestWeek"></canvas>
                 </div>
               </article>
             </div>
@@ -176,11 +225,26 @@
                 </div>
                 <div class="add-data">
                   <span><i class="fas fa-plus"></i>Add data</span>
+                  <div class="add-data-form">
+                    <i class="fas fa-times"></i>
+                    <div id="sleepFormHeader" class="add-data-form-header">
+                      <p>Add Sleep Data</p>
+                    </div>
+                    <form action="">
+                      <label for="date">Date</label>
+                      <input type="text" id="addDataDate" name="date">
+                      <label for="hoursSlept">Hours Slept</label>
+                      <input type="text" id="addDataHoursSlept" name="hoursSlept">
+                      <label for="sleepQuality">Sleep Quality</label>
+                      <input type="text" id="addDataSleepQuality name="sleepQuality">
+                    </form>
+                    <button id="submitSleepData">Submit</button>
+                  </div>
                 </div>
               </div>
             <div id="sleepCardDeck" class="card-deck">
                 <article id="sleepCardToday" class="card">
-                  <p class="card-title"> Sleep Today <p>
+                  <p class="card-title"> Sleep Today</p>
                   <div class="chart-box-small">
                     <canvas id="chartSleepHoursToday" width=0px height=125px>
                     </canvas>
@@ -191,7 +255,7 @@
                   </div>
                 </article>
                 <article id="sleepCardAllTime" class="card hidden">
-                  <p class="card-title"> Sleep All Time </p>
+                  <p class="card-title"> Sleep All Time</p>
                   <div class="chart-box-small">
                     <canvas id="chartAllTimeSleepStats" width="160" height="160">
                     </canvas>
