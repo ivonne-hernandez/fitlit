@@ -56,6 +56,12 @@ let hydrationDropdownToday = document.querySelector('#hydrationDropdownToday');
 let hydrationDropdownThisWeek = document.querySelector('#hydrationDropdownThisWeek');
 let hydrationCardThisWeek = document.querySelector('#hydrationCardThisWeek');
 let hydrationCardToday = document.querySelector('#hydrationCardToday');
+let activityDateToggle = document.querySelector('#activityDateToggle');
+let activityCardsToday = document.querySelector('#activityCardsToday');
+let activityCardsThisWeek = document.querySelector('#activityCardsThisWeek');
+let activityDropdown = document.querySelector('#activityDropdown');
+let activityDropdownToday = document.querySelector('#activityDropdownToday');
+let activityDropdownThisWeek = document.querySelector('#activityDropdownThisWeek');
 let numberOfStepsToday = document.querySelector('#numberOfStepsToday');
 let activeMinsToday = document.querySelector('#minutesToday');
 let milesWalkedToday = document.querySelector('#distanceToday');
@@ -66,6 +72,7 @@ let stairsForAvgUser = document.querySelector('#stairsAvgUser');
 let chartLatestWeekOfSteps = document.querySelector('#chartStepsForLatestWeek');//this is temp until we hv section 
 let chartStairsClimbedForLatestWeek = document.querySelector('#chartStairsForLatestWeek');
 let chartActiveMinsForLatestWeek = document.querySelector('#chartActiveMinsForLatestWeek');
+
 
 let hydrationRepository;
 let userHydrationData;
@@ -453,9 +460,12 @@ hydrationDropdown.addEventListener('click', renderHydrationCard);
 sleepDateToggle.addEventListener('click', showDropdown);
 sleepDropdown.addEventListener('click', renderSleepCard);
 
+activityDateToggle.addEventListener('click', showDropdown);
+activityDropdown.addEventListener('click', renderActivityCard);
+
 //event handlers
 function hideDropdown(event) {
-  if (!(event.target === hydrationDateToggle) && !(event.target === sleepDateToggle)) {
+  if (!(event.target === hydrationDateToggle) && !(event.target === sleepDateToggle) && !(event.target === activityDateToggle) ) {
     let dropdowns = document.querySelectorAll('.dropdown-content');
     dropdowns.forEach((dropdown) => {
       if (!dropdown.classList.contains('hidden')) {
@@ -472,6 +482,9 @@ function showDropdown(event) {
   if (event.target === sleepDateToggle) {
     sleepDropdown.classList.toggle('hidden');
   }
+  if (event.target === activityDateToggle) {
+    activityDropdown.classList.toggle('hidden');
+  }
 }
 
 function renderSleepCard(event) {
@@ -479,19 +492,19 @@ function renderSleepCard(event) {
     sleepCardThisWeek.classList.add('hidden');
     sleepCardAllTime.classList.add('hidden');
     sleepCardToday.classList.remove('hidden');
-    sleepDateToggle.innerText = "Today";
+    sleepDateToggle.innerHTML = 'Today <i class="fas fa-chevron-down fa-sm"></i>';
   }
   if (event.target === sleepDropdownThisWeek) {
     sleepCardToday.classList.add('hidden');
     sleepCardAllTime.classList.add('hidden');
     sleepCardThisWeek.classList.remove('hidden');
-    sleepDateToggle.innerText = "This Week";
+    sleepDateToggle.innerHTML = 'This Week <i class="fas fa-chevron-down fa-sm"></i>';
   }
   if (event.target === sleepDropdownAllTime) {
     sleepCardToday.classList.add('hidden');
     sleepCardThisWeek.classList.add('hidden');
     sleepCardAllTime.classList.remove('hidden');
-    sleepDateToggle.innerText = "All Time";
+    sleepDateToggle.innerHTML = 'All Time <i class="fas fa-chevron-down fa-sm"></i>';
   }
 }
 
@@ -499,11 +512,25 @@ function renderHydrationCard(event) {
   if (event.target === hydrationDropdownToday) {
     hydrationCardThisWeek.classList.add('hidden');
     hydrationCardToday.classList.remove('hidden');
-    hydrationDateToggle.innerText = "Today";
+    hydrationDateToggle.innerHTML = 'Today <i class="fas fa-chevron-down fa-sm"></i>';
   }
   if (event.target === hydrationDropdownThisWeek) {
     hydrationCardToday.classList.add('hidden');
     hydrationCardThisWeek.classList.remove('hidden');
-    hydrationDateToggle.innerText = "This Week";
+    hydrationDateToggle.innerHTML = 'This Week <i class="fas fa-chevron-down fa-sm"></i>';
+  }
+}
+
+function renderActivityCard(event) {
+  if (event.target === activityDropdownToday) {
+    activityCardsThisWeek.classList.add('hidden');
+    activityCardsToday.classList.remove('hidden');
+    activityDateToggle.innerHTML = 'Today <i class="fas fa-chevron-down fa-sm"></i>';
+  }
+
+  if (event.target === activityDropdownThisWeek) {
+    activityCardsToday.classList.add('hidden');
+    activityCardsThisWeek.classList.remove('hidden');
+    activityDateToggle.innerHTML = 'This Week <i class="fas fa-chevron-down fa-sm"></i>';
   }
 }
