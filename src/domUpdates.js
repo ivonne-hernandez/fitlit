@@ -5,16 +5,25 @@ let activityStairsInput = document.querySelector('#addDataStairs');
 let activityMinutesInput = document.querySelector('#addDataMinutes')
 
 
+
+const validateUserInput = () => {
+  if (activityDateInput.value && activityStepsInput.value && activityStairsInput.value && activityMinutesInput.value) {
+    activitySubmitButton.disabled = false;
+  }
+}
+
+
+
+
+
+
+
+
 let domUpdates = {
-
-
-
-
-
 
 }
 
 
 
 
-export default = domUpdates;
+export default domUpdates;
