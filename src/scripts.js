@@ -2,7 +2,7 @@
 // Do not delete or rename this file ********
 
 // An example of how you tell webpack to use a CSS file
-import './css/styles.css';
+import './css/styles.scss';
 
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/turing-logo.png'
@@ -63,7 +63,7 @@ let stairsToday = document.querySelector('#stairsToday');
 let stepsTodayForAvgUser = document.querySelector('#numberOfStepsTodayAvgUser');
 let minutesActiveAvgUser = document.querySelector('#minutesActiveAvgUser');
 let stairsForAvgUser = document.querySelector('#stairsAvgUser');
-let chartLatestWeekOfSteps = document.querySelector('#chartStepsForLatestWeek');//this is temp until we hv section 
+let chartLatestWeekOfSteps = document.querySelector('#chartStepsForLatestWeek');//this is temp until we hv section
 let chartStairsClimbedForLatestWeek = document.querySelector('#chartStairsForLatestWeek');
 let chartActiveMinsForLatestWeek = document.querySelector('#chartActiveMinsForLatestWeek');
 
@@ -184,7 +184,7 @@ const displayMilesWalkedToday = () => {
 
 const displayMinsActiveAvgUser = () => {
   const todaysDate = activityRepository.activityDataSet[activityRepository.activityDataSet.length - 1].date;
-  minutesActiveAvgUser.innerHTML = `<b>${activityRepository.getAverageActivityOnDate(todaysDate, "minutesActive")} minutes</b><br>Average user`; 
+  minutesActiveAvgUser.innerHTML = `<b>${activityRepository.getAverageActivityOnDate(todaysDate, "minutesActive")} minutes</b><br>Average user`;
 }
 
 const displayStairFlightAvgUser = () => {
@@ -260,7 +260,7 @@ const chartSleepToday = () => {
   const hoursSleptLatestDay = userSleepEvents[userSleepEvents.length - 1].hoursSlept;
   const sleepQualityLatestDay = userSleepEvents[userSleepEvents.length - 1].sleepQuality;
   const latestDayDate = userSleepEvents[userSleepEvents.length - 1].date;
-  new Chart(chartSleepHoursToday, 
+  new Chart(chartSleepHoursToday,
     {
       type: 'bar',
       data: {
@@ -295,9 +295,9 @@ const chartSleepToday = () => {
   );
 }
 
-const chartLatestWeekOfSleepStats = () => { 
+const chartLatestWeekOfSleepStats = () => {
   const latestWeekSleepEvents = latestWeekOfSleepEvents();
-  new Chart(chartSleepHoursForLatestWeek, 
+  new Chart(chartSleepHoursForLatestWeek,
     {
       type: 'bar',
       data: {
@@ -382,7 +382,7 @@ const latestWeekOfHydrationEvents = () => {
 
 const chartHydrationLatestWeek = () => {
   const latestWeekHydrationEvents = latestWeekOfHydrationEvents();
-  new Chart(chartHydrationForLatestWeek,   
+  new Chart(chartHydrationForLatestWeek,
     {
       type: 'bar',
       data: {
@@ -419,7 +419,7 @@ const latestWeekOfActivityEvents = () => {
 
 const chartActivityTypeForLatestWeek = (activityType, label, querySelector) => {
   const latestWeekActivityEvents = latestWeekOfActivityEvents();
-  new Chart(querySelector,  ///this will change once we have a section 
+  new Chart(querySelector,  ///this will change once we have a section
     {
       type: 'bar',
       data: {
