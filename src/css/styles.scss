@@ -57,15 +57,13 @@ h4 {
   border: solid 1px black;
   padding: 10px 15px;
   border-radius: 30px;
-}
-
-.nav-date {
-  display: inline;
-  margin-left: 10px;
-}
-
-.nav-day {
-  display: inline;
+    h3 {
+    display: inline;
+  }
+    p {
+    display: inline;
+    margin-left: 10px;
+  }
 }
 
 .logo {
@@ -80,13 +78,6 @@ h4 {
   overflow: hidden;
 }
 
-.activity {
-  width: 48%;
-  background-color: #8C271E;
-  padding-bottom: 40px;
-  overflow: scroll;
-}
-
 .grid-container {
   @include mixins.flexbox(row, center, center);
   flex-wrap: wrap;
@@ -95,16 +86,29 @@ h4 {
   grid-gap: 30px;
 }
 
+.activity {
+  width: 48%;
+  background-color: #8C271E;
+  padding-bottom: 40px;
+  overflow: scroll;
+}
+
 .hydration-sleep {
   width: 28%;
-  @include mixins.flexbox(column, flex-start, space-between);
+  @include mixins.flexbox(column, flex-start, space-between,);
   flex: 1;
 }
 
 .hydration {
   background-color: #2e7ba6;
-  flex: 1;
   @include mixins.flexbox(column, flex-start, space-between,);
+  flex: 1;
+}
+
+.sleep {
+  background-color: #462c61;
+  @include mixins.flexbox(column, flex-start, space-between,);
+  flex: 1;
 }
 
 .section-title-with-dropdown {
@@ -130,16 +134,9 @@ h4 {
   margin-right: 60px;
   i {
     margin-right: 5px;
-    text-decoration: none;
   }
 }
 
-
-.sleep {
-  background-color: #462c61;
-  @include mixins.flexbox(column, flex-start, space-between,);
-  flex: 1;
-}
 
 .hidden {
   display: none;
