@@ -1,11 +1,5 @@
 import Chart from 'chart.js/auto';
 
-//when submit button is clicked we want to:
-//#1 create an object with the data in the correct format
-//we want to then invoke a POST request function that will take in our object as an arg
-//use that arg for the body 
-//
-
 let domUpdates = {
   displayUserInfo(user, sleepRepository, userId, userRepository) {
     this.displayUserWelcomeMsg(user);
@@ -78,6 +72,7 @@ let domUpdates = {
     this.chartSleepToday(sleepRepository, userId);
     this.chartLatestWeekOfSleepStats(sleepRepository, userId);
     this.chartAllTimeUserSleepStats(sleepRepository, userId);
+    // this.validateSleepInput();
   }, 
 
   latestWeekOfSleepEvents(sleepRepository, userId) {
@@ -212,6 +207,7 @@ let domUpdates = {
   displayUserHydrationInfo(hydrationRepository, userHydrationData) {
     this.displayHydrationToday(userHydrationData);
     this.chartHydrationLatestWeek(userHydrationData);
+    this.validateHydrationInput();
   },
 
   renderUserHydrationToday(userHydrationData) {
@@ -278,6 +274,7 @@ let domUpdates = {
     this.chartActivityTypeForLatestWeek("numSteps", "Step Count", chartLatestWeekOfSteps, userActivities);
     this.chartActivityTypeForLatestWeek("flightsOfStairs", "Stairs Climbed", chartStairsClimbedForLatestWeek, userActivities);
     this.chartActivityTypeForLatestWeek("minutesActive", "Active Minutes", chartActiveMinsForLatestWeek, userActivities);
+    this.validateActivityInput();
   },
 
   displayNumStepsToday(userActivities) {
@@ -485,18 +482,51 @@ let domUpdates = {
   }, 
 
   validateSleepInput() {
-    const sleepDateInput = document.querySelector('#addSleepDate');
-    const hoursSleptInput = document.querySelector('#addHoursSlept');
-    const sleepQualityInput = document.querySelector('#addSleepQuality');
+    // const sleepDateInput = document.querySelector('#addSleepDate');
+    // const hoursSleptInput = document.querySelector('#addHoursSlept');
+    // const sleepQualityInput = document.querySelector('#addSleepQuality');
     const sleepSubmitButton = document.querySelector('#submitSleepData');
-
-    if (sleepDateInput.value && hoursSleptInput.value && sleepQualityInput.value) {
+    
+    // this.isValidSleepDate();
+    // this.isValidHoursSlept();//check that they are a number & that num is less than 48?
+    // this.isValidSleepQuality();//check that it's a number & that it's less than 5
+    console.log('this', this);
+    console.log(this.isValidSleepDate(), this.isValidHoursSlept(), this.isValidSleepQuality())
+    if (this.isValidSleepDate() && this.isValidHoursSlept() && this.isValidSleepQuality()) {
       sleepSubmitButton.disabled = false;
     } else {
       sleepSubmitButton.disabled = true;
     }
+  }, 
+
+  isValidSleepDate() {
+    const sleepDateInput = document.querySelector('#addSleepDate');
+    const regex = /\d{4}\/\d{2}\/\d{2}/;
+    return regex.test(sleepDateInput.value) && sleepDateInput.value.length === 10;
+  },
+
+  isValidHoursSlept() { 
+    const hoursSleptInput = document.querySelector('#addHoursSlept');
+    if (Number(hoursSleptInput.value) < 48) {
+      return true;
+    } else {
+      return false;
+    }
+  }, 
+
+  isValidSleepQuality() {
+    const sleepQualityInput = document.querySelector('#addSleepQuality');
+    if (Number(sleepQualityInput.value) < 6) {
+      return true;
+    } else {
+      return false;
+    }
   }
+
+
+
 }
+
 const hydrationDateToggle = document.querySelector('#hydrationDateToggle');
 const hydrationDropdown = document.querySelector('#hydrationDropdown');
 const sleepDateToggle = document.querySelector('#sleepDateToggle');
@@ -517,6 +547,8 @@ activityDropdown.addEventListener('click', domUpdates.renderActivityCard);
 
 activityInputForm.addEventListener("keyup", domUpdates.validateActivityInput);
 hydrationInputForm.addEventListener("keyup", domUpdates.validateHydrationInput);
-sleepInputForm.addEventListener("keyup", domUpdates.validateSleepInput);
+sleepInputForm.addEventListener("keyup", function() {
+  domUpdates.validateSleepInput();
+});
 
 export default domUpdates;
