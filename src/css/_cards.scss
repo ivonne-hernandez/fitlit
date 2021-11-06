@@ -24,9 +24,8 @@
 }
 
 .card-content {
-  display: flex;
   width: inherit;
-  justify-content: space-between;
+  @include mixins.flexbox(row, space-between, center,);
 }
 
 .card-content-left {
@@ -64,7 +63,7 @@
   height: 130px;
   margin-left: 20px;
   margin-right: 40px;
-  span b {
+    span b {
    font-size: large;
  }
 }
