@@ -102,7 +102,7 @@ h4 {
 
 .activity {
   width: 48%;
-  background-color: #c84e00;
+  background-color: #8C271E;
   padding-bottom: 40px;
   overflow: scroll;
 }
@@ -125,14 +125,6 @@ h4 {
   background-color: #2e7ba6;
   flex: 1;
   @include mixins.flexbox(column, flex-start, space-between,);
-}
-
-.card-deck {
-  @include mixins.flexbox(row, center, center,);
-}
-
-.card-header {
-  @include mixins.flexbox(row, space-between, space-between,);
 }
 
 .section-title-with-dropdown {

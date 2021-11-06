@@ -1,5 +1,13 @@
 @use "_mixins.scss" as mixins;
 
+.card-deck {
+  @include mixins.flexbox(row, center, center,);
+}
+
+.card-header {
+  @include mixins.flexbox(row, space-between, space-between,);
+}
+
 .card {
   text-align: center;
   @include mixins.flexbox(column, flex-start, center,);
