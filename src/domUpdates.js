@@ -1,53 +1,5 @@
 import Chart from 'chart.js/auto';
 
-// new querySelectors below
-let activitySubmitButton = document.querySelector('#submitActivityData');
-let activityDateInput = document.querySelector('#addActivityDate');
-let activityStepsInput = document.querySelector('#addDataSteps');
-let activityStairsInput = document.querySelector('#addDataStairs');
-let activityMinutesInput = document.querySelector('#addDataMinutes');
-let activityInputForm = document.querySelector('#activityInputForm');
-let hydrationDateInput = document.querySelector('#addHydrationDate');
-let ouncesInput = document.querySelector('#addOzDrank');
-let hydrationSubmitButton = document.querySelector('#submitHydrationData');
-let hydrationInputForm = document.querySelector('#hydrationInputForm');
-let sleepDateInput = document.querySelector('#addSleepDate');
-let hoursSleptInput = document.querySelector('#addHoursSlept');
-let sleepQualityInput = document.querySelector('#addSleepQuality');
-let sleepInputForm = document.querySelector('#sleepInputForm');
-let sleepSubmitButton = document.querySelector('#submitSleepData');
-
-//new form functions
-const validateActivityInput = () => {
-  if (activityDateInput.value && activityStepsInput.value && activityStairsInput.value && activityMinutesInput.value) {
-    activitySubmitButton.disabled = false;
-  } else {
-    activitySubmitButton.disabled = true;
-  }
-}
-
-const validateHydrationInput = () => {
-  if (hydrationDateInput.value && ouncesInput.value) {
-    hydrationSubmitButton.disabled = false;
-  } else {
-    hydrationSubmitButton.disabled = true;
-  }
-}
-
-const validateSleepInput = () => {
-  if (sleepDateInput.value && hoursSleptInput.value && sleepQualityInput.value) {
-    sleepSubmitButton.disabled = false;
-  } else {
-    sleepSubmitButton.disabled = true;
-  }
-}
-//new event listeners
-activityInputForm.addEventListener("keyup", validateActivityInput)
-hydrationInputForm.addEventListener("keyup", validateHydrationInput);
-sleepInputForm.addEventListener("keyup", validateSleepInput);
-//old event listeners 
-
-
 //when submit button is clicked we want to:
 //#1 create an object with the data in the correct format
 //we want to then invoke a POST request function that will take in our object as an arg
@@ -405,8 +357,166 @@ let domUpdates = {
     );
   },
 
+  hideDropdown(event) {
+    const hydrationDateToggle = document.querySelector('#hydrationDateToggle');
+    const sleepDateToggle = document.querySelector('#sleepDateToggle');
+    const activityDateToggle = document.querySelector('#activityDateToggle');
 
+    if (!(event.target === hydrationDateToggle) && !(event.target === sleepDateToggle) && !(event.target === activityDateToggle) ) {
+      let dropdowns = document.querySelectorAll('.dropdown-content');
+      dropdowns.forEach((dropdown) => {
+        if (!dropdown.classList.contains('hidden')) {
+          dropdown.classList.add('hidden');
+        }
+      });
+    }
+  }, 
+  
+  showDropdown(event) {
+    const hydrationDateToggle = document.querySelector('#hydrationDateToggle');
+    const sleepDateToggle = document.querySelector('#sleepDateToggle');
+    const activityDateToggle = document.querySelector('#activityDateToggle');
+    const hydrationDropdown = document.querySelector('#hydrationDropdown');
+    const sleepDropdown = document.querySelector('#sleepDropdown');
+    const activityDropdown = document.querySelector('#activityDropdown');
+
+    if (event.target === hydrationDateToggle) {
+      hydrationDropdown.classList.toggle('hidden');
+    }
+    if (event.target === sleepDateToggle) {
+      sleepDropdown.classList.toggle('hidden');
+    }
+    if (event.target === activityDateToggle) {
+      activityDropdown.classList.toggle('hidden');
+    }
+  }, 
+  
+  renderSleepCard(event) {
+    const sleepDropdownToday = document.querySelector('#sleepDropdownToday');
+    const sleepDropdownThisWeek = document.querySelector('#sleepDropdownThisWeek');
+    const sleepDropdownAllTime = document.querySelector('#sleepDropdownAllTime');
+    const sleepCardThisWeek = document.querySelector('#sleepCardThisWeek');
+    const sleepCardAllTime = document.querySelector('#sleepCardAllTime');
+    const sleepCardToday = document.querySelector('#sleepCardToday'); 
+    const sleepDateToggle = document.querySelector('#sleepDateToggle');
+
+    if (event.target === sleepDropdownToday) {
+      sleepCardThisWeek.classList.add('hidden');
+      sleepCardAllTime.classList.add('hidden');
+      sleepCardToday.classList.remove('hidden');
+      sleepDateToggle.innerHTML = 'Today <i class="fas fa-chevron-down fa-sm"></i>';
+    }
+    if (event.target === sleepDropdownThisWeek) {
+      sleepCardToday.classList.add('hidden');
+      sleepCardAllTime.classList.add('hidden');
+      sleepCardThisWeek.classList.remove('hidden');
+      sleepDateToggle.innerHTML = 'This Week <i class="fas fa-chevron-down fa-sm"></i>';
+    }
+    if (event.target === sleepDropdownAllTime) {
+      sleepCardToday.classList.add('hidden');
+      sleepCardThisWeek.classList.add('hidden');
+      sleepCardAllTime.classList.remove('hidden');
+      sleepDateToggle.innerHTML = 'All Time <i class="fas fa-chevron-down fa-sm"></i>';
+    }
+  }, 
+
+  renderHydrationCard(event) {
+    const hydrationDropdownToday = document.querySelector('#hydrationDropdownToday');
+    const hydrationDropdownThisWeek = document.querySelector('#hydrationDropdownThisWeek');
+    const hydrationCardThisWeek = document.querySelector('#hydrationCardThisWeek');
+    const hydrationCardToday = document.querySelector('#hydrationCardToday');
+    const hydrationDateToggle = document.querySelector('#hydrationDateToggle');
+    if (event.target === hydrationDropdownToday) {
+      hydrationCardThisWeek.classList.add('hidden');
+      hydrationCardToday.classList.remove('hidden');
+      hydrationDateToggle.innerHTML = 'Today <i class="fas fa-chevron-down fa-sm"></i>';
+    }
+    if (event.target === hydrationDropdownThisWeek) {
+      hydrationCardToday.classList.add('hidden');
+      hydrationCardThisWeek.classList.remove('hidden');
+      hydrationDateToggle.innerHTML = 'This Week <i class="fas fa-chevron-down fa-sm"></i>';
+    }
+  }, 
+
+  renderActivityCard(event) {
+    const activityDropdownToday = document.querySelector('#activityDropdownToday');
+    const activityDropdownThisWeek = document.querySelector('#activityDropdownThisWeek');
+    const activityCardsToday = document.querySelector('#activityCardsToday');
+    const activityCardsThisWeek = document.querySelector('#activityCardsThisWeek');
+    const activityDateToggle = document.querySelector('#activityDateToggle');
+
+    if (event.target === activityDropdownToday) {
+      activityCardsThisWeek.classList.add('hidden');
+      activityCardsToday.classList.remove('hidden');
+      activityDateToggle.innerHTML = 'Today <i class="fas fa-chevron-down fa-sm"></i>';
+    }
+  
+    if (event.target === activityDropdownThisWeek) {
+      activityCardsToday.classList.add('hidden');
+      activityCardsThisWeek.classList.remove('hidden');
+      activityDateToggle.innerHTML = 'This Week <i class="fas fa-chevron-down fa-sm"></i>';
+    }
+  }, 
+
+  validateActivityInput() {
+    const activitySubmitButton = document.querySelector('#submitActivityData');
+    const activityDateInput = document.querySelector('#addActivityDate');
+    const activityStepsInput = document.querySelector('#addDataSteps');
+    const activityStairsInput = document.querySelector('#addDataStairs');
+    const activityMinutesInput = document.querySelector('#addDataMinutes');
+    
+    if (activityDateInput.value && activityStepsInput.value && activityStairsInput.value && activityMinutesInput.value) {
+      activitySubmitButton.disabled = false;
+    } else {
+      activitySubmitButton.disabled = true;
+    }
+  }, 
+
+  validateHydrationInput() {
+    const hydrationDateInput = document.querySelector('#addHydrationDate');
+    const ouncesInput = document.querySelector('#addOzDrank');
+    const hydrationSubmitButton = document.querySelector('#submitHydrationData');
+
+    if (hydrationDateInput.value && ouncesInput.value) {
+      hydrationSubmitButton.disabled = false;
+    } else {
+      hydrationSubmitButton.disabled = true;
+    }
+  }, 
+
+  validateSleepInput() {
+    const sleepDateInput = document.querySelector('#addSleepDate');
+    const hoursSleptInput = document.querySelector('#addHoursSlept');
+    const sleepQualityInput = document.querySelector('#addSleepQuality');
+    const sleepSubmitButton = document.querySelector('#submitSleepData');
+
+    if (sleepDateInput.value && hoursSleptInput.value && sleepQualityInput.value) {
+      sleepSubmitButton.disabled = false;
+    } else {
+      sleepSubmitButton.disabled = true;
+    }
+  }
 }
+const hydrationDateToggle = document.querySelector('#hydrationDateToggle');
+const hydrationDropdown = document.querySelector('#hydrationDropdown');
+const sleepDateToggle = document.querySelector('#sleepDateToggle');
+const sleepDropdown = document.querySelector('#sleepDropdown');
+const activityDateToggle = document.querySelector('#activityDateToggle');
+const activityDropdown = document.querySelector('#activityDropdown');
+const activityInputForm = document.querySelector('#activityInputForm');
+const hydrationInputForm = document.querySelector('#hydrationInputForm');
+const sleepInputForm = document.querySelector('#sleepInputForm');
 
+window.addEventListener('click', domUpdates.hideDropdown);
+hydrationDateToggle.addEventListener('click', domUpdates.showDropdown);
+hydrationDropdown.addEventListener('click', domUpdates.renderHydrationCard);
+sleepDateToggle.addEventListener('click', domUpdates.showDropdown);
+sleepDropdown.addEventListener('click', domUpdates.renderSleepCard);
+activityDateToggle.addEventListener('click', domUpdates.showDropdown);
+activityDropdown.addEventListener('click', domUpdates.renderActivityCard);
+
+activityInputForm.addEventListener("keyup", domUpdates.validateActivityInput);
+hydrationInputForm.addEventListener("keyup", domUpdates.validateHydrationInput);
+sleepInputForm.addEventListener("keyup", domUpdates.validateSleepInput);
 
 export default domUpdates;
