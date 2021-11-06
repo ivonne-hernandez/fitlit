@@ -66,9 +66,7 @@ aside {
 }
 
 .logo {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include mixins.flexbox(row, center, center);
   height: 100px;
 }
 
@@ -79,8 +77,7 @@ aside {
 
 .info-section {
   height: 50%;
-  display: flex;
-  justify-content: space-between;
+  @include mixins.flexbox(row, space-between, flex-start);
 }
 
 .contact-info {
