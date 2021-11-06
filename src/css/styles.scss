@@ -13,8 +13,7 @@ html {
 
 main {
   width: 100%;
-  display: flex;
-  flex-direction: column;
+  @include mixins.flexbox(column, flex-start, space-between,);
   height: auto;
   overflow: hidden;
 }
@@ -118,8 +117,7 @@ h4 {
 
 .hydration-sleep {
   width: 28%;
-  display: flex;
-  flex-direction: column;
+  @include mixins.flexbox(column, flex-start, space-between);
   flex: 1;
 }
 
@@ -155,23 +153,19 @@ h4 {
 }
 
 .add-data {
-  display: flex;
-  align-items: center;
+  @include mixins.flexbox(row, flex-start, center);
   color: white;
-  text-decoration: underline;
   margin-right: 60px;
+  i {
+    margin-right: 5px;
+    text-decoration: none;
+  }
 }
 
-.add-data i {
-  margin-right: 5px;
-  text-decoration: none;
-}
 
 .sleep {
   background-color: #462c61;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+  @include mixins.flexbox(column, flex-start, space-between,);
   flex: 1;
 }
 
