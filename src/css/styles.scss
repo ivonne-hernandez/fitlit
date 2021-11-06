@@ -1,4 +1,4 @@
-
+@use "_mixins.scss" as mixins;
 @use "_cards.scss";
 
 body,
@@ -20,10 +20,7 @@ main {
 }
 
 nav {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+  @include mixins.flexbox(row, space-between, center);
   padding-left: 60px;
   padding-right: 60px;
   background-color: #f5f6fa;
