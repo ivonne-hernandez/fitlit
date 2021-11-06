@@ -35,6 +35,19 @@ p {
   text-align: center;
 }
 
+aside {
+  width: 370px;
+  overflow: hidden;
+}
+
+h4 {
+  font-size: large;
+  margin-top: 35px;
+  margin-bottom: 35px;
+  margin-left: 60px;
+  color: white;
+}
+
 .dropdown-content {
   margin-left: 16px;
   text-align: center;
@@ -59,10 +72,6 @@ p {
   display: inline;
 }
 
-aside {
-  width: 370px;
-  overflow: hidden;
-}
 
 .logo {
   @include mixins.flexbox(row, center, center);
@@ -85,13 +94,6 @@ aside {
   margin: 4%;
 }
 
-h4 {
-  font-size: large;
-  margin-top: 35px;
-  margin-bottom: 35px;
-  margin-left: 60px;
-  color: white;
-}
 
 .main-sections {
   display: flex;
