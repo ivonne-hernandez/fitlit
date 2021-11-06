@@ -1,0 +1,22 @@
+@use "_mixins.scss" as mixins;
+
+aside {
+  width: 370px;
+  overflow: hidden;
+}
+
+.profile-pic {
+  height: 300px;
+  background-color: #D6D9D2;
+}
+
+.info-section {
+  height: 50%;
+  @include mixins.flexbox(row, space-between, flex-start);
+}
+
+.contact-info {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 4%;
+}
