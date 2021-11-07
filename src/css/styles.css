@@ -5,7 +5,8 @@
 } */
 html, body {
   font-family: 'Roboto', sans-serif;
-  color: #1B2021;
+  /* color: #1B2021; */
+  color: #333333;
   display: flex;
   height: 100%;
   width: 100%;
@@ -42,10 +43,29 @@ p, h2 {
 .dropdown-content {
   margin-left: 16px;
   text-align: center;
-  background-color: LightGray;
-  width: 85px;
+  background-color:rgba(255, 255, 255, 0.2);
+  width: inherit;
   position: fixed;
+  border-radius: 4px;
   z-index: 1;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.dropdown-content button {
+  background: none;
+  border: none;
+  color: white;
+  font-weight: bold;
+  padding: 5px;
+}
+
+.dropdown-divider {
+  border-right: solid 2px white;
+}
+
+.activity-dropdown {
+  padding-left: 10px;;
 }
 
 .nav-day-date {
@@ -64,20 +84,29 @@ p, h2 {
 }
 
 aside {
+  display: flex;
+  flex-direction: column;
   width: 370px;
   overflow: hidden;
 }
 
-.logo {
+aside h2 {
+  margin-bottom: 15px;
+}
+
+.logo-box {
   display: flex;
   justify-content: center;
   align-items: center;
   height:100px;
 }
 
+.logo-png {
+  height: 45px;
+}
+
 .profile-pic {
   height: 300px;
-  background-color: #D6D9D2;
 }
 
 .info-section {
@@ -94,8 +123,8 @@ aside {
 
 p{
   margin-bottom: 0;
-
 }
+
 h4 {
   font-size: large;
   margin-top: 35px;
@@ -104,22 +133,23 @@ h4 {
   color: white;
 }
 
+table {
+  margin-left: 12px;
+  padding-right: 20px;
+}
+
 .main-sections {
   display: flex;
   flex: 1;
-  color: black;
   overflow: hidden;
 }
 
 .activity {
   width: 48%;
-  background-color: #fd7326;
+  /* background-color: #fd7326; */
+  background-color: #f3621d;
   padding-bottom: 40px;
   overflow: scroll;
-}
-
-.activity-cards-second-row {
-  display: flex;
 }
 
 .card {
@@ -223,11 +253,9 @@ h4 {
 
 .grid-container {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  grid-template-columns: 2;
-  grid-auto-rows: 2;
   grid-gap: 30px;
 }
 
@@ -276,6 +304,7 @@ h4 {
 
 .date-toggle p {
   margin: 0;
+  cursor: pointer;
 }
 
 .date-toggle i {
@@ -298,6 +327,7 @@ h4 {
 }
 
 .add-data-form {
+<<<<<<< HEAD
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -333,19 +363,74 @@ h4 {
 
 .sleep {
   background-color: #462c61;
+=======
+>>>>>>> main
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+  width: 250px;
+  height: 350px;
+  margin-top: 330px;
+  position: fixed;
+  z-index: 1;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  color: black;
+  border-radius: 5px;
+}
+
+.small-form {
+  height: 280px;
+  margin-top: 260px;
+}
+
+.add-data-form input {
+  display: block;
+  background-color: #f1f1f1;
+  border: solid 1px darkgray;
+  height: 20px;
+}
+
+.add-data-form label {
+  font-size: 14px;
+  font-weight: bold;
+  color:black;
+}
+
+.add-data-form p {
+  margin-top: 0px;
+  margin-bottom: 10px;
+}
+
+.add-data-form button {
+  background-color: rgba(4, 170, 109, 0.8);
+  font-weight: bold;
+  color: white;
+  margin-bottom: 30px;
+  border: none;
+  border-radius: 3px;
+  padding: 10px 20px 10px 20px;
+}
+.add-data-form button:hover {
+  background-color: rgba(4, 170, 109, 1);
+}
+
+.add-data-form i {
+  margin-top: 15px;
+  margin-left: 205px;
+}
+
+.add-data-form input {
+  margin-bottom: 10px;
+}
+
+.sleep {
+  background-color: #462c61;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   flex: 1;
-}
-
-.sleep-cards-first-row {
-  display: flex;
-}
-
-.friends {
-  background-color: #ECEDF2;
-  width: 24%;
 }
 
 .hidden {
