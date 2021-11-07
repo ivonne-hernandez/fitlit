@@ -14,7 +14,8 @@ import {
   fetchUserData,
   fetchSleepData,
   fetchActivityData,
-  fetchHydrationData
+  fetchHydrationData, 
+  postNewSleepEvent
 } from './apiCalls';
 
 import UserRepository from './UserRepository';
@@ -83,8 +84,8 @@ const addSleepData = () => {
     "hoursSlept": hoursSleptInput.value,
     "sleepQuality": sleepQualityInput.value
   }
-
-  console.log(`newSleepEvent`, newSleepEvent);
+  postNewSleepEvent(newSleepEvent)
+    .then(data => console.log('response from sleep POST', data));
 }
 
 const sleepSubmitButton = document.querySelector('#submitSleepData');
@@ -93,18 +94,15 @@ const hoursSleptInput = document.querySelector('#addHoursSlept');
 const sleepQualityInput = document.querySelector('#addSleepQuality');
 
 window.addEventListener('load', fetchAll);
+
 sleepSubmitButton.addEventListener('click', (event) => {
   event.preventDefault();
   addSleepData();
-});
-//add event listener on submit buttons
-//these will invoke a function that submits a POST request => shell function that calls the apiCalls method
-//that function will go in our apiCalls
-//parse the data it returns
-//then call domUpdates method to update the dom
 
-//when submit button is clicked we want to:
-//#1 create an object with the data in the correct format
-//we want to then invoke a POST request function that will take in our object as an arg
-//use that arg for the body 
-//
+  fetchSleepData()
+    .then(data => {
+      parseSleepData(data);
+      domUpdates.displayUserSleepInfo(sleepRepository, userId);
+      domUpdates.hideSleepDataForm();
+    })
+});

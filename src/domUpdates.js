@@ -72,8 +72,11 @@ let domUpdates = {
     this.chartSleepToday(sleepRepository, userId);
     this.chartLatestWeekOfSleepStats(sleepRepository, userId);
     this.chartAllTimeUserSleepStats(sleepRepository, userId);
-    // this.validateSleepInput();
-  }, 
+  },
+
+  hideSleepDataForm() {
+    document.querySelector('.add-data-form-sleep').classList.add('hidden');
+  },
 
   latestWeekOfSleepEvents(sleepRepository, userId) {
     const userSleepEvents = sleepRepository.renderUserSleepData(userId);
@@ -86,14 +89,20 @@ let domUpdates = {
       });
     return latestWeekOfSleepEvents;
   }, 
+  sleepTodayChart: null,
+  sleepLatestWeekChart: null,
+  sleepAllTimeChart: null,
 
   chartSleepToday(sleepRepository, userId) {
+    if (this.sleepTodayChart) {
+      this.sleepTodayChart.destroy();
+    }
     const chartSleepHoursToday = document.querySelector('#chartSleepHoursToday').getContext('2d');
     const userSleepEvents = sleepRepository.renderUserSleepData(userId);
     const hoursSleptLatestDay = userSleepEvents[userSleepEvents.length - 1].hoursSlept;
     const sleepQualityLatestDay = userSleepEvents[userSleepEvents.length - 1].sleepQuality;
     const latestDayDate = userSleepEvents[userSleepEvents.length - 1].date;
-    new Chart(chartSleepHoursToday,
+    this.sleepTodayChart = new Chart(chartSleepHoursToday,
       {
         type: 'bar',
         data: {
@@ -129,9 +138,12 @@ let domUpdates = {
   }, 
 
   chartLatestWeekOfSleepStats(sleepRepository, userId) {
+    if (this.sleepLatestWeekChart) {
+      this.sleepLatestWeekChart.destroy();
+    }
     const chartSleepHoursForLatestWeek = document.querySelector('#chartSleepHoursForLatestWeek').getContext('2d');
     const latestWeekSleepEvents = this.latestWeekOfSleepEvents(sleepRepository, userId);
-    new Chart(chartSleepHoursForLatestWeek,
+    this.sleepLatestWeekChart = new Chart(chartSleepHoursForLatestWeek,
       {
         type: 'bar',
         data: {
@@ -165,13 +177,16 @@ let domUpdates = {
   },
 
   chartAllTimeUserSleepStats(sleepRepository, userId) {
+    if (this.sleepAllTimeChart) {
+      this.sleepAllTimeChart.destroy();
+    }
     const chartAllTimeSleepStats = document.querySelector('#chartAllTimeSleepStats').getContext('2d');
     const userSleepEvents = sleepRepository.renderUserSleepData(userId);
     const endDate = userSleepEvents[userSleepEvents.length - 1].date;
     const startDate = userSleepEvents[userSleepEvents.length - 7].date;
     const allTimeAvgSleepQuality = sleepRepository.calcAvgSleepQuality(userId);
     const allTimeAvgHoursSlept = sleepRepository.calcAvgHoursSlept(userId);
-    new Chart(chartAllTimeSleepStats,
+    this.sleepAllTimeChart = new Chart(chartAllTimeSleepStats,
       {
         type: 'bar',
         data: {
@@ -482,16 +497,7 @@ let domUpdates = {
   }, 
 
   validateSleepInput() {
-    // const sleepDateInput = document.querySelector('#addSleepDate');
-    // const hoursSleptInput = document.querySelector('#addHoursSlept');
-    // const sleepQualityInput = document.querySelector('#addSleepQuality');
     const sleepSubmitButton = document.querySelector('#submitSleepData');
-    
-    // this.isValidSleepDate();
-    // this.isValidHoursSlept();//check that they are a number & that num is less than 48?
-    // this.isValidSleepQuality();//check that it's a number & that it's less than 5
-    console.log('this', this);
-    console.log(this.isValidSleepDate(), this.isValidHoursSlept(), this.isValidSleepQuality())
     if (this.isValidSleepDate() && this.isValidHoursSlept() && this.isValidSleepQuality()) {
       sleepSubmitButton.disabled = false;
     } else {
@@ -507,7 +513,7 @@ let domUpdates = {
 
   isValidHoursSlept() { 
     const hoursSleptInput = document.querySelector('#addHoursSlept');
-    if (Number(hoursSleptInput.value) < 48) {
+    if (Number(hoursSleptInput.value) <= 48) {
       return true;
     } else {
       return false;
@@ -516,7 +522,7 @@ let domUpdates = {
 
   isValidSleepQuality() {
     const sleepQualityInput = document.querySelector('#addSleepQuality');
-    if (Number(sleepQualityInput.value) < 6) {
+    if (Number(sleepQualityInput.value) <= 5) {
       return true;
     } else {
       return false;
