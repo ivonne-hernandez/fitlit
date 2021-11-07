@@ -4,7 +4,13 @@ class SleepRepository {
   }
 
   renderUserSleepData(userID) {
-    const userSleepEvents = this.sleepDataSet.filter((user) => user.userID === userID);
+    const userSleepEvents = this.sleepDataSet
+      .filter((user) => user.userID === userID)
+      .sort((sleepEvent1, sleepEvent2) => {
+        const sleepDate1 = new Date(sleepEvent1.date);
+        const sleepDate2 = new Date(sleepEvent2.date);
+        return sleepDate1 - sleepDate2;
+    })
     return userSleepEvents;
   }
 
