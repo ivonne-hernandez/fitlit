@@ -498,18 +498,12 @@ let domUpdates = {
 
   validateSleepInput() {
     const sleepSubmitButton = document.querySelector('#submitSleepData');
-    if (this.isValidSleepDate() && this.isValidHoursSlept() && this.isValidSleepQuality()) {
-      sleepSubmitButton.disabled = false;
+    if (this.isValidHoursSlept() && this.isValidSleepQuality()) {         
+      sleepSubmitButton.disabled = false;  
     } else {
       sleepSubmitButton.disabled = true;
     }
   }, 
-
-  isValidSleepDate() {
-    const sleepDateInput = document.querySelector('#addSleepDate');
-    const regex = /\d{4}\/\d{2}\/\d{2}/;
-    return regex.test(sleepDateInput.value) && sleepDateInput.value.length === 10;
-  },
 
   isValidHoursSlept() { 
     const hoursSleptInput = document.querySelector('#addHoursSlept');
