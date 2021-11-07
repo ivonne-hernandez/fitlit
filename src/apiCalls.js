@@ -19,3 +19,14 @@ export let fetchActivityData = () => {
 export let fetchHydrationData = () => {
   return fetch("http://localhost:3001/api/v1/hydration").then(response => response.json());
 }
+
+export let postNewSleepEvent = (newSleepEvent) => {
+  return fetch('http://localhost:3001/api/v1/sleep', {
+    method: 'POST',
+    body: JSON.stringify(newSleepEvent),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+  .then(response => response.json())
+}
