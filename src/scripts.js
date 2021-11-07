@@ -84,8 +84,9 @@ const addSleepData = () => {
     "hoursSlept": hoursSleptInput.value,
     "sleepQuality": sleepQualityInput.value
   }
-  postNewSleepEvent(newSleepEvent)
+  return postNewSleepEvent(newSleepEvent)
     .then(data => console.log('response from sleep POST', data));
+    
 }
 
 const sleepSubmitButton = document.querySelector('#submitSleepData');
@@ -97,9 +98,10 @@ window.addEventListener('load', fetchAll);
 
 sleepSubmitButton.addEventListener('click', (event) => {
   event.preventDefault();
-  addSleepData();
-
-  fetchSleepData()
+  addSleepData()
+    .then(() => {
+      return fetchSleepData();
+    })
     .then(data => {
       parseSleepData(data);
       domUpdates.displayUserSleepInfo(sleepRepository, userId);
