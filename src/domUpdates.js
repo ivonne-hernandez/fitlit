@@ -78,6 +78,10 @@ let domUpdates = {
     document.querySelector('.add-data-form-sleep').classList.add('hidden');
   },
 
+  hideActivityDataForm() {
+    document.querySelector('#activityFormContainer').classList.add('hidden');
+  },
+
   latestWeekOfSleepEvents(sleepRepository, userId) {
     const userSleepEvents = sleepRepository.renderUserSleepData(userId);
     const endDate = new Date(userSleepEvents[userSleepEvents.length - 1].date);
@@ -322,7 +326,9 @@ let domUpdates = {
   displayMinsActiveAvgUser(activityRepository) {
     const minutesActiveAvgUser = document.querySelector('#minutesActiveAvgUser');
     const todaysDate = activityRepository.activityDataSet[activityRepository.activityDataSet.length - 1].date;
+    console.log('activity repository', activityRepository);
     minutesActiveAvgUser.innerHTML = `<b>${activityRepository.getAverageActivityOnDate(todaysDate, "minutesActive")} minutes</b><br>Average user`;
+    console.log('today date',todaysDate);
   }, 
 
   displayStairFlightAvgUser(activityRepository) {
@@ -342,9 +348,18 @@ let domUpdates = {
     return latestWeekOfActivityEvents;
   }, 
 
-  chartActivityTypeForLatestWeek(activityType, label, querySelector, userActivities) {
-    const latestWeekActivityEvents = this.latestWeekOfActivityEvents(userActivities);
+  chartLatestWeekOfSteps: null,
+  chartStairsClimbedForLatestWeek: null,
+  chartActiveMinsForLatestWeek: null,
 
+  chartActivityTypeForLatestWeek(activityType, label, querySelector, userActivities) {
+    
+    const latestWeekActivityEvents = this.latestWeekOfActivityEvents(userActivities);
+    // let chartedProperty;
+    // if(activityType === "numSteps") {
+    //   chartedProperty = this.chartLatestWeekOfSteps;
+    // }
+    // chartedProperty = 
     new Chart(querySelector,
       {
         type: 'bar',
@@ -477,7 +492,7 @@ let domUpdates = {
     const activityStairsInput = document.querySelector('#addDataStairs');
     const activityMinutesInput = document.querySelector('#addDataMinutes');
     
-    if (activityDateInput.value && activityStepsInput.value && activityStairsInput.value && activityMinutesInput.value) {
+    if (activityStepsInput.value && activityStairsInput.value && activityMinutesInput.value) {
       activitySubmitButton.disabled = false;
     } else {
       activitySubmitButton.disabled = true;
@@ -545,7 +560,9 @@ sleepDropdown.addEventListener('click', domUpdates.renderSleepCard);
 activityDateToggle.addEventListener('click', domUpdates.showDropdown);
 activityDropdown.addEventListener('click', domUpdates.renderActivityCard);
 
-activityInputForm.addEventListener("keyup", domUpdates.validateActivityInput);
+activityInputForm.addEventListener("keyup", function() {
+  domUpdates.validateActivityInput();
+});
 hydrationInputForm.addEventListener("keyup", domUpdates.validateHydrationInput);
 sleepInputForm.addEventListener("keyup", function() {
   domUpdates.validateSleepInput();

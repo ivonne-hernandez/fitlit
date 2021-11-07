@@ -15,7 +15,8 @@ import {
   fetchSleepData,
   fetchActivityData,
   fetchHydrationData, 
-  postNewSleepEvent
+  postNewSleepEvent,
+  postNewActivityEvent
 } from './apiCalls';
 
 import UserRepository from './UserRepository';
@@ -82,12 +83,27 @@ const addSleepData = () => {
   const newSleepEvent = {
     "userID": userId,
     "date": sleepDate,
-    "hoursSlept": hoursSleptInput.value,
-    "sleepQuality": sleepQualityInput.value
+    "hoursSlept": Number(hoursSleptInput.value),
+    "sleepQuality":Number(sleepQualityInput.value)
   }
   return postNewSleepEvent(newSleepEvent)
     .then(data => console.log('response from sleep POST', data));
     
+}
+
+const addActivityData = () => {
+  const activityDate = activityDateInput.value.split('-').join('/');
+  const newActivityEvent = {
+    "userID": userId,
+    "date": activityDate,
+    "numSteps": Number(stepsInput.value),
+    "minutesActive": Number(minutesActiveInput.value),
+    "flightsOfStairs": Number(stairsInput.value)
+  }
+  return postNewActivityEvent(newActivityEvent)
+    .then(data => {
+      console.log('response from activity POST', data);
+    });
 }
 
 const sleepSubmitButton = document.querySelector('#submitSleepData');
@@ -107,5 +123,24 @@ sleepSubmitButton.addEventListener('click', (event) => {
       parseSleepData(data);
       domUpdates.displayUserSleepInfo(sleepRepository, userId);
       domUpdates.hideSleepDataForm();
+    })
+});
+
+const activitySubmitButton = document.querySelector('#submitActivityData');
+const activityDateInput = document.querySelector('#addActivityDate');
+const stepsInput = document.querySelector('#addDataSteps');
+const stairsInput = document.querySelector('#addDataStairs');
+const minutesActiveInput = document.querySelector('#addDataMinutes');
+
+activitySubmitButton.addEventListener('click', (event) => {
+  event.preventDefault();
+  addActivityData()
+    .then(() => {
+      return fetchActivityData();
+    })
+    .then(data => {
+      parseActivityData(data);
+      domUpdates.displayUserActivityInfo(activityRepository, userActivities);
+      domUpdates.hideActivityDataForm();
     })
 });

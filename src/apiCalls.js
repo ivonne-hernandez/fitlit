@@ -30,3 +30,14 @@ export let postNewSleepEvent = (newSleepEvent) => {
   })
   .then(response => response.json())
 }
+
+export let postNewActivityEvent = (newActivityEvent) => {
+  return fetch('http://localhost:3001/api/v1/activity', {
+    method: 'POST',
+    body: JSON.stringify(newActivityEvent),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+  .then(response => response.json())
+}

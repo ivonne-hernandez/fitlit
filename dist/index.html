@@ -64,18 +64,18 @@
             </div>
             <div class="add-data">
               <span><i class="fas fa-plus"></i>Add data</span>
-              <div class="add-data-form">
+              <div id="activityFormContainer" class="add-data-form">
                 <i class="fas fa-times"></i>
                 <form action="" id="activityInputForm">
                   <p>Add Activity Data</p>
                   <label for="date">Date</label>
                   <input type="date" id="addActivityDate" name="date" placeholder="YYYY/MM/DD">
                   <label for="steps">Steps</label>
-                  <input type="text" id="addDataSteps" name="steps">
+                  <input type="number" id="addDataSteps" name="steps">
                   <label for="stairs">Flights of Stairs</label>
-                  <input type="text" id="addDataStairs" name="stairs">
+                  <input type="number" id="addDataStairs" name="stairs">
                   <label for="minutesActive">Minutes Active</label>
-                  <input type="text" id="addDataMinutes" name="minutesActive">
+                  <input type="number" id="addDataMinutes" name="minutesActive">
                 </form>
                 <button id="submitActivityData" disabled>Submit</button>
               </div>
