@@ -63,6 +63,14 @@ h4 {
   }
 }
 
+.dropdown-divider {
+  border-right: solid 2px white;
+}
+
+.activity-dropdown {
+  padding-left: 10px;
+}
+
 .nav-day-date {
   border: solid 1px black;
   padding: 10px 15px;
@@ -76,9 +84,13 @@ h4 {
   }
 }
 
-.logo {
+.logo-box {
   @include mixins.flexbox(row, center, center);
   height: 100px;
+}
+
+.logo-png {
+  height: 45px;
 }
 
 .main-sections {
