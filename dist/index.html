@@ -10,12 +10,10 @@
   </head>
   <body>
     <aside>
-      <div id="logo" class="logo">ƒ
-        <h1> Logo </h1>
+      <div id="logo" class="logo-box">
+        <img src="./fitlit logo.png" class="logo-png">
       </div>
-      <div id="profilePic" class="profile-pic"
-        <img src="../images/profile pic.png" alt="Placeholder picture">
-      </div>
+      <img src="./fitlit-user.png" class="profile-pic" alt="Profile picture">
       <h2 id="userName"></h2>
       <section id="infoSection" class="info-section">
         <table>
@@ -64,26 +62,20 @@
                   <button id="activityDropdownToday">Today</button>
                   <button id="activityDropdownThisWeek">This Week</button>
                 </div>
-                <div id="activityDropdown" class="dropdown-content hidden">
-                  <button id="activityDropdownToday">Today</button>
-                  <button id="activityDropdownThisWeek">This Week</button>
-                </div>
               </div>
             </div>
             <div class="add-data">
               <span><i class="fas fa-plus"></i>Add data</span>
-              <div class="add-data-form">
+              <div class="add-data-form hidden">
                 <i class="fas fa-times"></i>
-                <div id="activityFormHeader" class="add-data-form-header">
-                  <p>Add Activity Data</p>
-                </div>
                 <form action="">
+                  <p>Add Activity Data</p>
                   <label for="date">Date</label>
-                  <input type="text" id="addDataDate" name="date">
+                  <input type="text" id="addDataDate" name="date" placeholder="YYYY/MM/DD">
                   <label for="steps">Steps</label>
                   <input type="text" id="addDataSteps" name="steps">
                   <label for="stairs">Flights of Stairs</label>
-                  <input type="text" id="addDataStairs name="stairs">
+                  <input type="text" id="addDataStairs" name="stairs">
                   <label for="minutesActive">Minutes Active</label>
                   <input type="text" id="addDataMinutesActive" name="minutesActive">
                 </form>
@@ -95,9 +87,24 @@
           <div id="activityCardsToday" class="grid-container">
             <article id="stepsCard" class="card large">
               <p class="card-title"> Steps </p>
+              <div id="cardDivider" class="card-divider"></div>
+              <div id="stepsContent" class="card-content">
+                <div id="stepsContentLeft" class="card-content-left">
+                  <i class="fas fa-walking fa-5x"></i>
+                  <p id="numberOfStepsToday"></p>
+                </div>
+                <div id="stepGoals" class="card-content-right">
+                  <article class="card-goals">
+                    <span id="numberOfStepsTodayAvgUser"></span>
+                    <span id="stepGoalComparison"></span>
+                  </article>
+                </div>
+              </div>
+<!-- 
+              <p class="card-title"> Steps </p>
               <p id="numberOfStepsToday"></p>
               <p id="numberOfStepsTodayAvgUser"></p>
-              <p id="stepGoalComparison"></p>
+              <p id="stepGoalComparison"></p> -->
             </article>
             <article id="stairsCard" class="card large">
               <p class="card-title"> Stairs </p>
@@ -129,18 +136,12 @@
                   </div>
                 </div>
               </article>
-            <article id="distanceCard" class="card large">
+            <article id="distanceCard" class="card">
               <p class="card-title"> Distance Travelled </p>
-                <div id="cardDivider" class="card-divider"></div>
                 <div id="distanceContent" class="card-content">
                   <div id="distanceContentLeft" class="card-content-left">
                     <i class="fas fa-route fa-5x"></i>
                     <p id="distanceToday"></p>
-                  </div>
-                  <div id="distanceGoals" class="card-content-right">
-                    <article class="card-goals">
-                      <span id="distanceAvgUserGoal"><b>Please delete</b><br>Average user</span>
-                    </article>
                   </div>
                 </div>
             </article>
@@ -182,14 +183,12 @@
               </div>
               <div class="add-data">
                 <span><i class="fas fa-plus"></i>Add data</span>
-                <div class="add-data-form">
+                <div class="add-data-form small-form">
                   <i class="fas fa-times"></i>
-                  <div id="hydrationFormHeader" class="add-data-form-header">
-                    <p>Add Hydration Data</p>
-                  </div>
                   <form action="">
+                    <p>Add Hydration Data</p>
                     <label for="date">Date</label>
-                    <input type="text" id="addDataDate" name="date">
+                    <input type="text" id="addDataDate" name="date" placeholder="YYYY/MM/DD">
                     <label for="hoursSlept">Ounces Drank</label>
                     <input type="text" id="addDataOzDrank" name="ozDrank">
                   </form>
@@ -225,18 +224,16 @@
                 </div>
                 <div class="add-data">
                   <span><i class="fas fa-plus"></i>Add data</span>
-                  <div class="add-data-form">
+                  <div class="add-data-form small-form">
                     <i class="fas fa-times"></i>
-                    <div id="sleepFormHeader" class="add-data-form-header">
-                      <p>Add Sleep Data</p>
-                    </div>
                     <form action="">
+                      <p>Add Sleep Data</p>
                       <label for="date">Date</label>
-                      <input type="text" id="addDataDate" name="date">
+                      <input type="text" id="addDataDate" name="date" placeholder="YYYY/MM/DD">
                       <label for="hoursSlept">Hours Slept</label>
                       <input type="text" id="addDataHoursSlept" name="hoursSlept">
                       <label for="sleepQuality">Sleep Quality</label>
-                      <input type="text" id="addDataSleepQuality name="sleepQuality">
+                      <input type="text" id="addDataSleepQuality" name="sleepQuality">
                     </form>
                     <button id="submitSleepData">Submit</button>
                   </div>
