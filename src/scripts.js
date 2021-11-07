@@ -78,9 +78,10 @@ const parseActivityData = (activityData) => {
 }
 
 const addSleepData = () => {
+  const sleepDate = sleepDateInput.value.split('-').join('/');
   const newSleepEvent = {
     "userID": userId,
-    "date": sleepDateInput.value,
+    "date": sleepDate,
     "hoursSlept": hoursSleptInput.value,
     "sleepQuality": sleepQualityInput.value
   }
