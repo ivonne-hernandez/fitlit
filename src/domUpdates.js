@@ -326,9 +326,7 @@ let domUpdates = {
   displayMinsActiveAvgUser(activityRepository) {
     const minutesActiveAvgUser = document.querySelector('#minutesActiveAvgUser');
     const todaysDate = activityRepository.activityDataSet[activityRepository.activityDataSet.length - 1].date;
-    console.log('activity repository', activityRepository);
     minutesActiveAvgUser.innerHTML = `<b>${activityRepository.getAverageActivityOnDate(todaysDate, "minutesActive")} minutes</b><br>Average user`;
-    console.log('today date',todaysDate);
   }, 
 
   displayStairFlightAvgUser(activityRepository) {
@@ -348,19 +346,15 @@ let domUpdates = {
     return latestWeekOfActivityEvents;
   }, 
 
-  chartLatestWeekOfSteps: null,
-  chartStairsClimbedForLatestWeek: null,
-  chartActiveMinsForLatestWeek: null,
+  activityCharts: {},
 
   chartActivityTypeForLatestWeek(activityType, label, querySelector, userActivities) {
-    
     const latestWeekActivityEvents = this.latestWeekOfActivityEvents(userActivities);
-    // let chartedProperty;
-    // if(activityType === "numSteps") {
-    //   chartedProperty = this.chartLatestWeekOfSteps;
-    // }
-    // chartedProperty = 
-    new Chart(querySelector,
+    if (this.activityCharts[activityType]) {
+      this.activityCharts[activityType].destroy();
+    }
+
+    this.activityCharts[activityType] = new Chart(querySelector,
       {
         type: 'bar',
         data: {
