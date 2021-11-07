@@ -13,12 +13,17 @@ aside {
 }
 
 .info-section {
-  height: 50%;
   @include mixins.flexbox(row, space-between, flex-start);
+}
+
+table {
+  margin-left: 12px;
+  padding-right: 20px;
 }
 
 .contact-info {
   display: flex;
   flex-wrap: wrap;
+  overflow-wrap: normal;
   margin: 4%;
 }

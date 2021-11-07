@@ -34,12 +34,17 @@
 .card-content {
   width: inherit;
   @include mixins.flexbox(row, space-between, center,);
+  margin-top: 15px;
 }
 
 .card-content-left {
   width: 215px;
     i {
+    padding-top: 5px;
     color: #8C1c13;
+  }
+    p {
+    margin-top: 10px;
   }
 }
 
@@ -80,10 +85,11 @@
   height: 140px;
   width: 400px;
   padding-left: 10px;
+  padding-right: 10px;
 }
 
 .chart-box-small {
   height: 140px;
   width: 150px;
-  padding-left: 20px;
+  padding-top: 10px;
 }

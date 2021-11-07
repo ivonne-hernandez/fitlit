@@ -36,6 +36,10 @@ p {
   text-align: center;
 }
 
+p {
+  margin-bottom: 0;
+}
+
 h4 {
   font-size: large;
   margin-top: 35px;
@@ -110,7 +114,8 @@ h4 {
 
 .activity {
   width: 48%;
-  background-color: #8C271E;
+  // background-color: #8C271E;
+  background-color: #f3621d;
   padding-bottom: 40px;
   overflow: scroll;
 }
