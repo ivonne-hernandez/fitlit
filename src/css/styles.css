@@ -152,10 +152,6 @@ table {
   overflow: scroll;
 }
 
-.activity-cards-second-row {
-  display: flex;
-}
-
 .card {
   display: flex;
   flex-direction: column;
@@ -391,23 +387,12 @@ table {
   margin-bottom: 10px;
 }
 
-
-
 .sleep {
   background-color: #462c61;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   flex: 1;
-}
-
-.sleep-cards-first-row {
-  display: flex;
-}
-
-.friends {
-  background-color: #ECEDF2;
-  width: 24%;
 }
 
 .hidden {
