@@ -1,3 +1,4 @@
+
 import Chart from 'chart.js/auto';
 
 let domUpdates = {
@@ -66,7 +67,7 @@ let domUpdates = {
     let userSleepEvents = sleepRepository.renderUserSleepData(userId);
     const lastUserSleepEventDate = new Date(userSleepEvents[userSleepEvents.length - 1].date);
     return lastUserSleepEventDate;
-  }, 
+  },
 
   displayUserSleepInfo(sleepRepository, userId) {
     this.chartSleepToday(sleepRepository, userId);
@@ -92,7 +93,7 @@ let domUpdates = {
         return startDate <= sleepDate && sleepDate <= endDate;
       });
     return latestWeekOfSleepEvents;
-  }, 
+  },
   sleepTodayChart: null,
   sleepLatestWeekChart: null,
   sleepAllTimeChart: null,
@@ -139,7 +140,7 @@ let domUpdates = {
         }
       }
     );
-  }, 
+  },
 
   chartLatestWeekOfSleepStats(sleepRepository, userId) {
     if (this.sleepLatestWeekChart) {
@@ -238,7 +239,7 @@ let domUpdates = {
     const hydrationToday = document.querySelector('#hydrationToday');
     hydrationToday.innerText = `${this.renderUserHydrationToday(userHydrationData)} ounces.`;
   },
-  
+
   latestWeekOfHydrationEvents(userHydrationData) {
     const endDate = new Date(userHydrationData.hydrationData[userHydrationData.hydrationData.length - 1].date);
     const startDate = new Date(userHydrationData.hydrationData[userHydrationData.hydrationData.length - 7].date);
@@ -299,14 +300,14 @@ let domUpdates = {
   displayNumStepsToday(userActivities) {
     const numberOfStepsToday = document.querySelector('#numberOfStepsToday');
     numberOfStepsToday.innerHTML = `<b>Number of steps today:</b> ${userActivities.userActivities[userActivities.userActivities.length - 1].numSteps.toLocaleString()}`;
-  }, 
+  },
 
   displayNumStepsForAvgUser(activityRepository) {
     const stepsTodayForAvgUser = document.querySelector('#numberOfStepsTodayAvgUser');
     const todaysDate = activityRepository.activityDataSet[activityRepository.activityDataSet.length - 1].date;
     stepsTodayForAvgUser.innerHTML = `<b>Steps for average user:</b> ${activityRepository.getAverageActivityOnDate(todaysDate, "numSteps").toLocaleString()}`;
   },
-  
+
   displayNumMinsActiveToday(userActivities) {
     const activeMinsToday = document.querySelector('#minutesToday');
     activeMinsToday.innerHTML = `<b>${userActivities.userActivities[userActivities.userActivities.length - 1].minutesActive}</b> active minutes`;
@@ -316,25 +317,25 @@ let domUpdates = {
     const milesWalkedToday = document.querySelector('#distanceToday');
     const todaysDate = userActivities.userActivities[userActivities.userActivities.length - 1].date;
     milesWalkedToday.innerHTML = `<b>${userActivities.getMilesWalked(todaysDate)}</b> miles`;
-  }, 
+  },
 
   displayStairsToday(userActivities) {
     const stairsToday = document.querySelector('#stairsToday');
     stairsToday.innerHTML = `<b>${userActivities.userActivities[userActivities.userActivities.length - 1].flightsOfStairs}</b> flights of stairs`;
-  }, 
+  },
 
   displayMinsActiveAvgUser(activityRepository) {
     const minutesActiveAvgUser = document.querySelector('#minutesActiveAvgUser');
     const todaysDate = activityRepository.activityDataSet[activityRepository.activityDataSet.length - 1].date;
     minutesActiveAvgUser.innerHTML = `<b>${activityRepository.getAverageActivityOnDate(todaysDate, "minutesActive")} minutes</b><br>Average user`;
-  }, 
+  },
 
   displayStairFlightAvgUser(activityRepository) {
     const stairsForAvgUser = document.querySelector('#stairsAvgUser');
     const todaysDate = activityRepository.activityDataSet[activityRepository.activityDataSet.length - 1].date;
     stairsForAvgUser.innerHTML = `<b>${activityRepository.getAverageActivityOnDate(todaysDate, "flightsOfStairs")} flights</b><br>Average user`;
-  }, 
-  
+  },
+
   latestWeekOfActivityEvents(userActivities) {
     const endDate = new Date(userActivities.userActivities[userActivities.userActivities.length - 1].date);
     const startDate = new Date(userActivities.userActivities[userActivities.userActivities.length - 7].date);
@@ -344,7 +345,7 @@ let domUpdates = {
         return startDate <= activityDate && activityDate <= endDate;
       });
     return latestWeekOfActivityEvents;
-  }, 
+  },
 
   activityCharts: {},
 
@@ -391,8 +392,8 @@ let domUpdates = {
         }
       });
     }
-  }, 
-  
+  },
+
   showDropdown(event) {
     const hydrationDateToggle = document.querySelector('#hydrationDateToggle');
     const sleepDateToggle = document.querySelector('#sleepDateToggle');
@@ -410,15 +411,15 @@ let domUpdates = {
     if (event.target === activityDateToggle) {
       activityDropdown.classList.toggle('hidden');
     }
-  }, 
-  
+  },
+
   renderSleepCard(event) {
     const sleepDropdownToday = document.querySelector('#sleepDropdownToday');
     const sleepDropdownThisWeek = document.querySelector('#sleepDropdownThisWeek');
     const sleepDropdownAllTime = document.querySelector('#sleepDropdownAllTime');
     const sleepCardThisWeek = document.querySelector('#sleepCardThisWeek');
     const sleepCardAllTime = document.querySelector('#sleepCardAllTime');
-    const sleepCardToday = document.querySelector('#sleepCardToday'); 
+    const sleepCardToday = document.querySelector('#sleepCardToday');
     const sleepDateToggle = document.querySelector('#sleepDateToggle');
 
     if (event.target === sleepDropdownToday) {
@@ -439,7 +440,7 @@ let domUpdates = {
       sleepCardAllTime.classList.remove('hidden');
       sleepDateToggle.innerHTML = 'All Time <i class="fas fa-chevron-down fa-sm"></i>';
     }
-  }, 
+  },
 
   renderHydrationCard(event) {
     const hydrationDropdownToday = document.querySelector('#hydrationDropdownToday');
@@ -457,7 +458,7 @@ let domUpdates = {
       hydrationCardThisWeek.classList.remove('hidden');
       hydrationDateToggle.innerHTML = 'This Week <i class="fas fa-chevron-down fa-sm"></i>';
     }
-  }, 
+  },
 
   renderActivityCard(event) {
     const activityDropdownToday = document.querySelector('#activityDropdownToday');
@@ -471,13 +472,13 @@ let domUpdates = {
       activityCardsToday.classList.remove('hidden');
       activityDateToggle.innerHTML = 'Today <i class="fas fa-chevron-down fa-sm"></i>';
     }
-  
+
     if (event.target === activityDropdownThisWeek) {
       activityCardsToday.classList.add('hidden');
       activityCardsThisWeek.classList.remove('hidden');
       activityDateToggle.innerHTML = 'This Week <i class="fas fa-chevron-down fa-sm"></i>';
     }
-  }, 
+  },
 
   validateActivityInput() {
     const activitySubmitButton = document.querySelector('#submitActivityData');
@@ -485,13 +486,13 @@ let domUpdates = {
     const activityStepsInput = document.querySelector('#addDataSteps');
     const activityStairsInput = document.querySelector('#addDataStairs');
     const activityMinutesInput = document.querySelector('#addDataMinutes');
-    
+
     if (activityStepsInput.value && activityStairsInput.value && activityMinutesInput.value) {
       activitySubmitButton.disabled = false;
     } else {
       activitySubmitButton.disabled = true;
     }
-  }, 
+  },
 
   validateHydrationInput() {
     const hydrationDateInput = document.querySelector('#addHydrationDate');
@@ -503,25 +504,25 @@ let domUpdates = {
     } else {
       hydrationSubmitButton.disabled = true;
     }
-  }, 
+  },
 
   validateSleepInput() {
     const sleepSubmitButton = document.querySelector('#submitSleepData');
-    if (this.isValidHoursSlept() && this.isValidSleepQuality()) {         
-      sleepSubmitButton.disabled = false;  
+    if (this.isValidHoursSlept() && this.isValidSleepQuality()) {
+      sleepSubmitButton.disabled = false;
     } else {
       sleepSubmitButton.disabled = true;
     }
-  }, 
+  },
 
-  isValidHoursSlept() { 
+  isValidHoursSlept() {
     const hoursSleptInput = document.querySelector('#addHoursSlept');
     if (Number(hoursSleptInput.value) <= 48) {
       return true;
     } else {
       return false;
     }
-  }, 
+  },
 
   isValidSleepQuality() {
     const sleepQualityInput = document.querySelector('#addSleepQuality');

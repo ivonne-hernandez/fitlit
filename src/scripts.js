@@ -2,7 +2,7 @@
 // Do not delete or rename this file ********
 
 // An example of how you tell webpack to use a CSS file
-import './css/styles.css';
+import './css/styles.scss';
 
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/turing-logo.png'
@@ -14,7 +14,7 @@ import {
   fetchUserData,
   fetchSleepData,
   fetchActivityData,
-  fetchHydrationData, 
+  fetchHydrationData,
   postNewSleepEvent,
   postNewActivityEvent
 } from './apiCalls';
@@ -88,7 +88,7 @@ const addSleepData = () => {
   }
   return postNewSleepEvent(newSleepEvent)
     .then(data => console.log('response from sleep POST', data));
-    
+
 }
 
 const addActivityData = () => {
