@@ -21,12 +21,14 @@ Project Manager: Nik Seif
   - eslint
   - html
   - css
+  - sass
   - node
   - Atom
 	- WebPack
 	- API
   - Chart.js
   - Figma
+  - Lighthouse
 
 ## Illustrations
   On page load a random user's information will be displayed on the dashboard. Each color block contains a different category for specific set of tracked data. In the top right corner of the dashboard, the date for the latest user data is displayed.
