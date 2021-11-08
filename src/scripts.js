@@ -58,6 +58,12 @@ const fetchAll = () => {
       domUpdates.displayUserHydrationInfo(hydrationRepository, userHydrationData);
       domUpdates.displayUserActivityInfo(activityRepository, userActivities);
     })
+    .catch(error => showGetErrorMsg(error));
+}
+
+const showGetErrorMsg = (error) => {
+  const errorDisplay = document.querySelector('#welcomeUser');
+  errorDisplay.innerText = `Please check your network connection, ${error}`;
 }
 
 const parseAllData = (data) => {
@@ -88,8 +94,8 @@ const addSleepData = () => {
     "sleepQuality":Number(sleepQualityInput.value)
   }
   return postNewSleepEvent(newSleepEvent)
-    .then(data => console.log('response from sleep POST', data));
-
+    .then(data => console.log('response from sleep POST', data))
+    .catch(error => showPostErrorMsg(error))
 }
 
 const addActivityData = () => {

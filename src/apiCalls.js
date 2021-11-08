@@ -6,11 +6,9 @@
 // }
 
 export let fetchUserData = () => {
-  return fetch("http://localhost:3001/api/v1/users")
-    .then(response => response.json())
-    .catch(err => console.log('something went wrong', err))
-    // showGetErrorMsg(err)
-};
+  return fetch("http://localhost:3001/api/v1/users").then(response => response.json())
+}
+
 export let fetchSleepData = () => {
   return fetch("http://localhost:3001/api/v1/sleep").then(response => response.json());
 }
