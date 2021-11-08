@@ -4,7 +4,7 @@ import Chart from 'chart.js/auto';
 let domUpdates = {
   displayUserInfo(user, sleepRepository, userId, userRepository) {
     this.displayUserWelcomeMsg(user);
-    this.displayTodaysDate(sleepRepository, userId);
+    this.displayTodaysDate();
     this.displayUserName(user);
     this.displayUserAddress(user);
     this.displayUserEmail(user);
@@ -19,9 +19,10 @@ let domUpdates = {
     welcomeUser.innerText = `Welcome, ${user.renderUserFirstName()}!`;
   },
 
-  displayTodaysDate(sleepRepository, userId) {
+  displayTodaysDate() {
     const todaysDate = document.querySelector('#navDate');
-    todaysDate.innerText = `${this.renderLastSleepEventDate(sleepRepository, userId).toDateString()}`;
+    const dateDisplay = new Intl.DateTimeFormat('en-GB', { dateStyle: 'full'}).format(new Date());
+    todaysDate.innerText = `${dateDisplay}`;
   },
 
   displayUserName(user) {
