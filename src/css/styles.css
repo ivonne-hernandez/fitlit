@@ -365,6 +365,11 @@ table {
   margin-bottom: 10px;
 }
 
+.add-data-form button:disabled {
+  cursor: not-allowed;
+  background-color: lightgray;
+}
+
 .add-data-form button {
   background-color: rgba(4, 170, 109, 0.8);
   font-weight: bold;

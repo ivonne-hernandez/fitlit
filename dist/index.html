@@ -41,7 +41,6 @@
       <section>
     </aside>
     <main>
-      <!-- <header> -->
         <nav>
           <h3> Dashboard </h3>
           <p id="welcomeUser"></p>
@@ -50,7 +49,6 @@
             <p id="navDate"></p>
           </div>
         </nav>
-      <!-- </header> -->
       <section class="main-sections">
         <section class="activity">
           <div class="card-header">
@@ -66,24 +64,23 @@
             </div>
             <div class="add-data">
               <span><i class="fas fa-plus"></i>Add data</span>
-              <div class="add-data-form hidden">
+              <div id="activityFormContainer" class="add-data-form">
                 <i class="fas fa-times"></i>
-                <form action="">
+                <form action="" id="activityInputForm">
                   <p>Add Activity Data</p>
                   <label for="date">Date</label>
-                  <input type="text" id="addDataDate" name="date" placeholder="YYYY/MM/DD">
+                  <input type="date" id="addActivityDate" name="date" placeholder="YYYY/MM/DD">
                   <label for="steps">Steps</label>
-                  <input type="text" id="addDataSteps" name="steps">
+                  <input type="number" id="addDataSteps" name="steps">
                   <label for="stairs">Flights of Stairs</label>
-                  <input type="text" id="addDataStairs" name="stairs">
+                  <input type="number" id="addDataStairs" name="stairs">
                   <label for="minutesActive">Minutes Active</label>
-                  <input type="text" id="addDataMinutesActive" name="minutesActive">
+                  <input type="number" id="addDataMinutes" name="minutesActive">
                 </form>
-                <button id="submitActivityData">Submit</button>
+                <button id="submitActivityData" disabled>Submit</button>
               </div>
             </div>
           </div>
-          <!-- activity cards today -->
           <div id="activityCardsToday" class="grid-container">
             <article id="stepsCard" class="card large">
               <p class="card-title"> Steps </p>
@@ -141,7 +138,6 @@
                 </div>
             </article>
           </div>
-          <!-- activity week -->
           <div id="activityCardsThisWeek" class="grid-container hidden">
             <article id="stepsCardWeek" class="card large">
               <p class="card-title"> Steps </p>
@@ -178,16 +174,16 @@
               </div>
               <div class="add-data">
                 <span><i class="fas fa-plus"></i>Add data</span>
-                <div class="add-data-form small-form">
+                <div class="add-data-form small-form" id="hydrationFormContainer">
                   <i class="fas fa-times"></i>
-                  <form action="">
+                  <form action="" id="hydrationInputForm">
                     <p>Add Hydration Data</p>
                     <label for="date">Date</label>
-                    <input type="text" id="addDataDate" name="date" placeholder="YYYY/MM/DD">
-                    <label for="hoursSlept">Ounces Drank</label>
-                    <input type="text" id="addDataOzDrank" name="ozDrank">
+                    <input type="date" id="addHydrationDate" name="date" placeholder="YYYY/MM/DD">
+                    <label for="fluidOunces">Ounces Drank</label>
+                    <input type="number" id="addOzDrank" name="ozDrank">
                   </form>
-                  <button id="submitHydrationData">Submit</button>
+                  <button id="submitHydrationData" disabled>Submit</button>
                 </div>
               </div>
             </div>
@@ -219,18 +215,18 @@
                 </div>
                 <div class="add-data">
                   <span><i class="fas fa-plus"></i>Add data</span>
-                  <div class="add-data-form small-form">
+                  <div class="add-data-form small-form add-data-form-sleep">
                     <i class="fas fa-times"></i>
-                    <form action="">
+                    <form action="" id="sleepInputForm">
                       <p>Add Sleep Data</p>
                       <label for="date">Date</label>
-                      <input type="text" id="addDataDate" name="date" placeholder="YYYY/MM/DD">
+                      <input type="date" id="addSleepDate" name="date" placeholder="YYYY/MM/DD">
                       <label for="hoursSlept">Hours Slept</label>
-                      <input type="text" id="addDataHoursSlept" name="hoursSlept">
+                      <input type="number" id="addHoursSlept" name="hoursSlept">
                       <label for="sleepQuality">Sleep Quality</label>
-                      <input type="text" id="addDataSleepQuality" name="sleepQuality">
+                      <input type="number" id="addSleepQuality" name="sleepQuality">
                     </form>
-                    <button id="submitSleepData">Submit</button>
+                    <button id="submitSleepData" disabled>Submit</button>
                   </div>
                 </div>
               </div>
@@ -265,7 +261,6 @@
         </div>
       </section>
     </main>
-
     <script src="bundle.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </body>
