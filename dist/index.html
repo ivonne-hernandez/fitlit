@@ -190,7 +190,10 @@
             <div class="card-deck">
               <article id="hydrationCardToday" class="card">
                 <p class="card-title"> Hydration Today</p>
-                <p id="hydrationToday"></p>
+                <div class="chart-box-small">
+                  <canvas id="chartHydrationToday" width=0px height=125px>
+                  </canvas>
+                </div>
               </article>
               <article id="hydrationCardThisWeek"class="card large hidden">
                 <p class="card-title"> Hydration this week</p>
@@ -236,10 +239,6 @@
                   <div class="chart-box-small">
                     <canvas id="chartSleepHoursToday" width=0px height=125px>
                     </canvas>
-                  </div>
-                  <div>
-                    <p id="userHoursSleptLatestDay"></p>
-                    <p id="userSleepQualityLatestDay"></p>
                   </div>
                 </article>
                 <article id="sleepCardAllTime" class="card hidden">

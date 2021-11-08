@@ -229,7 +229,7 @@ let domUpdates = {
   },
 
   displayUserHydrationInfo(hydrationRepository, userHydrationData) {
-    this.displayHydrationToday(userHydrationData);
+    this.chartHydrationToday(userHydrationData);
     this.chartHydrationLatestWeek(userHydrationData);
     this.validateHydrationInput();
   },
@@ -239,11 +239,6 @@ let domUpdates = {
     const lastUserHydrationDate = userHydrationData.hydrationData[userHydrationData.hydrationData.length - 1].date;
     console.log('lastUserHydrationDate', lastUserHydrationDate)
     return userHydrationData.renderOuncesConsumedOnDate(lastUserHydrationDate);
-  },
-
-  displayHydrationToday(userHydrationData) {
-    const hydrationToday = document.querySelector('#hydrationToday');
-    hydrationToday.innerText = `${this.renderUserHydrationToday(userHydrationData)} ounces.`;
   },
 
   latestWeekOfHydrationEvents(userHydrationData) {
@@ -258,6 +253,43 @@ let domUpdates = {
   },
 
   chartHydrationWeek: null,
+  hydrationTodayChart: null,
+
+  chartHydrationToday(userHydrationData) {
+    if (this.hydrationTodayChart) {
+      this.hydrationTodayChart.destroy();
+    }
+    const chart = document.querySelector('#chartHydrationToday').getContext('2d');
+    const hydrationEventToday = this.renderUserHydrationToday(userHydrationData);
+    const latestDayDate = userHydrationData.hydrationData[userHydrationData.hydrationData.length - 1].date;
+    this.sleepTodayChart = new Chart(chart,
+      {
+        type: 'bar',
+        data: {
+          labels: [latestDayDate],
+          datasets: [{
+            label: 'Fluid Ounces',
+            data: [hydrationEventToday],
+            backgroundColor: 'blue'
+          }]
+        },
+        options: {
+          responsive: true,
+          scales: {
+            x: {
+              ticks: {
+                min: 0
+              }
+            },
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+      }
+    );
+  },
+
 
   chartHydrationLatestWeek(userHydrationData) {
     if (this.chartHydrationWeek) {
