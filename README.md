@@ -24,8 +24,8 @@ Project Manager: Nik Seif
   - sass
   - node
   - Atom
-	- WebPack
-	- API
+  - WebPack
+  - API
   - Chart.js
   - Figma
   - Lighthouse
@@ -80,11 +80,11 @@ Project Manager: Nik Seif
   - [Jessica Organ](https://github.com/Jorgan612)
 
 ## Wins
-	- Successfully add new data to the activity data sets using POST requests.
+  - Successfully add new data to the activity data sets using POST requests.
   - Continued to maintained consistency with workflow, pull requests, and communication throughout the project.
   - Refactored project files to organize scripts and DOM updates into separate files.
   - Successfully refactored the project's css file to utilize SASS.
-	- Learned new techniques such as utilizing POST requests, additional input field types, SASS.
+  - Learned new techniques such as utilizing POST requests, additional input field types, SASS.
   - Ensured the project exceeded accessibility standards by utilizing Aria to maintain a Lighthouse audit above 90%.
 
 ## Challenges + Improvements
