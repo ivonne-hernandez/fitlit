@@ -373,7 +373,7 @@ let domUpdates = {
           datasets: [{
             label: label,
             data: latestWeekActivityEvents.map(activityEvent => activityEvent[activityType]),
-            backgroundColor: 'red'
+            backgroundColor: '#f3621d'
           }]
         },
         options: {

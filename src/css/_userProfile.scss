@@ -1,8 +1,7 @@
 @use "_mixins.scss" as mixins;
 
 aside {
-  display: flex;
-  flex-direction: column;
+  @include mixins.flexbox(column, flex-start, center);
   width: 370px;
   overflow: hidden;
     h2 {
