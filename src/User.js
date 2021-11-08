@@ -15,8 +15,9 @@ class User {
 
   renderUserFriendNames() {
     const friendNames = this.friends.filter((friend) => {
-      friend === this.friends.id
-    })
+      return friend === this.friends.id;
+    });
+    return friendNames;
   }
 }
 export default User;

@@ -1,20 +1,19 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="UTF-8">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/8b5f878867.js" crossorigin="anonymous"></script>
     <title>Activity Tracker</title>
   </head>
   <body>
     <aside>
-      <div id="logo" class="logo">
-        <h1> Logo </h1>
+      <div id="logo" class="logo-box">
+        <img src="./fitlit logo.png" alt="Turing fitlit logo" class="logo-png">
       </div>
-      <div id="profilePic" class="profile-pic"
-        <img src="../images/profile pic.png" alt="Placeholder picture">
-      </div>
+      <img src="./fitlit-user.png" class="profile-pic" alt="Profile picture">
       <h2 id="userName"></h2>
       <section id="infoSection" class="info-section">
         <table>
@@ -42,100 +41,226 @@
       <section>
     </aside>
     <main>
-      <!-- <header> -->
         <nav>
           <h3> Dashboard </h3>
           <p id="welcomeUser"></p>
           <div id="navDayDate" class="nav-day-date">
-            <h3 id="navday" class="nav-day"> Today </h3>
-            <p id="navDate" class="nav-date"></p>
+            <h3 id="navday"> Today </h3>
+            <p id="navDate"></p>
           </div>
         </nav>
-      <!-- </header> -->
       <section class="main-sections">
         <section class="activity">
           <div class="card-header">
-            <h4> Activity </h4>
+            <div id="sectionTitleWithDropdown" class="section-title-with-dropdown">
+              <h4> Activity </h4>
+              <div id="sectionHeaderToggle">
+                <button id="activityDateToggle" class="date-toggle"> Today <i class="fas fa-chevron-down fa-sm"></i> </button>
+                <div id="activityDropdown" class="dropdown-content hidden">
+                  <button id="activityDropdownToday">Today</button>
+                  <button id="activityDropdownThisWeek">This Week</button>
+                </div>
+              </div>
+            </div>
+            <div class="add-data">
+              <span id="addActivityData"><i class="fas fa-plus"></i>Add data</span>
+              <div id="activityFormContainer" class="add-data-form hidden">
+                <i id="exitActivityDataForm" class="fas fa-times"></i>
+                <form action="" id="activityInputForm">
+                  <p>Add Activity Data</p>
+                  <label for="date">Date</label>
+                  <input type="date" id="addActivityDate" name="date" placeholder="YYYY/MM/DD">
+                  <label for="steps">Steps</label>
+                  <input type="number" id="addDataSteps" name="steps">
+                  <label for="stairs">Flights of Stairs</label>
+                  <input type="number" id="addDataStairs" name="stairs">
+                  <label for="minutesActive">Minutes Active</label>
+                  <input type="number" id="addDataMinutes" name="minutesActive">
+                </form>
+                <button id="submitActivityData" disabled>Submit</button>
+              </div>
+            </div>
           </div>
-          <div class="grid-container">
-            <div id="stepsCard" class="card large">
-              <p class="card-title"> Steps <p>
-              <p id="stepGoalComparison"></p>
-            </div>
-            <div class="activity-cards-second-row">
-              <div class="card">
-                <p class="card-title"> Stairs <p>
-                <p></p>
+          <div id="activityCardsToday" class="grid-container">
+            <article id="stepsCard" class="card large">
+              <p class="card-title"> Steps </p>
+              <div id="cardDivider" class="card-divider"></div>
+              <div id="stepsContent" class="card-content">
+                <div id="stepsContentLeft" class="card-content-left">
+                  <i class="fas fa-walking fa-5x"></i>
+                  <p id="numberOfStepsToday"></p>
+                </div>
+                <div id="stepGoals" class="card-content-right">
+                  <article class="card-goals">
+                    <span id="numberOfStepsTodayAvgUser"></span>
+                    <span id="stepGoalComparison"></span>
+                  </article>
+                </div>
               </div>
-              <div class="card">
-                <p class="card-title"> Minutes Active <p>
-                <p></p>
+            </article>
+            <article id="stairsCard" class="card large">
+              <p class="card-title"> Stairs </p>
+              <div id="cardDivider" class="card-divider"></div>
+              <div id="stairsContent" class="card-content">
+                <div id="stairsContentLeft" class="card-content-left">
+                  <i class="fas fa-angle-double-up fa-5x"></i>
+                  <p id="stairsToday"></p>
+                </div>
+                <div id="stairsGoals" class="card-content-right">
+                  <article class="card-goals">
+                    <span id="stairsAvgUser"></span>
+                  </article>
+                </div>
               </div>
-            </div>
+            </article>
+            <article id="minutesCard" class="card large">
+              <p class="card-title"> Active Minutes </p>
+                <div id="cardDivider" class="card-divider"></div>
+                <div id="minutesContent" class="card-content">
+                  <div id="minutesContentLeft" class="card-content-left">
+                    <i class="fas fa-heartbeat fa-5x"></i>
+                    <p id="minutesToday"></p>
+                  </div>
+                  <div id="minutesGoals" class="card-content-right">
+                    <article class="card-goals">
+                      <span id="minutesActiveAvgUser"></span>
+                    </article>
+                  </div>
+                </div>
+              </article>
+            <article id="distanceCard" class="card">
+              <p class="card-title"> Distance Travelled </p>
+                <div id="distanceContent" class="card-content">
+                  <div id="distanceContentLeft" class="card-content-left">
+                    <i class="fas fa-route fa-5x"></i>
+                    <p id="distanceToday"></p>
+                  </div>
+                </div>
+            </article>
+          </div>
+          <div id="activityCardsThisWeek" class="grid-container hidden">
+            <article id="stepsCardWeek" class="card large">
+              <p class="card-title"> Steps </p>
+              <div class="chart-box-large">
+                <canvas id="chartStepsForLatestWeek"></canvas>
+              </div>
+            </article>
+            <article id="stairsCardWeek" class="card large">
+              <p class="card-title"> Stairs </p>
+              <div class="chart-box-large">
+                <canvas id="chartStairsForLatestWeek"></canvas>
+              </div>
+            </article>
+            <article id="minutesCard" class="card large">
+              <p class="card-title"> Active Minutes </p>
+              <div class="chart-box-large">
+                <canvas id="chartActiveMinsForLatestWeek"></canvas>
+              </div>
+            </article>
           </div>
         </section>
         <div id="hydrationSleep" class="hydration-sleep">
           <section class="hydration">
             <div class="card-header">
-              <h4> Hydration </h4>
-              <div class="toggle-and-dropdown-menu">
-                <button id="hydrationDateToggle" class="date-toggle"> Today </button>
-                <div id="hydrationDropdown" class="dropdown-content hidden">
-                  <button id="hydrationDropdownToday">Today</button>
-                  <button id="hydrationDropdownThisWeek">This Week</button>
+              <div id="sectionTitleWithDropdown" class="section-title-with-dropdown">
+                <h4> Hydration </h4>
+                <div id="sectionHeaderToggle">
+                  <button id="hydrationDateToggle" class="date-toggle"> Today <i class="fas fa-chevron-down fa-sm"></i> </button>
+                  <div id="hydrationDropdown" class="dropdown-content hidden">
+                    <button id="hydrationDropdownToday">Today</button>
+                    <button id="hydrationDropdownThisWeek">This Week</button>
+                  </div>
                 </div>
               </div>
-                <!-- <img src="src/images/down-arrow.png" alt="Down arrow"> -->
+              <div class="add-data">
+                <span id="addHydrationData"><i class="fas fa-plus"></i>Add data</span>
+                <div class="add-data-form small-form hidden" id="hydrationFormContainer">
+                  <i id="exitHydrationDataForm"class="fas fa-times"></i>
+                  <form action="" id="hydrationInputForm">
+                    <p>Add Hydration Data</p>
+                    <label for="date">Date</label>
+                    <input type="date" id="addHydrationDate" name="date" placeholder="YYYY/MM/DD">
+                    <label for="fluidOunces">Ounces Drank</label>
+                    <input type="number" id="addOzDrank" name="ozDrank">
+                  </form>
+                  <button id="submitHydrationData" disabled>Submit</button>
+                </div>
+              </div>
             </div>
             <div class="card-deck">
-              <div id="hydrationCardToday" class="card">
-                <p class="card-title"> Hydration Today <p>
-                <p id="hydrationToday"></p>
-              </div>
-              <div id="hydrationCardThisWeek"class="card large hidden">
-                <p class="card-title"> Hydration this week <p>
-                <p></p>
-              </div>
+              <article id="hydrationCardToday" class="card">
+                <p class="card-title"> Hydration Today</p>
+                <div class="chart-box-small">
+                  <canvas id="chartHydrationToday" width=0px height=125px>
+                  </canvas>
+                </div>
+              </article>
+              <article id="hydrationCardThisWeek"class="card large hidden">
+                <p class="card-title"> Hydration this week</p>
+                <div class="chart-box-large">
+                  <canvas id="chartHydrationForLatestWeek"></canvas>
+                </div>
+              </article>
             </div>
           </section>
           <section class="sleep">
-            <div class="card-header">
-              <h4> Sleep </h4>
-              <div class="toggle-and-dropdown-menu">
-                <button id="sleepDateToggle" class="date-toggle">Today</button>
-                <div id="sleepDropdown" class="dropdown-content hidden">
-                  <button id="sleepDropdownToday">Today</button>
-                  <button id="sleepDropdownThisWeek">This Week</button>
-                  <button id="sleepDropdownAllTime">All-Time</button>
+              <div class="card-header">
+                <div id="sectionTitleWithDropdown" class="section-title-with-dropdown">
+                  <h4> Sleep </h4>
+                  <div id="sectionHeaderToggle">
+                    <button id="sleepDateToggle" class="date-toggle"> Today <i class="fas fa-chevron-down fa-sm"></i> </button>
+                    <div id="sleepDropdown" class="dropdown-content hidden">
+                      <button id="sleepDropdownToday">Today</button>
+                      <button id="sleepDropdownThisWeek">This Week</button>
+                      <button id="sleepDropdownAllTime">All-Time</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="add-data">
+                  <span id="addSleepData"><i class="fas fa-plus"></i>Add data</span>
+                  <div id="sleepFormContainer" class="add-data-form small-form add-data-form-sleep hidden">
+                    <i id="exitSleepDataForm" class="fas fa-times"></i>
+                    <form action="" id="sleepInputForm">
+                      <p>Add Sleep Data</p>
+                      <label for="date">Date</label>
+                      <input type="date" id="addSleepDate" name="date" placeholder="YYYY/MM/DD">
+                      <label for="hoursSlept">Hours Slept</label>
+                      <input type="number" id="addHoursSlept" name="hoursSlept">
+                      <label for="sleepQuality">Sleep Quality</label>
+                      <input type="number" id="addSleepQuality" name="sleepQuality">
+                    </form>
+                    <button id="submitSleepData" disabled>Submit</button>
+                  </div>
                 </div>
               </div>
-            </div>
             <div id="sleepCardDeck" class="card-deck">
-                <div id="sleepCardToday" class="card">
-                  <p class="card-title"> Sleep Today <p>
-                  <p id="userHoursSleptLatestDay"></p>
-                  <p id="userSleepQualityLatestDay"></p>
-                </div>
-                <div id="sleepCardAllTime" class="card hidden">
-                  <p class="card-title"> Sleep All Time <p>
-                  <p></p>
-                </div>
-              <div id="sleepCardThisWeek" class="card large hidden">
-                <p class="card-title"> Sleep This Week <p>
-                <p id="userHoursSleptLatestWeek"></p>
-                <p id="userSleepQualityLatestWeek"></p>
-                <p id="userAllTimeAvgHoursSlept"></p>
-                <p id="userAllTimeAvgSleepQuality"></p>
-              </div>
+                <article id="sleepCardToday" class="card">
+                  <p class="card-title"> Sleep Today</p>
+                  <div class="chart-box-small">
+                    <canvas id="chartSleepHoursToday" width=0px height=125px>
+                    </canvas>
+                  </div>
+                </article>
+                <article id="sleepCardAllTime" class="card hidden">
+                  <p class="card-title"> Sleep All Time</p>
+                  <div class="chart-box-small">
+                    <canvas id="chartAllTimeSleepStats" width="160" height="160">
+                    </canvas>
+                  </div>
+                </article>
+                <article id="sleepCardThisWeek" class="card large hidden">
+                  <p class="card-title">Hours This Week</p>
+                  <div class="chart-box-large">
+                    <canvas id="chartSleepHoursForLatestWeek" width="160" height="160">
+                    </canvas>
+                  </div>
+                </article>
             </div>
           </section>
         </div>
-        <!-- <section class="friends">
-          <h4> Friends </h4>
-        </section> -->
       </section>
     </main>
-
     <script src="bundle.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </body>
 </html>

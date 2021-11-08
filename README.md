@@ -1,5 +1,5 @@
-# Title
-Mod 2  Fitlit
+# Fitlit
+
 Project Manager: Nik Seif
 
 ## Table of Contents
@@ -9,8 +9,8 @@ Project Manager: Nik Seif
   - [Install + Setup](#set-up)
   - [View Application](#view-application)
   - [Contributors](#contributors)
-	- [Wins](#wins)
-	- [Challenges + Improvements](#challenges-+-Improvements)
+  - [Wins](#wins)
+  - [Challenges + Improvements](#challenges-+-Improvements)
   - [Project Specs](#project-specs)
 
 ## Abstract
@@ -41,7 +41,7 @@ Project Manager: Nik Seif
 
   <img width="292" alt="new_sidebar_profile" src="https://user-images.githubusercontent.com/83175748/140831109-c0620726-606a-4b3b-949b-fceab808d725.png">
 
-  When you click the button labeled `Today` a drop down menu will appear, allowing you to choose different date ranges to view a user's data for a `week` or for `all time`.
+  When you click the button labeled `Today` a drop down menu will appear, allowing you to choose different date ranges to view a user's data for `Today`, `This Week` or for `All-Time`.
 
   <img width="591" alt="hydration_sleep_today_charts" src="https://user-images.githubusercontent.com/83175748/140830969-cb75b770-e300-4608-9880-33c2f2f17c7b.png">
 
@@ -61,7 +61,7 @@ Project Manager: Nik Seif
 
 ## Install + Setup
   - clone down the repository
-  - npm Install
+  - npm install
   - npm install -g sass
   - npm install sass-loader sass webpack --save-dev
   - npm install chart.js

@@ -4,7 +4,13 @@ class SleepRepository {
   }
 
   renderUserSleepData(userID) {
-    const userSleepEvents = this.sleepDataSet.filter((user) => user.userID === userID);
+    const userSleepEvents = this.sleepDataSet
+      .filter((user) => user.userID === userID)
+      .sort((sleepEvent1, sleepEvent2) => {
+        const sleepDate1 = new Date(sleepEvent1.date);
+        const sleepDate2 = new Date(sleepEvent2.date);
+        return sleepDate1 - sleepDate2;
+    })
     return userSleepEvents;
   }
 
@@ -14,7 +20,7 @@ class SleepRepository {
       return accumulator + sleepEvent.hoursSlept;
     }, 0);
 
-    return Number((totalHoursSlept/userSleepEvents.length).toFixed(1));
+    return Number((totalHoursSlept / userSleepEvents.length).toFixed(1));
   }
 
   calcAvgSleepQuality(userID) {
@@ -23,13 +29,13 @@ class SleepRepository {
       return accumulator + sleepEvent.sleepQuality;
     }, 0);
 
-    return Number((totalSleepQuality/userSleepEvents.length).toFixed(1));
+    return Number((totalSleepQuality / userSleepEvents.length).toFixed(1));
   }
 
   renderHoursSleptOnDate(userID, date) {
     const userSleepEvents = this.renderUserSleepData(userID);
     const sleepEventOnDate = userSleepEvents.find((sleepEvent) => {
-        return sleepEvent.date === date;
+      return sleepEvent.date === date;
     });
     return sleepEventOnDate.hoursSlept;
   }
@@ -37,7 +43,7 @@ class SleepRepository {
   renderSleepQualityOnDate(userID, date) {
     const userSleepEvents = this.renderUserSleepData(userID);
     const sleepEventOnDate = userSleepEvents.find((sleepEvent) => {
-        return sleepEvent.date === date;
+      return sleepEvent.date === date;
     });
     return sleepEventOnDate.sleepQuality;
   }
@@ -75,8 +81,8 @@ class SleepRepository {
   calcAllUsersAvgSleepQuality () {
     const totalSleepQualityAllUsers = this.sleepDataSet.reduce((acc, sleepEvent) => {
       return acc += sleepEvent.sleepQuality;
-    },0);
-    return Number((totalSleepQualityAllUsers/this.sleepDataSet.length).toFixed(1));
+    }, 0);
+    return Number((totalSleepQualityAllUsers / this.sleepDataSet.length).toFixed(1));
   }
 }
 

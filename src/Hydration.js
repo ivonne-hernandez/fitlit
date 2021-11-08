@@ -24,9 +24,9 @@ class Hydration {
       const hydrationDate = new Date(hydrationOccurence.date);
       return startDate <= hydrationDate && hydrationDate <= endDate;
     })
-    .map((day) => {
-      return day.numOunces;
-    });
+      .map((day) => {
+        return day.numOunces;
+      });
     return ouncesForDays;
   }
 }

@@ -1,68 +1,33 @@
-// This is the JavaScript entry file - your code begins here
-// Do not delete or rename this file ********
-
-// An example of how you tell webpack to use a CSS file
-import './css/styles.css';
-
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
+import './css/styles.scss';
 import './images/turing-logo.png'
 
-// An example of how you tell webpack to use a JS file
+import domUpdates from './domUpdates';
 
-//import userData from './data/users';
 import {
   fetchUserData,
   fetchSleepData,
   fetchActivityData,
-  fetchHydrationData
+  fetchHydrationData,
+  postNewSleepEvent,
+  postNewActivityEvent,
+  postNewHydrationEvent
 } from './apiCalls';
 
-//we'll need to import our apiCalls.js functions here (?) and get rid of userData import
 import UserRepository from './UserRepository';
 import User from './User';
 import SleepRepository from './SleepRepository';
 import HydrationRepository from './HydrationRepository';
 import Hydration from './Hydration';
-
-// querySelectors
-let welcomeUser = document.querySelector('#welcomeUser');
-let todaysDate = document.querySelector('#navDate');
-let userName = document.querySelector('#userName');
-let addressInfo = document.querySelector('#addressInfo');
-let userEmail = document.querySelector('#userEmail');
-let userStrideLength = document.querySelector('#userStrideLength');
-let userStepGoal = document.querySelector('#userStepGoal');
-let userFriends = document.querySelector('#userFriends');
-let stepGoalComparison = document.querySelector('#stepGoalComparison');
-let sleepLatestDay = document.querySelector('#userHoursSleptLatestDay');
-let sleepQualityLatestDay = document.querySelector('#userSleepQualityLatestDay');
-let sleepLatestWeek = document.querySelector('#userHoursSleptLatestWeek');
-let sleepQualityLatestWeek = document.querySelector('#userSleepQualityLatestWeek');
-let userAllTimeAvgHoursSlept = document.querySelector('#userAllTimeAvgHoursSlept');
-let userAllTimeAvgSleepQuality = document.querySelector('#userAllTimeAvgSleepQuality');
-let hydrationToday = document.querySelector('#hydrationToday');
-let hydrationLatestWeek = document.querySelector('#hydrationLatestWeek');
-//sleep toggle/dropdown
-let sleepDateToggle = document.querySelector('#sleepDateToggle');
-let sleepDropdown = document.querySelector('#sleepDropdown');
-let sleepDropdownToday = document.querySelector('#sleepDropdownToday');
-let sleepDropdownThisWeek = document.querySelector('#sleepDropdownThisWeek');
-let sleepDropdownAllTime = document.querySelector('#sleepDropdownAllTime');
-let sleepCardThisWeek = document.querySelector('#sleepCardThisWeek');
-let sleepCardAllTime = document.querySelector('#sleepCardAllTime');
-let sleepCardToday = document.querySelector('#sleepCardToday');
-//hydration toggle/dropdown
-let hydrationDropdown = document.querySelector('#hydrationDropdown');
-let hydrationDateToggle = document.querySelector('#hydrationDateToggle');
-let hydrationDropdownToday = document.querySelector('#hydrationDropdownToday');
-let hydrationDropdownThisWeek = document.querySelector('#hydrationDropdownThisWeek');
-let hydrationCardThisWeek = document.querySelector('#hydrationCardThisWeek');
+import Activity from './Activity';
+import ActivityRepository from './ActivityRepository';
 
 let hydrationRepository;
 let userHydrationData;
 let userRepository;
 let user;
 let sleepRepository;
+let activityRepository;
+let userActivities;
 
 let renderRandomIndex = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -72,17 +37,41 @@ let userId = renderRandomIndex(1, 50);
 
 const fetchAll = () => {
   const userDataPromise = fetchUserData();
-  const sleepDataPromise = fetchSleepData()
+  const sleepDataPromise = fetchSleepData();
   const hydrationDataPromise = fetchHydrationData();
-  Promise.all([userDataPromise, sleepDataPromise, hydrationDataPromise])
+  const activityDataPromise = fetchActivityData();
+  Promise.all([userDataPromise, sleepDataPromise, hydrationDataPromise, activityDataPromise])
     .then(data => {
       parseAllData(data[0]);
       parseSleepData(data[1]);
       parseHydrationData(data[2]);
-      displayUserInfo();
-      displayUserSleepInfo();
-      displayUserHydrationInfo();
+      parseActivityData(data[3]);
+      domUpdates.displayUserInfo(user, sleepRepository, userId, userRepository);
+      domUpdates.displayUserSleepInfo(sleepRepository, userId);
+      domUpdates.displayUserHydrationInfo(hydrationRepository, userHydrationData);
+      domUpdates.displayUserActivityInfo(activityRepository, userActivities);
     })
+    .catch(error => showGetErrorMsg(error));
+}
+
+const showGetErrorMsg = (error) => {
+  const errorDisplay = document.querySelector('#welcomeUser');
+  errorDisplay.innerText = `Please check your network connection, ${error}`;
+}
+
+const showPostErrorMsg = (formType) => {
+  const activityInputForm = document.querySelector('#activityInputForm');
+  const hydrationInputForm = document.querySelector('#hydrationInputForm');
+  const sleepInputForm = document.querySelector('#sleepInputForm');
+
+  if (formType === "activity") {
+    activityInputForm.innerHTML = `<p>Please check your network connection by refreshing and trying again</p>`;
+  } else if (formType === "hydration") {
+    hydrationInputForm.innerHTML = `<p>Please check your network connection by refreshing and trying again</p>`;
+  } else if (formType === "sleep") {
+    sleepInputForm.innerHTML = `<p>Please check your network connection by refreshing and trying again</p>`;
+  }
+
 }
 
 const parseAllData = (data) => {
@@ -99,216 +88,104 @@ const parseHydrationData = (hydrationData) => {
   userHydrationData = new Hydration(hydrationRepository.renderUserData(userId));
 }
 
-const displayUserWelcomeMsg = () => {
-  welcomeUser.innerText = `Welcome, ${user.renderUserFirstName()}!`;
+const parseActivityData = (activityData) => {
+  activityRepository = new ActivityRepository(activityData.activityData);
+  userActivities = new Activity(activityRepository.getUserActivity(userId), user.strideLength, user.dailyStepGoal);
 }
 
-const displayTodaysDate = () => {
-  todaysDate.innerText = `${renderLastSleepEventDate().toDateString()}`;
+const addSleepData = () => {
+  const sleepDate = sleepDateInput.value.split('-').join('/');
+  const newSleepEvent = {
+    "userID": userId,
+    "date": sleepDate,
+    "hoursSlept": Number(hoursSleptInput.value),
+    "sleepQuality":Number(sleepQualityInput.value)
+  }
+  return postNewSleepEvent(newSleepEvent)
+    .then(data => console.log('response from sleep POST', data))
+    .catch(error => showPostErrorMsg("sleep"))
 }
 
-const displayUserName = () => {
-  userName.innerText = `${user.name}`;
+const addActivityData = () => {
+  const activityDate = activityDateInput.value.split('-').join('/');
+  const newActivityEvent = {
+    "userID": userId,
+    "date": activityDate,
+    "numSteps": Number(stepsInput.value),
+    "minutesActive": Number(minutesActiveInput.value),
+    "flightsOfStairs": Number(stairsInput.value)
+  }
+  return postNewActivityEvent(newActivityEvent)
+    .then(data => {
+      console.log('response from activity POST', data)
+    })
+    .catch(error => showPostErrorMsg("activity"))
 }
 
-const displayUserAddress = () => {
-  addressInfo.innerText = `${user.address}`;
-}
-const displayUserEmail = () => {
-  userEmail.innerText = `${user.email}`;
-}
-
-const displayUserStrideLength = () => {
-  userStrideLength.innerText = `${user.strideLength}`;
-}
-
-const displayUserStepGoal = () => {
-  userStepGoal.innerText = `${user.dailyStepGoal}`;
-}
-
-const displayUserFriends = () => {
-  const friends = userRepository.getUsersByIds(user.friends);
-  const friendNames = friends.map((friend) => {
-    return friend.name;
-  });
-  userFriends.innerText = `${friendNames.join(', ')}`;
+const addHydrationData = () => {
+  const hydrationDate = hydrationDateInput.value.split('-').join('/');
+  const newHydrationEvent = {
+    "userID": userId,
+    "date": hydrationDate,
+    "numOunces": Number(ouncesInput.value)
+  }
+  return postNewHydrationEvent(newHydrationEvent)
+    .then(data => {
+      console.log('response from hydration POST', data)
+    })
+    .catch(error => showPostErrorMsg("hydration"))
 }
 
-const displayStepGoalComparison = () => {
-  stepGoalComparison.innerText = `Your step goal: ${user.dailyStepGoal} compared to the average user step goal: ${userRepository.calculateAvgUserStepGoal()}.`;
-}
+const sleepSubmitButton = document.querySelector('#submitSleepData');
+const sleepDateInput = document.querySelector('#addSleepDate');
+const hoursSleptInput = document.querySelector('#addHoursSlept');
+const sleepQualityInput = document.querySelector('#addSleepQuality');
+const activitySubmitButton = document.querySelector('#submitActivityData');
+const activityDateInput = document.querySelector('#addActivityDate');
+const stepsInput = document.querySelector('#addDataSteps');
+const stairsInput = document.querySelector('#addDataStairs');
+const minutesActiveInput = document.querySelector('#addDataMinutes');
+const hydrationSubmitButton = document.querySelector('#submitHydrationData');
+const hydrationDateInput = document.querySelector('#addHydrationDate');
+const ouncesInput = document.querySelector('#addOzDrank');
 
-//DOM display TEST functions => need to be carefully removed during refactor phase
-const displayUserHoursSleptLatestDay = () => {
-  sleepLatestDay.innerText = `Hours slept today: ${renderUserHoursSlept()}`;
-}
-
-const displayUserSleepQualityLatestDay = () => {
-  sleepQualityLatestDay.innerText = `Sleep quality today: ${renderUserSleepQuality()}`;
-}
-
-const displayUserHoursSleptLatestWeek = () => {
-  sleepLatestWeek.innerText = `Hours slept this week: ${renderHoursSleptLatestWeek()}`;
-}
-
-const displayUserSleepQualityLatestWeek = () => {
-  sleepQualityLatestWeek.innerText = `Sleep quality this week: ${renderSleepQualityLatestWeek()}`;
-}
-
-const displayAllTimeAvgHoursSlept = () => {
-  userAllTimeAvgHoursSlept.innerText = `Average hours slept (all-time): ${renderAllTimeAverageHoursSlept()}`;
-}
-
-const displayAllTimeAvgSleepQuality = () => {
-  userAllTimeAvgSleepQuality.innerText = `Average sleep quality (all-time): ${renderAllTimeAverageSleepQuality()}`;
-}
-
-const displayHydrationToday = () => {
-  hydrationToday.innerText = `${renderUserHydrationToday()} ounces.`;
-}
-
-const displayHydrationLatestWeek = () => {
-  hydrationLatestWeek.innerText = `${renderUserHydrationLatestWeek()} ounces.`;
-}
-
-// functions that will display elements on the DOM once all information has been fetched & parsed
-const displayUserInfo = () => {
-  displayUserWelcomeMsg();
-  displayTodaysDate();
-  displayUserName();
-  displayUserAddress();
-  displayUserEmail();
-  displayUserStrideLength();
-  displayUserStepGoal();
-  displayUserFriends();
-  displayStepGoalComparison();
-}
-
-// => these will need to be carefully removed during refactor phase and replaced with the chart functions where applicable
-const displayUserSleepInfo = () => {
-  displayUserHoursSleptLatestDay();
-  displayUserSleepQualityLatestDay();
-  displayUserHoursSleptLatestWeek();
-  displayUserSleepQualityLatestWeek();
-  displayAllTimeAvgHoursSlept();
-  displayAllTimeAvgSleepQuality();
-}
-
-const displayUserHydrationInfo = () => {
-  displayHydrationToday();
-  displayHydrationLatestWeek();
-}
-
-// => these will need to be carefully removed during refactor phase since they are being replaced with the chartXInfo functions
-const renderUserHydrationLatestWeek = () => {
-  const endDate = userHydrationData.hydrationData[userHydrationData.hydrationData.length - 1].date;
-  const startDate = userHydrationData.hydrationData[userHydrationData.hydrationData.length - 7].date;
-  return userHydrationData.renderOuncesConsumedInDayRange(startDate, endDate);
-}
-
-const renderUserHydrationToday = () => {
-  const lastUserHydrationDate = userHydrationData.hydrationData[userHydrationData.hydrationData.length - 1].date;
-  return userHydrationData.renderOuncesConsumedOnDate(lastUserHydrationDate);
-}
-
-const renderUserHoursSlept = () => {
-  const userSleepEvents = sleepRepository.renderUserSleepData(userId);
-  const lastUserSleepEvent = userSleepEvents[userSleepEvents.length - 1].date;
-  return sleepRepository.renderHoursSleptOnDate(userId, lastUserSleepEvent);
-}
-
-const renderLastSleepEventDate = () => {
-  let userSleepEvents = sleepRepository.renderUserSleepData(userId);
-  const lastUserSleepEventDate = new Date (userSleepEvents[userSleepEvents.length - 1].date);
-  return lastUserSleepEventDate;
-}
-
-const renderUserSleepQuality = () => {
-  const userSleepEvents = sleepRepository.renderUserSleepData(userId);
-  const lastUserSleepEvent = userSleepEvents[userSleepEvents.length - 1].date;
-  return sleepRepository.renderSleepQualityOnDate(userId, lastUserSleepEvent);
-}
-
-const renderHoursSleptLatestWeek = () => {
-  const userSleepEvents = sleepRepository.renderUserSleepData(userId);
-  const endDate = userSleepEvents[userSleepEvents.length - 1].date;
-  const startDate = userSleepEvents[userSleepEvents.length - 7].date;
-  return sleepRepository.renderHoursSleptByStartAndEndDate(userId, startDate, endDate);
-}
-
-const renderSleepQualityLatestWeek = () => {
-  const userSleepEvents = sleepRepository.renderUserSleepData(userId);
-  const endDate = userSleepEvents[userSleepEvents.length - 1].date;
-  const startDate = userSleepEvents[userSleepEvents.length - 7].date;
-  return sleepRepository.renderSleepQualityByStartAndEndDate(userId, startDate, endDate);
-}
-
-const renderAllTimeAverageHoursSlept = () => {
-  return sleepRepository.calcAvgHoursSlept(userId);
-}
-
-const renderAllTimeAverageSleepQuality = () => {
-  return sleepRepository.calcAvgSleepQuality(userId);
-}
-
-// eventListeners
 window.addEventListener('load', fetchAll);
-window.addEventListener('click', hideDropdown);
-hydrationDateToggle.addEventListener('click', showDropdown);
-hydrationDropdown.addEventListener('click', renderHydrationCard);
-sleepDateToggle.addEventListener('click', showDropdown);
-sleepDropdown.addEventListener('click', renderSleepCard);
 
-//event handlers
-function hideDropdown(event) {
-  if(!(event.target === hydrationDateToggle) && !(event.target === sleepDateToggle)) {
-    let dropdowns = document.querySelectorAll('.dropdown-content');
-    dropdowns.forEach((dropdown) => {
-      if(!dropdown.classList.contains('hidden')) {
-        dropdown.classList.add('hidden');
-      }
-    });
-  }
-}
-function showDropdown(event) {
-  if(event.target === hydrationDateToggle) {
-    hydrationDropdown.classList.toggle('hidden');
-  }
-  if(event.target === sleepDateToggle) {
-    sleepDropdown.classList.toggle('hidden');
-  }
-}
+sleepSubmitButton.addEventListener('click', (event) => {
+  event.preventDefault();
+  addSleepData()
+    .then(() => {
+      return fetchSleepData();
+    })
+    .then(data => {
+      parseSleepData(data);
+      domUpdates.displayUserSleepInfo(sleepRepository, userId);
+      domUpdates.hideSleepDataForm();
+    })
+});
 
-function renderSleepCard(event) {
-  if(event.target === sleepDropdownToday) {
-    sleepCardThisWeek.classList.add('hidden');
-    sleepCardAllTime.classList.add('hidden');
-    sleepCardToday.classList.remove('hidden');
-    sleepDateToggle.innerText = "Today";
-  }
-  if(event.target === sleepDropdownThisWeek) {
-    sleepCardToday.classList.add('hidden');
-    sleepCardAllTime.classList.add('hidden');
-    sleepCardThisWeek.classList.remove('hidden');
-    sleepDateToggle.innerText = "This Week";
-  }
-  if(event.target === sleepDropdownAllTime) {
-    sleepCardToday.classList.add('hidden');
-    sleepCardThisWeek.classList.add('hidden');
-    sleepCardAllTime.classList.remove('hidden');
-    sleepDateToggle.innerText = "All Time";
-  }
-}
+activitySubmitButton.addEventListener('click', (event) => {
+  event.preventDefault();
+  addActivityData()
+    .then(() => {
+      return fetchActivityData();
+    })
+    .then(data => {
+      parseActivityData(data);
+      domUpdates.displayUserActivityInfo(activityRepository, userActivities);
+      domUpdates.hideActivityDataForm();
+    })
+});
 
-function renderHydrationCard(event) {
-  if(event.target === hydrationDropdownToday) {
-    hydrationCardThisWeek.classList.add('hidden');
-    hydrationCardToday.classList.remove('hidden');
-    hydrationDateToggle.innerText = "Today";
-  }
-  if(event.target === hydrationDropdownThisWeek) {
-    hydrationCardToday.classList.add('hidden');
-    hydrationCardThisWeek.classList.remove('hidden');
-    hydrationDateToggle.innerText = "This Week";
-  }
-}
+hydrationSubmitButton.addEventListener('click', (event) => {
+  event.preventDefault();
+  addHydrationData()
+    .then(() => {
+      return fetchHydrationData();
+    })
+    .then(data => {
+      parseHydrationData(data);
+      domUpdates.displayUserHydrationInfo(hydrationRepository, userHydrationData);
+      domUpdates.hideHydrationDataForm();
+    })
+})
