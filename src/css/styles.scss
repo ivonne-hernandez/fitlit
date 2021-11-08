@@ -25,6 +25,9 @@ nav {
   padding-right: 60px;
   background-color: #f5f6fa;
   height: 100px;
+    p {
+      margin: 0;
+    }
 }
 
 button {
@@ -105,14 +108,12 @@ h4 {
 }
 
 .grid-container {
-  @include mixins.flexbox(row, center, center);
-  flex-wrap: wrap;
+  @include mixins.flexbox(column, center, center);
   grid-gap: 30px;
 }
 
 .activity {
   width: 48%;
-  // background-color: #8C271E;
   background-color: #f3621d;
   padding-bottom: 40px;
   overflow: scroll;
