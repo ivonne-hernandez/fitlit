@@ -55,13 +55,13 @@ let domUpdates = {
     const friends = userRepository.getUsersByIds(user.friends);
     const friendNames = friends.map((friend) => {
       return friend.name;
-    });
+    }); 
     userFriends.innerText = `${friendNames.join(', ')}`;
   },
 
   displayStepGoalComparison(userRepository, user) {
     const stepGoalComparison = document.querySelector('#stepGoalComparison');
-    stepGoalComparison.innerHTML = `<b>Your step goal:</b> ${user.dailyStepGoal.toLocaleString()} compared to the average user step goal: ${userRepository.calculateAvgUserStepGoal().toLocaleString()}.`;
+    stepGoalComparison.innerHTML = `<b>${userRepository.calculateAvgUserStepGoal().toLocaleString()} steps</b><br>Average user goal`;
   },
 
   renderLastSleepEventDate(sleepRepository, userId) {
@@ -231,7 +231,7 @@ let domUpdates = {
   },
 
   displayUserHydrationInfo(hydrationRepository, userHydrationData) {
-    this.displayHydrationToday(userHydrationData);
+    this.chartHydrationToday(userHydrationData);
     this.chartHydrationLatestWeek(userHydrationData);
     this.validateHydrationInput();
   },
@@ -239,11 +239,6 @@ let domUpdates = {
   renderUserHydrationToday(userHydrationData) {
     const lastUserHydrationDate = userHydrationData.hydrationData[userHydrationData.hydrationData.length - 1].date;
     return userHydrationData.renderOuncesConsumedOnDate(lastUserHydrationDate);
-  },
-
-  displayHydrationToday(userHydrationData) {
-    const hydrationToday = document.querySelector('#hydrationToday');
-    hydrationToday.innerText = `${this.renderUserHydrationToday(userHydrationData)} ounces.`;
   },
 
   latestWeekOfHydrationEvents(userHydrationData) {
@@ -258,6 +253,43 @@ let domUpdates = {
   },
 
   chartHydrationWeek: null,
+  hydrationTodayChart: null,
+
+  chartHydrationToday(userHydrationData) {
+    if (this.hydrationTodayChart) {
+      this.hydrationTodayChart.destroy();
+    }
+    const chart = document.querySelector('#chartHydrationToday').getContext('2d');
+    const hydrationEventToday = this.renderUserHydrationToday(userHydrationData);
+    const latestDayDate = userHydrationData.hydrationData[userHydrationData.hydrationData.length - 1].date;
+    this.sleepTodayChart = new Chart(chart,
+      {
+        type: 'bar',
+        data: {
+          labels: [latestDayDate],
+          datasets: [{
+            label: 'Fluid Ounces',
+            data: [hydrationEventToday],
+            backgroundColor: 'blue'
+          }]
+        },
+        options: {
+          responsive: true,
+          scales: {
+            x: {
+              ticks: {
+                min: 0
+              }
+            },
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+      }
+    );
+  },
+
 
   chartHydrationLatestWeek(userHydrationData) {
     if (this.chartHydrationWeek) {
@@ -310,13 +342,13 @@ let domUpdates = {
 
   displayNumStepsToday(userActivities) {
     const numberOfStepsToday = document.querySelector('#numberOfStepsToday');
-    numberOfStepsToday.innerHTML = `<b>Number of steps today:</b> ${userActivities.userActivities[userActivities.userActivities.length - 1].numSteps.toLocaleString()}`;
+    numberOfStepsToday.innerHTML = `<b>${userActivities.userActivities[userActivities.userActivities.length - 1].numSteps.toLocaleString()}</b>/${userActivities.dailyStepGoal} steps`;
   },
 
   displayNumStepsForAvgUser(activityRepository) {
     const stepsTodayForAvgUser = document.querySelector('#numberOfStepsTodayAvgUser');
     const todaysDate = activityRepository.activityDataSet[activityRepository.activityDataSet.length - 1].date;
-    stepsTodayForAvgUser.innerHTML = `<b>Steps for average user:</b> ${activityRepository.getAverageActivityOnDate(todaysDate, "numSteps").toLocaleString()}`;
+    stepsTodayForAvgUser.innerHTML = `<b>${activityRepository.getAverageActivityOnDate(todaysDate, "numSteps").toLocaleString()} steps</b><br>Average user`;
   },
 
   displayNumMinsActiveToday(userActivities) {
