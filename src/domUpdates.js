@@ -22,7 +22,6 @@ let domUpdates = {
   displayTodaysDate() {
     const todaysDate = document.querySelector('#navDate');
     const dateDisplay = new Intl.DateTimeFormat('en-GB', { dateStyle: 'full'}).format(new Date());
-
     todaysDate.innerText = `${dateDisplay}`;
   },
 
