@@ -54,13 +54,13 @@ let domUpdates = {
     const friends = userRepository.getUsersByIds(user.friends);
     const friendNames = friends.map((friend) => {
       return friend.name;
-    });
+    }); 
     userFriends.innerText = `${friendNames.join(', ')}`;
   },
 
   displayStepGoalComparison(userRepository, user) {
     const stepGoalComparison = document.querySelector('#stepGoalComparison');
-    stepGoalComparison.innerHTML = `<b>Your step goal:</b> ${user.dailyStepGoal.toLocaleString()} compared to the average user step goal: ${userRepository.calculateAvgUserStepGoal().toLocaleString()}.`;
+    stepGoalComparison.innerHTML = `<b>${userRepository.calculateAvgUserStepGoal().toLocaleString()} steps</b><br>Average user goal`;
   },
 
   renderLastSleepEventDate(sleepRepository, userId) {
@@ -310,13 +310,13 @@ let domUpdates = {
 
   displayNumStepsToday(userActivities) {
     const numberOfStepsToday = document.querySelector('#numberOfStepsToday');
-    numberOfStepsToday.innerHTML = `<b>Number of steps today:</b> ${userActivities.userActivities[userActivities.userActivities.length - 1].numSteps.toLocaleString()}`;
+    numberOfStepsToday.innerHTML = `<b>${userActivities.userActivities[userActivities.userActivities.length - 1].numSteps.toLocaleString()}</b>/${userActivities.dailyStepGoal} steps`;
   },
 
   displayNumStepsForAvgUser(activityRepository) {
     const stepsTodayForAvgUser = document.querySelector('#numberOfStepsTodayAvgUser');
     const todaysDate = activityRepository.activityDataSet[activityRepository.activityDataSet.length - 1].date;
-    stepsTodayForAvgUser.innerHTML = `<b>Steps for average user:</b> ${activityRepository.getAverageActivityOnDate(todaysDate, "numSteps").toLocaleString()}`;
+    stepsTodayForAvgUser.innerHTML = `<b>${activityRepository.getAverageActivityOnDate(todaysDate, "numSteps").toLocaleString()} steps</b><br>Average user`;
   },
 
   displayNumMinsActiveToday(userActivities) {
