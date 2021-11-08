@@ -41,3 +41,14 @@ export let postNewActivityEvent = (newActivityEvent) => {
   })
   .then(response => response.json())
 }
+
+export let postNewHydrationEvent = (newHydrationEvent) => {
+  return fetch('http://localhost:3001/api/v1/hydration', {
+    method: 'POST',
+    body: JSON.stringify(newHydrationEvent),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+    .then(response => response.json())
+}

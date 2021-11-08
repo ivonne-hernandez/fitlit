@@ -16,7 +16,8 @@ import {
   fetchActivityData,
   fetchHydrationData,
   postNewSleepEvent,
-  postNewActivityEvent
+  postNewActivityEvent,
+  postNewHydrationEvent
 } from './apiCalls';
 
 import UserRepository from './UserRepository';
@@ -106,6 +107,19 @@ const addActivityData = () => {
     });
 }
 
+const addHydrationData = () => {
+  const hydrationDate = hydrationDateInput.value.split('-').join('/');
+  const newHydrationEvent = {
+    "userID": userId,
+    "date": hydrationDate,
+    "numOunces": Number(ouncesInput.value)
+  }
+  return postNewHydrationEvent(newHydrationEvent)
+    .then(data => {
+      console.log('response from hydration POST', data);
+    })
+}
+
 const sleepSubmitButton = document.querySelector('#submitSleepData');
 const sleepDateInput = document.querySelector('#addSleepDate');
 const hoursSleptInput = document.querySelector('#addHoursSlept');
@@ -144,3 +158,20 @@ activitySubmitButton.addEventListener('click', (event) => {
       domUpdates.hideActivityDataForm();
     })
 });
+
+const hydrationSubmitButton = document.querySelector('#submitHydrationData');
+const hydrationDateInput = document.querySelector('#addHydrationDate');
+const ouncesInput = document.querySelector('#addOzDrank');
+
+hydrationSubmitButton.addEventListener('click', (event) => {
+  event.preventDefault();
+  addHydrationData()
+    .then(() => {
+      return fetchHydrationData();
+    })
+    .then(data => {
+      parseHydrationData(data);
+      domUpdates.displayUserHydrationInfo(hydrationRepository, userHydrationData);
+      domUpdates.hideHydrationDataForm();
+    })
+})

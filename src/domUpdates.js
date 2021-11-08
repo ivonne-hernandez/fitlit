@@ -231,7 +231,9 @@ let domUpdates = {
   },
 
   renderUserHydrationToday(userHydrationData) {
+    console.log('userHydrationData.hydrationData', userHydrationData.hydrationData)
     const lastUserHydrationDate = userHydrationData.hydrationData[userHydrationData.hydrationData.length - 1].date;
+    console.log('lastUserHydrationDate', lastUserHydrationDate)
     return userHydrationData.renderOuncesConsumedOnDate(lastUserHydrationDate);
   },
 
@@ -251,10 +253,15 @@ let domUpdates = {
     return latestWeekOfHydrationEvents;
   },
 
+  chartHydrationWeek: null,
+
   chartHydrationLatestWeek(userHydrationData) {
+    if (this.chartHydrationWeek) {
+      this.chartHydrationWeek.destroy();
+    }
     const chartHydrationForLatestWeek = document.querySelector('#chartHydrationForLatestWeek').getContext('2d');
     const latestWeekHydrationEvents = this.latestWeekOfHydrationEvents(userHydrationData);
-    new Chart(chartHydrationForLatestWeek,
+    this.chartHydrationWeek = new Chart(chartHydrationForLatestWeek,
       {
         type: 'bar',
         data: {
@@ -531,6 +538,11 @@ let domUpdates = {
     } else {
       return false;
     }
+  },
+
+  hideHydrationDataForm() {
+    const hydrationFormContainer = document.querySelector('#hydrationFormContainer');
+    hydrationFormContainer.classList.add('hidden');
   }
 
 
