@@ -1,13 +1,6 @@
-// This is the JavaScript entry file - your code begins here
-// Do not delete or rename this file ********
-
-// An example of how you tell webpack to use a CSS file
 import './css/styles.scss';
-
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/turing-logo.png'
 
-// An example of how you tell webpack to use a JS file
 import domUpdates from './domUpdates';
 
 import {
@@ -66,7 +59,7 @@ const showGetErrorMsg = (error) => {
   errorDisplay.innerText = `Please check your network connection, ${error}`;
 }
 
-const showPostErrorMsg = (error, formType) => {
+const showPostErrorMsg = (formType) => {
   const activityInputForm = document.querySelector('#activityInputForm');
   const hydrationInputForm = document.querySelector('#hydrationInputForm');
   const sleepInputForm = document.querySelector('#sleepInputForm');
@@ -110,7 +103,7 @@ const addSleepData = () => {
   }
   return postNewSleepEvent(newSleepEvent)
     .then(data => console.log('response from sleep POST', data))
-    .catch(error => showPostErrorMsg(error, "sleep"))
+    .catch(error => showPostErrorMsg("sleep"))
 }
 
 const addActivityData = () => {
@@ -126,7 +119,7 @@ const addActivityData = () => {
     .then(data => {
       console.log('response from activity POST', data)
     })
-    .catch(error => showPostErrorMsg(error, "activity"))
+    .catch(error => showPostErrorMsg("activity"))
 }
 
 const addHydrationData = () => {
@@ -140,13 +133,21 @@ const addHydrationData = () => {
     .then(data => {
       console.log('response from hydration POST', data)
     })
-    .catch(error => showPostErrorMsg(error, "hydration"))
+    .catch(error => showPostErrorMsg("hydration"))
 }
 
 const sleepSubmitButton = document.querySelector('#submitSleepData');
 const sleepDateInput = document.querySelector('#addSleepDate');
 const hoursSleptInput = document.querySelector('#addHoursSlept');
 const sleepQualityInput = document.querySelector('#addSleepQuality');
+const activitySubmitButton = document.querySelector('#submitActivityData');
+const activityDateInput = document.querySelector('#addActivityDate');
+const stepsInput = document.querySelector('#addDataSteps');
+const stairsInput = document.querySelector('#addDataStairs');
+const minutesActiveInput = document.querySelector('#addDataMinutes');
+const hydrationSubmitButton = document.querySelector('#submitHydrationData');
+const hydrationDateInput = document.querySelector('#addHydrationDate');
+const ouncesInput = document.querySelector('#addOzDrank');
 
 window.addEventListener('load', fetchAll);
 
@@ -163,12 +164,6 @@ sleepSubmitButton.addEventListener('click', (event) => {
     })
 });
 
-const activitySubmitButton = document.querySelector('#submitActivityData');
-const activityDateInput = document.querySelector('#addActivityDate');
-const stepsInput = document.querySelector('#addDataSteps');
-const stairsInput = document.querySelector('#addDataStairs');
-const minutesActiveInput = document.querySelector('#addDataMinutes');
-
 activitySubmitButton.addEventListener('click', (event) => {
   event.preventDefault();
   addActivityData()
@@ -181,10 +176,6 @@ activitySubmitButton.addEventListener('click', (event) => {
       domUpdates.hideActivityDataForm();
     })
 });
-
-const hydrationSubmitButton = document.querySelector('#submitHydrationData');
-const hydrationDateInput = document.querySelector('#addHydrationDate');
-const ouncesInput = document.querySelector('#addOzDrank');
 
 hydrationSubmitButton.addEventListener('click', (event) => {
   event.preventDefault();
