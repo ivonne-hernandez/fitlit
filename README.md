@@ -48,7 +48,7 @@ Project Manager: Nik Seif
 
   ![empty_form](https://user-images.githubusercontent.com/83175748/140662367-4c84c20f-98bc-42a6-905f-1bf97cedc7c5.png)
 
-  A user will not be able to submit a form that is not completely filled out. The `submit` button will remained grayed out until each field within the form has been filled out. Invalid characters cannot be added to any fields so only valid data is added to the user's saved data.
+  A user will not be able to submit a form that is not completely filled out. The `submit` button will remained grayed out until each field within the form has been filled out. Invalid characters cannot be added to any fields so only valid data is added to the user's saved data..
 
   ![filled_in_form](https://user-images.githubusercontent.com/83175748/140662372-0238070a-452e-485d-b655-9ff7e8cc9e65.png)
 
