@@ -83,6 +83,10 @@ let domUpdates = {
     document.querySelector('#activityFormContainer').classList.add('hidden');
   },
 
+  hideHyrdationDataForm() {
+    document.querySelector('#hydrationFormContainer').classList.add('hidden');
+  },
+
   latestWeekOfSleepEvents(sleepRepository, userId) {
     const userSleepEvents = sleepRepository.renderUserSleepData(userId);
     const endDate = new Date(userSleepEvents[userSleepEvents.length - 1].date);
@@ -387,14 +391,14 @@ let domUpdates = {
   },
 
   hideDataForm(event) {
-  if (!activityFormContainer.contains(event.target) && !addActivityDataButton.contains(event.target) && !hydrationFormContainer.contains(event.target) && !addHydrationDataButton.contains(event.target) && !sleepFormContainer.contains(event.target) && !addSleepDataButton.contains(event.target)) {
-      let addDataForms = document.querySelectorAll('.add-data-form');
-      addDataForms.forEach((form) => {
-        if(!form.classList.contains('hidden')) {
-          form.classList.add('hidden');
-        }
-      });
-    }
+    if (!activityFormContainer.contains(event.target) && !addActivityDataButton.contains(event.target) && !hydrationFormContainer.contains(event.target) && !addHydrationDataButton.contains(event.target) && !sleepFormContainer.contains(event.target) && !addSleepDataButton.contains(event.target)) {
+        let addDataForms = document.querySelectorAll('.add-data-form');
+        addDataForms.forEach((form) => {
+          if(!form.classList.contains('hidden')) {
+            form.classList.add('hidden');
+          }
+        });
+      }
   },
 
   hideDropdown(event) {
@@ -588,6 +592,9 @@ const addSleepDataButton = document.querySelector('#addSleepData');
 const activityFormContainer = document.querySelector('#activityFormContainer');
 const hydrationFormContainer = document.querySelector('#hydrationFormContainer');
 const sleepFormContainer = document.querySelector('#sleepFormContainer');
+const exitActivityDataForm = document.querySelector('#exitActivityDataForm');
+const exitHydrationDataForm = document.querySelector('#exitHydrationDataForm');
+const exitSleepDataForm = document.querySelector('#exitSleepDataForm');
 
 addActivityDataButton.addEventListener("click", domUpdates.showAddDataForm);
 addHydrationDataButton.addEventListener("click", domUpdates.showAddDataForm);
@@ -603,6 +610,10 @@ sleepDateToggle.addEventListener('click', domUpdates.showDropdown);
 sleepDropdown.addEventListener('click', domUpdates.renderSleepCard);
 activityDateToggle.addEventListener('click', domUpdates.showDropdown);
 activityDropdown.addEventListener('click', domUpdates.renderActivityCard);
+exitActivityDataForm.addEventListener('click', domUpdates.hideActivityDataForm);
+exitHydrationDataForm.addEventListener('click', domUpdates.hideHydrationDataForm);
+exitSleepDataForm.addEventListener('click', domUpdates.hideSleepDataForm);
+
 
 activityInputForm.addEventListener("keyup", function() {
   domUpdates.validateActivityInput();
