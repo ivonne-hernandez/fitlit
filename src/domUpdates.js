@@ -386,6 +386,15 @@ let domUpdates = {
     );
   },
 
+  hideDataForm() {
+    let addDataForms = document.querySelectorAll('.add-data-form');
+    addDataForms.forEach((form) => {
+      if(!form.classList.contains('hidden')) {
+        form.classList.add('hidden');
+      }
+    });
+  },
+
   hideDropdown(event) {
     const hydrationDateToggle = document.querySelector('#hydrationDateToggle');
     const sleepDateToggle = document.querySelector('#sleepDateToggle');
@@ -398,6 +407,21 @@ let domUpdates = {
           dropdown.classList.add('hidden');
         }
       });
+    }
+  },
+
+  showAddDataForm(event) {
+    const activityFormContainer = document.querySelector('#activityFormContainer');
+    const hydrationFormContainer = document.querySelector('#hydrationFormContainer');
+    const sleepFormContainer = document.querySelector('#sleepFormContainer');
+    if(event.target === addActivityDataButton) {
+        activityFormContainer.classList.toggle('hidden');
+    }
+    if(event.target === addHydrationDataButton) {
+      hydrationFormContainer.classList.toggle('hidden');
+    }
+    if(event.target === addSleepDataButton) {
+      sleepFormContainer.classList.toggle('hidden');  
     }
   },
 
@@ -558,6 +582,14 @@ const activityDropdown = document.querySelector('#activityDropdown');
 const activityInputForm = document.querySelector('#activityInputForm');
 const hydrationInputForm = document.querySelector('#hydrationInputForm');
 const sleepInputForm = document.querySelector('#sleepInputForm');
+
+const addActivityDataButton = document.querySelector('#addActivityData');
+const addHydrationDataButton = document.querySelector('#addHydrationData');
+const addSleepDataButton = document.querySelector('#addSleepData');
+addActivityDataButton.addEventListener("click", domUpdates.showAddDataForm);
+addHydrationDataButton.addEventListener("click", domUpdates.showAddDataForm);
+addSleepDataButton.addEventListener("click", domUpdates.showAddDataForm);
+
 
 window.addEventListener('click', domUpdates.hideDropdown);
 hydrationDateToggle.addEventListener('click', domUpdates.showDropdown);
