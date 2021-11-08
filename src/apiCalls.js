@@ -6,7 +6,10 @@
 // }
 
 export let fetchUserData = () => {
-  return fetch("http://localhost:3001/api/v1/users").then(response => response.json());
+  return fetch("http://localhost:3001/api/v1/users")
+    .then(response => response.json())
+    .catch(err => console.log('something went wrong', err))
+    // showGetErrorMsg(err)
 };
 export let fetchSleepData = () => {
   return fetch("http://localhost:3001/api/v1/sleep").then(response => response.json());
@@ -29,6 +32,7 @@ export let postNewSleepEvent = (newSleepEvent) => {
     }
   })
   .then(response => response.json())
+  .catch(err => showPostErrorMsg(err))
 }
 
 export let postNewActivityEvent = (newActivityEvent) => {
