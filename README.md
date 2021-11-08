@@ -33,26 +33,29 @@ Project Manager: Nik Seif
 ## Illustrations
   On page load a random user's information will be displayed on the dashboard. Each color block contains a different category for specific set of tracked data. In the top right corner of the dashboard, the date for the latest user data is displayed.
 
-  ![updated_dashboard](https://user-images.githubusercontent.com/83175748/140667512-d44dc890-65da-41cb-9c0b-beb8ad983c65.png)
+  <img width="1435" alt="new_dashboard_c_week_view" src="https://user-images.githubusercontent.com/83175748/140831188-c1e65493-d252-445d-9153-5dcf13204d0d.png">
+
+  <img width="1142" alt="navbar_info_date" src="https://user-images.githubusercontent.com/83175748/140830839-0895ed95-973f-4eab-bea6-17d26b4905d3.png">
 
   The left-hand sidebar contains more detailed information about the current user on display. There is space above the user's information for a profile picture to be added.
 
-  ![Screen Shot 2021-11-07 at 2 06 13 PM](https://user-images.githubusercontent.com/83175748/140661900-08dd4890-d079-414c-bc27-304a9e4643fc.png)
+  <img width="292" alt="new_sidebar_profile" src="https://user-images.githubusercontent.com/83175748/140831109-c0620726-606a-4b3b-949b-fceab808d725.png">
 
   When you click the button labeled `Today` a drop down menu will appear, allowing you to choose different date ranges to view a user's data for a `week` or for `all time`.
 
-  ![sleep_dropdown](https://user-images.githubusercontent.com/83175748/138778301-c3324b1a-446d-4a16-ab18-9a342f5913c3.png)
+  <img width="591" alt="hydration_sleep_today_charts" src="https://user-images.githubusercontent.com/83175748/140830969-cb75b770-e300-4608-9880-33c2f2f17c7b.png">
 
-  <img width="596" alt="sleep_hydration_charts" src="https://user-images.githubusercontent.com/83175748/138776187-520c7695-6233-4de1-8d0b-dc6d8101b8f5.png">
+  <img width="591" alt="hydration_sleep_this_week_charts" src="https://user-images.githubusercontent.com/83175748/140830903-a58b9f7e-b23c-4562-ae3c-bc904934a6bb.png">
 
+  <img width="547" alt="activity_today_stats" src="https://user-images.githubusercontent.com/83175748/140831055-d6603a82-1f7d-4f43-851c-9b04492d780e.png">
+
+  <img width="546" alt="activity_this_week_charts" src="https://user-images.githubusercontent.com/83175748/140830774-71b1802b-2f0a-455d-8dbe-ece9c4dec73a.png">
 
   In addition to being able to see existing data for the three separate activities, sleep, hydration, and activity, users can now add new data for each category. By selecting the `Add Data` button a user can fill out the form and hit the `submit` button to add new information to a chosen category.
 
-  ![empty_form](https://user-images.githubusercontent.com/83175748/140662367-4c84c20f-98bc-42a6-905f-1bf97cedc7c5.png)
-
   A user will not be able to submit a form that is not completed. The `submit` button will remained grayed out until each field within the form has been filled out. Invalid characters cannot be added to any fields so only valid data is added to the user's saved data.
 
-  ![filled_in_form](https://user-images.githubusercontent.com/83175748/140662372-0238070a-452e-485d-b655-9ff7e8cc9e65.png)
+  <img width="250" alt="filled_out_form" src="https://user-images.githubusercontent.com/83175748/140832039-b77e977e-3636-4ca0-9d58-6145a33cdbe9.png">
 
 
 
