@@ -94,6 +94,7 @@ let domUpdates = {
       });
     return latestWeekOfSleepEvents;
   },
+
   sleepTodayChart: null,
   sleepLatestWeekChart: null,
   sleepAllTimeChart: null,
@@ -231,9 +232,7 @@ let domUpdates = {
   },
 
   renderUserHydrationToday(userHydrationData) {
-    console.log('userHydrationData.hydrationData', userHydrationData.hydrationData)
     const lastUserHydrationDate = userHydrationData.hydrationData[userHydrationData.hydrationData.length - 1].date;
-    console.log('lastUserHydrationDate', lastUserHydrationDate)
     return userHydrationData.renderOuncesConsumedOnDate(lastUserHydrationDate);
   },
 
@@ -544,9 +543,6 @@ let domUpdates = {
     const hydrationFormContainer = document.querySelector('#hydrationFormContainer');
     hydrationFormContainer.classList.add('hidden');
   }
-
-
-
 }
 
 const hydrationDateToggle = document.querySelector('#hydrationDateToggle');
@@ -570,7 +566,11 @@ activityDropdown.addEventListener('click', domUpdates.renderActivityCard);
 activityInputForm.addEventListener("keyup", function() {
   domUpdates.validateActivityInput();
 });
-hydrationInputForm.addEventListener("keyup", domUpdates.validateHydrationInput);
+
+hydrationInputForm.addEventListener("keyup", function() {
+  domUpdates.validateHydrationInput();
+});
+
 sleepInputForm.addEventListener("keyup", function() {
   domUpdates.validateSleepInput();
 });
