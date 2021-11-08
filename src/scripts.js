@@ -66,6 +66,21 @@ const showGetErrorMsg = (error) => {
   errorDisplay.innerText = `Please check your network connection, ${error}`;
 }
 
+const showPostErrorMsg = (error, formType) => {
+  const activityInputForm = document.querySelector('#activityInputForm');
+  const hydrationInputForm = document.querySelector('#hydrationInputForm');
+  const sleepInputForm = document.querySelector('#sleepInputForm');
+
+  if (formType === "activity") {
+    activityInputForm.innerHTML = `<p>Please check your network connection by refreshing and trying again</p>`;
+  } else if (formType === "hydration") {
+    hydrationInputForm.innerHTML = `<p>Please check your network connection by refreshing and trying again</p>`;
+  } else if (formType === "sleep") {
+    sleepInputForm.innerHTML = `<p>Please check your network connection by refreshing and trying again</p>`;
+  }
+
+}
+
 const parseAllData = (data) => {
   userRepository = new UserRepository(data.userData);
   user = new User(userRepository.renderUserData(userId));
@@ -95,7 +110,7 @@ const addSleepData = () => {
   }
   return postNewSleepEvent(newSleepEvent)
     .then(data => console.log('response from sleep POST', data))
-    .catch(error => showPostErrorMsg(error))
+    .catch(error => showPostErrorMsg(error, "sleep"))
 }
 
 const addActivityData = () => {
@@ -109,8 +124,9 @@ const addActivityData = () => {
   }
   return postNewActivityEvent(newActivityEvent)
     .then(data => {
-      console.log('response from activity POST', data);
-    });
+      console.log('response from activity POST', data)
+    })
+    .catch(error => showPostErrorMsg(error, "activity"))
 }
 
 const addHydrationData = () => {
@@ -122,8 +138,9 @@ const addHydrationData = () => {
   }
   return postNewHydrationEvent(newHydrationEvent)
     .then(data => {
-      console.log('response from hydration POST', data);
+      console.log('response from hydration POST', data)
     })
+    .catch(error => showPostErrorMsg(error, "hydration"))
 }
 
 const sleepSubmitButton = document.querySelector('#submitSleepData');
