@@ -1,6 +1,8 @@
 @use "_mixins.scss" as mixins;
 
 aside {
+  display: flex;
+  flex-direction: column;
   width: 370px;
   overflow: hidden;
     h2 {

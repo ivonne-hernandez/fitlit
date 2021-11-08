@@ -63,9 +63,9 @@
               </div>
             </div>
             <div class="add-data">
-              <span><i class="fas fa-plus"></i>Add data</span>
-              <div id="activityFormContainer" class="add-data-form">
-                <i class="fas fa-times"></i>
+              <span id="addActivityData"><i class="fas fa-plus"></i>Add data</span>
+              <div id="activityFormContainer" class="add-data-form hidden">
+                <i id="exitActivityDataForm" class="fas fa-times"></i>
                 <form action="" id="activityInputForm">
                   <p>Add Activity Data</p>
                   <label for="date">Date</label>
@@ -173,9 +173,9 @@
                 </div>
               </div>
               <div class="add-data">
-                <span><i class="fas fa-plus"></i>Add data</span>
-                <div class="add-data-form small-form" id="hydrationFormContainer">
-                  <i class="fas fa-times"></i>
+                <span id="addHydrationData"><i class="fas fa-plus"></i>Add data</span>
+                <div class="add-data-form small-form hidden" id="hydrationFormContainer">
+                  <i id="exitHydrationDataForm"class="fas fa-times"></i>
                   <form action="" id="hydrationInputForm">
                     <p>Add Hydration Data</p>
                     <label for="date">Date</label>
@@ -214,9 +214,9 @@
                   </div>
                 </div>
                 <div class="add-data">
-                  <span><i class="fas fa-plus"></i>Add data</span>
-                  <div class="add-data-form small-form add-data-form-sleep">
-                    <i class="fas fa-times"></i>
+                  <span id="addSleepData"><i class="fas fa-plus"></i>Add data</span>
+                  <div id="sleepFormContainer" class="add-data-form small-form add-data-form-sleep hidden">
+                    <i id="exitSleepDataForm" class="fas fa-times"></i>
                     <form action="" id="sleepInputForm">
                       <p>Add Sleep Data</p>
                       <label for="date">Date</label>
