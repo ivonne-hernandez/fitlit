@@ -31,7 +31,7 @@ Project Manager: Nik Seif
 ## Illustrations
   On page load a random user's information will be displayed on the dashboard. Each color block contains a different category for specific set of tracked data. In the top right corner of the dashboard, the date for the latest user data is displayed.
 
-  ![full_dashboard](https://user-images.githubusercontent.com/83175748/138778542-49e24f42-7dba-4fcb-af8c-4e94d8e072fc.png)
+  ![updated_dashboard](https://user-images.githubusercontent.com/83175748/140667512-d44dc890-65da-41cb-9c0b-beb8ad983c65.png)
 
   The left-hand sidebar contains more detailed information about the current user on display. There is space above the user's information for a profile picture to be added.
 
@@ -48,7 +48,7 @@ Project Manager: Nik Seif
 
   ![empty_form](https://user-images.githubusercontent.com/83175748/140662367-4c84c20f-98bc-42a6-905f-1bf97cedc7c5.png)
 
-  A user will not be able to submit a form that is not completely filled out. The `submit` button will remained grayed out until each field within the form has been filled out. Invalid characters cannot be added to any fields so only valid data is added to the user's saved data..
+  A user will not be able to submit a form that is not completed. The `submit` button will remained grayed out until each field within the form has been filled out. Invalid characters cannot be added to any fields so only valid data is added to the user's saved data.
 
   ![filled_in_form](https://user-images.githubusercontent.com/83175748/140662372-0238070a-452e-485d-b655-9ff7e8cc9e65.png)
 
