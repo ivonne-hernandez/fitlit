@@ -7,7 +7,6 @@ Project Manager: Nik Seif
   - [Technologies](#technologies)
   - [Illustrations](#illustrations)
   - [Install + Setup](#set-up)
-  - [View Application](#view-application)
   - [Contributors](#contributors)
 	- [Wins](#wins)
 	- [Challenges + Improvements](#challenges-+-Improvements)
@@ -57,8 +56,6 @@ Project Manager: Nik Seif
 
   <img width="250" alt="filled_out_form" src="https://user-images.githubusercontent.com/83175748/140832039-b77e977e-3636-4ca0-9d58-6145a33cdbe9.png">
 
-
-
 ## Install + Setup
   - clone down the repository
   - npm Install
@@ -68,10 +65,6 @@ Project Manager: Nik Seif
   - npm start
   - run local server
   - copy URL into browser to view page
-
-## View Application
-  Click this [link](https://augustreid.github.io/fitlit/) to view the Fitlit page.
-
 
 ## Contributors
   - [August Reid](https://github.com/augustreid)
