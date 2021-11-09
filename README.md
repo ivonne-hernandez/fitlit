@@ -7,7 +7,6 @@ Project Manager: Nik Seif
   - [Technologies](#technologies)
   - [Illustrations](#illustrations)
   - [Install + Setup](#set-up)
-  - [View Application](#view-application)
   - [Contributors](#contributors)
   - [Wins](#wins)
   - [Challenges + Improvements](#challenges-+-Improvements)
@@ -31,6 +30,7 @@ This was a group project to build an activity tracker for many users over many d
   - Lighthouse
 
 ## Illustrations
+
   On page load a random user's information will be displayed on the dashboard. Each color block contains a different category for specific set of tracked data. In the top right corner of the dashboard, the date for the latest user data is displayed.
 
   <img width="1435" alt="new_dashboard_c_week_view" src="https://user-images.githubusercontent.com/83175748/140831188-c1e65493-d252-445d-9153-5dcf13204d0d.png">
@@ -57,8 +57,6 @@ This was a group project to build an activity tracker for many users over many d
 
   <img width="250" alt="filled_out_form" src="https://user-images.githubusercontent.com/83175748/140832039-b77e977e-3636-4ca0-9d58-6145a33cdbe9.png">
 
-
-
 ## Install + Setup
   - clone down the repository
   - npm install
@@ -68,10 +66,6 @@ This was a group project to build an activity tracker for many users over many d
   - npm start
   - run local server
   - copy URL into browser to view page
-
-## View Application
-  Click this [link](https://augustreid.github.io/fitlit/) to view the Fitlit page.
-
 
 ## Contributors
   - [August Reid](https://github.com/augustreid)
