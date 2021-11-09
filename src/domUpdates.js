@@ -21,7 +21,7 @@ let domUpdates = {
 
   displayTodaysDate() {
     const todaysDate = document.querySelector('#navDate');
-    const dateDisplay = new Intl.DateTimeFormat('en-GB', { dateStyle: 'full'}).format(new Date());
+    const dateDisplay = new Intl.DateTimeFormat('en-GB', { dateStyle: 'long'}).format(new Date());
     todaysDate.innerText = `${dateDisplay}`;
   },
 
@@ -262,7 +262,7 @@ let domUpdates = {
     const chart = document.querySelector('#chartHydrationToday').getContext('2d');
     const hydrationEventToday = this.renderUserHydrationToday(userHydrationData);
     const latestDayDate = userHydrationData.hydrationData[userHydrationData.hydrationData.length - 1].date;
-    this.sleepTodayChart = new Chart(chart,
+    this.hydrationTodayChart = new Chart(chart,
       {
         type: 'bar',
         data: {
