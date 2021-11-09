@@ -30,6 +30,7 @@ Project Manager: Nik Seif
   - Lighthouse
 
 ## Illustrations
+
   On page load a random user's information will be displayed on the dashboard. Each color block contains a different category for specific set of tracked data. In the top right corner of the dashboard, the date for the latest user data is displayed.
 
   <img width="1435" alt="new_dashboard_c_week_view" src="https://user-images.githubusercontent.com/83175748/140831188-c1e65493-d252-445d-9153-5dcf13204d0d.png">
